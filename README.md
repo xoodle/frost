@@ -1,1 +1,1 @@
-Inpired from Ubar Saiyan
+Inspired from Ubar Saiyan

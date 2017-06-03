@@ -1,1 +1,1 @@
-Inspired from Ubar Saiyan
+Main Repo

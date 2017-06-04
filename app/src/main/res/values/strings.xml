@@ -3,20 +3,21 @@
     <string name="search">Search</string>
     <string name="search_filter">Search Filter</string>
     <string name="selectHall">Select Hall</string>
-    <string-array name="hall_entries">
-        <item>GHT</item>
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
-        <item>6</item>
-        <item>7</item>
-        <item>8</item>
-        <item>9</item>
-        <item>10</item>
-        <item>11</item>
-        <item>12</item>
-        <item>13</item>
-    </string-array>
+    <!--<string-array name="hall_entries">-->
+        <!--<item>Select Hall</item>-->
+        <!--<item>GHT</item>-->
+        <!--<item>Hall 1</item>-->
+        <!--<item>Hall 2</item>-->
+        <!--<item>Hall 3</item>-->
+        <!--<item>Hall 4</item>-->
+        <!--<item>Hall 5</item>-->
+        <!--<item>Hall 6</item>-->
+        <!--<item>Hall 7</item>-->
+        <!--<item>Hall 8</item>-->
+        <!--<item>Hall 9</item>-->
+        <!--<item>Hall 10</item>-->
+        <!--<item>Hall 11</item>-->
+        <!--<item>Hall 12</item>-->
+        <!--<item>Hall 13</item>-->
+    <!--</string-array>-->
 </resources>

@@ -8,12 +8,19 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.Spinner;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
     private BottomSheetBehavior mBottomSheetBehaviour;
     private Spinner mHallSpinner;
+    private EditText mEditText;
+    private String mSearchQuery;
+    private Map<String, Spinner> mSpinners;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +28,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         mBottomSheetBehaviour = BottomSheetBehavior.from(findViewById(R.id.bottomSheetLayout));
         mHallSpinner = (Spinner)findViewById(R.id.hall_spinner);
+        mEditText = (EditText)findViewById(R.id.edit_text);
+        mSearchQuery = mEditText.getText().toString();
+        mSpinners = new HashMap<String, Spinner>();
+        mSpinners.put("hall", (Spinner)findViewById(R.id.spinner_hall));
+        mSpinners.put("gender", (Spinner)findViewById(R.id.spinner_gender));
     }
 
     @Override

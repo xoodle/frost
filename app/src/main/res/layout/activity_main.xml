@@ -7,10 +7,33 @@
     android:fitsSystemWindows="true"
     tools:context="com.example.kaushal.studentsearch.MainActivity">
 
-    <TextView
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="5dp"
+        android:padding="16dp" />
+    <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello"/>
+        android:id="@+id/spinner_hall"
+        android:entries="@array/hall_entries"
+        android:entryValues="@array/hall_values" />
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinner_gender"
+            android:entries="@array/gender_entries"
+            android:entryValues="@array/gender_values" />
+
+
+    </LinearLayout>
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"

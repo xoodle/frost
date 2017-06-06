@@ -52,9 +52,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-//        mSpinners = new HashMap<String, Spinner>();
-//        mSpinners.put("hall", (Spinner)findViewById(R.id.spinner_hall));
-//        mSpinners.put("gender", (Spinner)findViewById(R.id.spinner_gender));
+
     }
 
 
@@ -66,6 +64,26 @@ public class MainActivity extends AppCompatActivity {
         inflater.inflate(R.menu.meu_main_activity, menu);
         return super.onCreateOptionsMenu(menu);
     }
+  @Override
+  public boolean onOptionsItemSelected(MenuItem item) {
+    // Take appropriate action for each action item click
+    switch (item.getItemId()) {
+      case R.id.action_ref:
+        // search action
+        return true;
+      case R.id.menu_settings:
+        // refresh
+        return true;
+      case R.id.menu_main:
+        // help action
+        return true;
+      case R.id.menu_search:
+        // check for updates action
+        return true;
+      default:
+        return super.onOptionsItemSelected(item);
+    }
+  }
 
 
 }

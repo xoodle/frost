@@ -5,10 +5,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.TextView;
-import android.app.ActionBar;
 import android.app.Activity;
 
 /**
@@ -30,10 +33,9 @@ public class SearchResultActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_result);
       // get action bar
-//      ActionBar actionBar = getActionBar();
-//
-//      // Enabling Up / Back navigation
-//      actionBar.setDisplayHomeAsUpEnabled(true);
+      ActionBar actionBar = getSupportActionBar();
+      // Enabling Up / Back navigation
+       actionBar.setDisplayHomeAsUpEnabled(true);
         mSearchQuery = getIntent().getStringExtra("searchQuery");
         mHallFilter = getIntent().getStringExtra("hallFilter");
         mGenderFilter = getIntent().getStringExtra("genderFilter");
@@ -41,5 +43,11 @@ public class SearchResultActivity extends AppCompatActivity {
         mTv.setText(mSearchQuery + "\n" + mHallFilter + "\n" + mGenderFilter);
     }
     // get action bar
+
+  @Override
+  public boolean onCreateOptionsMenu(Menu menu) {
+    super.onCreateOptionsMenu(menu);
+    return super.onCreateOptionsMenu(menu);
+  }
 
 }

@@ -11,9 +11,10 @@
        android:layout_height="match_parent">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      android:weightSum="1">
 
     <EditText
         android:id="@+id/edit_text"
@@ -26,44 +27,102 @@
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
       android:layout_marginTop="30dp"/>
-    <Spinner
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/spinner_hall"
-        android:entries="@array/hall_values"
-        android:entryValues="@array/hall_values" />
 
-    <Spinner
-        android:layout_width="wrap_content"
+      <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/spinner_year"
-        android:entries="@array/year_values"
-        android:entryValues="@array/year_values"/>
-    <Spinner
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:id="@+id/spinner_blood_group"
-      android:entries="@array/blood_group_values"
-      android:entryValues="@array/blood_group_values"/>
-    <Spinner
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:id="@+id/spinner_dept"
-      android:entries="@array/dept_values"
-      android:entryValues="@array/dept_values"/>
+        android:orientation="horizontal"
+        android:layout_weight="0.97">
+
+        <Spinner
+          android:id="@+id/spinner_hall"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginLeft="25dp"
+          android:layout_marginRight="25dp"
+          android:paddingTop="10dp"
+          android:entries="@array/hall_values"
+          android:entryValues="@array/hall_values"
+          android:layout_marginTop="30dp"
+          android:paddingBottom="10dp"
+
+          />
+
+        <Spinner
+          android:id="@+id/spinner_year"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginLeft="45dp"
+          android:layout_marginRight="25dp"
+          android:paddingTop="10dp"
+          android:entries="@array/year_values"
+          android:entryValues="@array/year_values"
+          android:layout_marginTop="30dp"
+          android:paddingBottom="10dp"
+
+          />
+      </LinearLayout>
+
+      <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Spinner
+          android:id="@+id/spinner_blood_group"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginLeft="25dp"
+          android:layout_marginRight="25dp"
+          android:paddingBottom="10dp"
+
+          android:paddingTop="10dp"
+          android:entries="@array/blood_group_values"
+          android:layout_marginTop="30dp"
+          android:entryValues="@array/blood_group_values"/>
+
+        <Spinner
+          android:id="@+id/spinner_dept"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginLeft="25dp"
+          android:paddingTop="10dp"
+          android:paddingBottom="10dp"
+
+          android:layout_marginRight="25dp"
+          android:entries="@array/dept_values"
+          android:layout_marginTop="30dp"
+          android:entryValues="@array/dept_values"/>
+      </LinearLayout>
+
+      <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
       <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/spinner_program"
         android:entries="@array/program_values"
-        android:entryValues="@array/program_values" />
+        android:entryValues="@array/program_values"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="45dp"
+        android:paddingBottom="10dp"
+
+        android:paddingTop="10dp"/>
       <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/spinner_gender"
         android:entries="@array/gender_values"
-        android:entryValues="@array/gender_values"/>
-
+        android:entryValues="@array/gender_values"
+        android:layout_marginRight="25dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="25dp"/>
+        </LinearLayout>
     </LinearLayout>
 
        <Button

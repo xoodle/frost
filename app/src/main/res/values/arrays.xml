@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <array name="hall_entries">
-        <item>Select Hall</item>
+    <array name="hall_values">
+        <item>Hall</item>
         <item>GHT</item>
         <item>Hall 1</item>
         <item>Hall 2</item>
@@ -17,32 +17,50 @@
         <item>Hall 12</item>
         <item>Hall 13</item>
     </array>
-    <array name="hall_values">
-        <item>-1</item>
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
-        <item>6</item>
-        <item>7</item>
-        <item>8</item>
-        <item>9</item>
-        <item>10</item>
-        <item>11</item>
-        <item>12</item>
-        <item>13</item>
+     <array name="blood_group_values">
+        <item>Blood Group</item>
+        <item>A+</item>
+        <item>A-</item>
+        <item>B+</item>
+        <item>B-</item>
+        <item>AB+</item>
+        <item>AB-</item>
+        <item>O+</item>
+        <item>O-</item>
     </array>
-
-    <array name="gender_entries">
-        <item>Select Gender</item>
-        <item>Male</item>
-        <item>Female</item>
+    <array name="program_values">
+        <item>Programme</item>
+        <item>BTech</item>
+        <item>BS</item>
     </array>
-    <array name="gender_values">
-        <item>0</item>
-        <item>male</item>
-        <item>female</item>
+    <array name="year_values">
+        <item>Year</item>
+        <item>Y17</item>
+        <item>Y16</item>
+        <item>Y15</item>
+        <item>Y14</item>
+        <item>Y13</item>
+        <item>Y12</item>
+        <item>Y11</item>
     </array>
+    <array name="dept_values">
+        <item>Department</item>
+        <item>AE</item>
+        <item>BSBE</item>
+        <item>CHE</item>
+        <item>CHY</item>
+        <item>CE</item>
+        <item>CSE</item>
+        <item>ECO</item>
+        <item>EE</item>
+        <item>ME</item>
+        <item>MSE</item>
+        <item>MTH</item>
+        <item>PHY</item>
+    </array>
+  <array name="gender_values">
+    <item>Gender</item>
+    <item>Male</item>
+    <item>Female</item>
+  </array>
 </resources>

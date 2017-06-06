@@ -1,26 +1,33 @@
 package com.example.kaushal.studentsearch;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.support.v4.graphics.drawable.DrawableCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.Spinner;
-
+import static android.support.v4.view.GravityCompat.START;
 import java.util.HashMap;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
-    private BottomSheetBehavior mBottomSheetBehaviour;
     private EditText mEditText;
     private Button mButton;
     private Spinner mHallSpinner;
@@ -31,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mBottomSheetBehaviour = BottomSheetBehavior.from(findViewById(R.id.bottomSheetLayout));
         mEditText = (EditText)findViewById(R.id.edit_text);
         mButton = (Button)findViewById(R.id.button_go);
         mHallSpinner = (Spinner)findViewById(R.id.spinner_hall);
@@ -51,25 +57,15 @@ public class MainActivity extends AppCompatActivity {
 //        mSpinners.put("gender", (Spinner)findViewById(R.id.spinner_gender));
     }
 
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
-        getMenuInflater().inflate(R.menu.meu_main_activity, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int itemId = item.getItemId();
-        if(itemId == R.id.action_filter) {
-            searchFilter();
-        }
-        return super.onOptionsItemSelected(item);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.meu_main_activity, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
 
-
-    private void searchFilter() {
-        mBottomSheetBehaviour.setState(BottomSheetBehavior.STATE_EXPANDED);
-    }
 }

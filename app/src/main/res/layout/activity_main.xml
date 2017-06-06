@@ -6,8 +6,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     tools:context="com.example.kaushal.studentsearch.MainActivity">
-
-   <RelativeLayout
+    <RelativeLayout
        android:layout_width="match_parent"
        android:layout_height="match_parent">
 
@@ -23,22 +22,49 @@
         android:hint="@string/search_hint"
         android:maxLines="1"
         android:elevation="5dp"
-        android:padding="16dp" />
+        android:padding="16dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+      android:layout_marginTop="30dp"/>
     <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/spinner_hall"
-        android:entries="@array/hall_entries"
+        android:entries="@array/hall_values"
         android:entryValues="@array/hall_values" />
 
-        <Spinner
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/spinner_gender"
-            android:entries="@array/gender_entries"
-            android:entryValues="@array/gender_values" />
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner_year"
+        android:entries="@array/year_values"
+        android:entryValues="@array/year_values"/>
+    <Spinner
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:id="@+id/spinner_blood_group"
+      android:entries="@array/blood_group_values"
+      android:entryValues="@array/blood_group_values"/>
+    <Spinner
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:id="@+id/spinner_dept"
+      android:entries="@array/dept_values"
+      android:entryValues="@array/dept_values"/>
+      <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner_program"
+        android:entries="@array/program_values"
+        android:entryValues="@array/program_values" />
+      <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner_gender"
+        android:entries="@array/gender_values"
+        android:entryValues="@array/gender_values"/>
 
-       </LinearLayout>
+    </LinearLayout>
 
        <Button
            android:id="@+id/button_go"
@@ -54,39 +80,6 @@
            android:paddingRight="50dp"
            android:paddingTop="25dp"
            android:text="@string/button_text" />
-
-
-
-
-    </RelativeLayout>
-
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/bottomSheetLayout"
-        android:layout_width="match_parent"
-        android:layout_height="350dp"
-        android:background="@android:color/holo_blue_light"
-        android:padding="16dp"
-        app:behavior_hideable="true"
-        app:behavior_peekHeight="0dp"
-        app:layout_behavior="@string/bottom_sheet_behavior">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/hall_spinner_label"
-            android:text="@string/selectHall"
-            style="@style/Widget.AppCompat.TextView.SpinnerItem"/>
-
-        <Spinner
-            android:layout_toRightOf="@id/hall_spinner_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/hall_spinner"
-            android:prompt="@string/selectHall"
-            android:entries="@array/hall_entries"
-            android:layout_marginLeft="16dp"/>
-
-    </RelativeLayout>
+      </RelativeLayout>
 
 </android.support.design.widget.CoordinatorLayout>

@@ -31,5 +31,10 @@ dependencies {
     compile "com.android.support:design:$GOOGLE_VERSION"
     compile "com.android.support:appcompat-v7:$GOOGLE_VERSION"
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile "com.android.support:cardview-v7:$GOOGLE_VERSION"
+    compile "com.android.support:recyclerview-v7:$GOOGLE_VERSION"
+    compile "com.android.support:support-annotations:$GOOGLE_VERSION"
+    compile "com.android.support:customtabs:$GOOGLE_VERSION"
+    compile "com.android.support:support-v4:$GOOGLE_VERSION"
     testCompile 'junit:junit:4.12'
 }

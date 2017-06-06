@@ -11,5 +11,6 @@
     <string name="back_main">Back</string>
     <string name="search_toolbar">Search</string>
     <string name="refresh_toolbar">Refresh</string>
+    <string name="activity_search_result">Result</string>
 
 </resources>

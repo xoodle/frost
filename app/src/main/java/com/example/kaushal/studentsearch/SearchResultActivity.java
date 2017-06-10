@@ -3,20 +3,13 @@ package com.example.kaushal.studentsearch;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.widget.TextView;
-import android.app.Activity;
 
-/**
- * Created by kaushal on 5/6/17.
- */
 
 public class SearchResultActivity extends AppCompatActivity {
     private String mSearchQuery;

@@ -6,13 +6,25 @@
                 android:paddingTop="10dp"
                 android:orientation="vertical"
                 android:paddingBottom="10dp" tools:context=".SearchResultActivity">
-  <ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-  <TextView
-    android:id="@+id/tvJsontext"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-  </TextView>
-  </ScrollView>
-</LinearLayout>
+  <!--<ScrollView-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent">-->
+  <!--<TextView-->
+    <!--android:id="@+id/tvJsontext"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content">-->
+  <!--</TextView>-->
+  <!--</ScrollView>-->
+
+  <!--<LinearLayout-->
+      <!--android:layout_width="match_parent"-->
+      <!--android:layout_height="match_parent">-->
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical"/>
+
+  </LinearLayout>
+

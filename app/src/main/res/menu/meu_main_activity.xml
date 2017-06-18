@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-  <item
-    android:id="@+id/action_ref"
-    android:icon="@drawable/ic_refresh"
-    android:title="@string/refresh_toolbar"
-    app:showAsAction="collapseActionView|ifRoom" />
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_refresh_database"
+        android:icon="@drawable/ic_refresh"
+        android:title="@string/refresh_toolbar"
+        app:showAsAction="collapseActionView|ifRoom"/>
 
     <item
-      android:id="@+id/menu_search"
-      android:title="@string/search"
-      app:showAsAction="never" />
+        android:id="@+id/menu_search"
+        android:title="@string/search"
+        app:showAsAction="never"/>
     <item
-      android:id="@+id/menu_main"
-      android:title="Main Menu"
-      app:showAsAction="never" />
+        android:id="@+id/menu_main"
+        android:title="Main Menu"
+        app:showAsAction="never"/>
     <item
-      android:id="@+id/menu_settings"
-      android:title="Settings"
-      app:showAsAction="never" />
+        android:id="@+id/menu_settings"
+        android:title="Settings"
+        app:showAsAction="never"/>
 </menu>

@@ -6,6 +6,8 @@ import android.widget.Toast;
 import com.google.gson.GsonBuilder;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
+
 import retrofit.Callback;
 import retrofit.RestAdapter;
 import retrofit.converter.GsonConverter;
@@ -17,84 +19,127 @@ import retrofit.converter.GsonConverter;
 public class StudentData {
 
   @SerializedName("a")
-  public String a;
+  public String address;
 
   @SerializedName("b")
-  public String b;
+  public String bloodGroup;
 
   @SerializedName("d")
-  public String d;
+  public String dept;
 
   @SerializedName("g")
-  public String g;
+  public String gender;
 
   @SerializedName("h")
-  public String h;
+  public String hall;
 
   @SerializedName("i")
-  public String i;
+  public String rollNo;
 
   @SerializedName("n")
-  public String n;
+  public String name;
 
   @SerializedName("p")
-  public String p;
+  public String programme;
 
   @SerializedName("r")
-  public String r;
+  public String roomNo;
 
   @SerializedName("u")
-  public String u;
+  public String userName;
 
-//  public StudentData(String place, String blood, String branch, String gender, String hall, String rollno, String name, String programme, String room, String mail) {
-//    this.a = place;
-//    this.b = blood;
-//    this.d = branch;
-//    this.g = gender;
-//    this.h = hall;
-//    this.i = rollno;
-//    this.n = name;
-//    this.p = programme;
-//    this.r = room;
-//    this.u = mail;
-//  }
-  public String geta() {
-    return a;
+  public static ArrayList<StudentData> studentDataArrayList;
+
+  public StudentData(String address, String bloodGroup, String dept, String gender, String hall, String rollNo, String name, String programme, String roomNo, String userName) {
+    this.address = address;
+    this.bloodGroup = bloodGroup;
+    this.dept = dept;
+    this.gender = gender;
+    this.hall = hall;
+    this.rollNo = rollNo;
+    this.name = name;
+    this.programme = programme;
+    this.roomNo = roomNo;
+    this.userName = userName;
   }
 
-  public String getb() {
-    return b;
+  public String getAddress() {
+    return address;
   }
 
-  public String getd() {
-    return d;
+  public String getBloodGroup() {
+    return bloodGroup;
   }
 
-  public String getg() {
-    return g;
+  public String getDept() {
+    return dept;
   }
 
-  public String geth() {
-    return h;
+  public String getGender() {
+    return gender;
   }
 
-  public String geti() {
-    return i;
+  public String getHall() {
+    return hall;
   }
 
-  public String getn() {
-    return n;
+  public String getRollNo() {
+    return rollNo;
   }
 
-  public String getp() {
-    return p;
+  public String getName() {
+    return name;
   }
 
-  public String getr() {
-    return r;
+  public String getProgramme() {
+    return programme;
   }
 
-  public String getu() {
-    return u;
+  public String getRoomNo() {
+    return roomNo;
+  }
+
+  public String getUserName() {
+    return userName;
+  }
+
+  public void setAddress(String address) {
+    this.address = address;
+  }
+
+  public void setBloodGroup(String bloodGroup) {
+    this.bloodGroup = bloodGroup;
+  }
+
+  public void setDept(String dept) {
+    this.dept = dept;
+  }
+
+  public void setGender(String gender) {
+    this.gender = gender;
+  }
+
+  public void setHall(String hall) {
+    this.hall = hall;
+  }
+
+  public void setRollNo(String rollNo) {
+    this.rollNo = rollNo;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public void setProgramme(String programme) {
+    this.programme = programme;
+  }
+
+  public void setRoomNo(String roomNo) {
+    this.roomNo = roomNo;
+  }
+
+  public void setUserName(String userName) {
+    this.userName = userName;
   }
 }

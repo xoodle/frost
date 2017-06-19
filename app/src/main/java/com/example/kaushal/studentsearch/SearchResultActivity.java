@@ -1,6 +1,5 @@
 package com.example.kaushal.studentsearch;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -12,7 +11,6 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 
@@ -26,7 +24,7 @@ public class SearchResultActivity extends MainActivity {
   private DataAdapter mDataAdapter;
   private ArrayList<StudentData> studentDataArrayList;
   LinearLayoutManager mLinearLayoutManager;
-  private DbHelper dbHelper;
+  public DbHelper dbHelper;
   private Cursor cursor;
 
   public static Intent getNewIntent(Context c) {
@@ -43,10 +41,8 @@ public class SearchResultActivity extends MainActivity {
     mLinearLayoutManager = new LinearLayoutManager(this);
     mResultRecyclerView.setLayoutManager(mLinearLayoutManager);
     studentDataArrayList = new ArrayList<>();
-//    dbHelper = new DbHelper(this, "students", 1);
-    String name = getIntent().getExtras().getString("name", "Anil Kumar").toString();
-    DbHelper dbHelper = (DbHelper) getIntent().getSerializableExtra("DbHelper");
-    Log.v("SearchResultActivity", name);
+    String name = getIntent().getExtras().getString("name", "Kaushal  Kishore");
+    dbHelper = DbHelper.getDbHelperInstance(getApplicationContext(), "students", 1);
     performQuery(name);
   }
 
@@ -72,32 +68,15 @@ public class SearchResultActivity extends MainActivity {
     protected Void doInBackground(String... name) {
       try {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-//      cursor = db.rawQuery(
-//              "SELECT * FROM "
-//              + DbHelper.TABLE_NAME
-//              + " WHERE "
-//              + DbHelper.COLUMN_NAME
-//              + " = \'"
-//              + name[0].toString()
-//              + "\'",
-//              null
-//      );
         cursor = db.rawQuery(
-                "SELECT * FROM students WHERE name = \"Sunil Kumar\"",
+                "SELECT * FROM students WHERE name LIKE \"%"
+                        + name[0]
+                        + "%\"",
                 null
         );
-//      cursor = db.query(true,
-//              DbHelper.TABLE_NAME,
-//              null,
-//              DbHelper.COLUMN_NAME+" = ?",
-//              new String[]{name+""},
-//              null,
-//              null,
-//              null,
-//              null,
-//              null);
         if (cursor.getCount() > 0) {
           cursor.moveToFirst();
+
           do {
             StudentData student = new StudentData(
                     cursor.getString(cursor.getColumnIndex(DbHelper.COLUMN_ADDRESS)),
@@ -112,8 +91,10 @@ public class SearchResultActivity extends MainActivity {
                     cursor.getString(cursor.getColumnIndex(DbHelper.COLUMN_USER_NAME))
             );
             studentDataArrayList.add(student);
+            if(!cursor.isLast())
             cursor.moveToNext();
           } while (!cursor.isLast());
+          cursor.close();
         } else {
           throw new Resources.NotFoundException("Student with name " + name[0] + " does not exist.");
         }

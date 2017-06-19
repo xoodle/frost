@@ -44,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
       public void onClick(View v) {
         Intent intent = SearchResultActivity.getNewIntent(MainActivity.this);
         intent.putExtra("name", getSearchQuery());
-        intent.putExtra("DbHelper", getDbHelper());
         startActivity(intent);
       }
     });
@@ -84,7 +83,8 @@ public class MainActivity extends AppCompatActivity {
   }
 
   public String getSearchQuery() {
-    return mEditText.getText().toString();
+    String name = mEditText.getText().toString();
+    return name;
   }
 
   private void refreshDatabase() {
@@ -144,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
       super.onPostExecute(result);
       Gson gson = new Gson();
       StudentData student;
-      dbHelper = new DbHelper(MainActivity.this, "students", 1);
+      dbHelper = DbHelper.getDbHelperInstance(getApplicationContext(), "students", 1);
       Matcher m = Pattern.compile("\\{(.*?)\\}").matcher(result);
       while (m.find()) {
         student = gson.fromJson("{" + m.group(1) + "}", StudentData.class);

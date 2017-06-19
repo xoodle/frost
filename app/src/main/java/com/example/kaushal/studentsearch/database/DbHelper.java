@@ -16,6 +16,7 @@ import java.io.Serializable;
 
 @SuppressWarnings("serial")
 public class DbHelper extends SQLiteOpenHelper implements Serializable {
+  private static DbHelper dbHelper;
   public static final String TABLE_NAME = "students";
   public static final String COLUMN_ID = "_id";
   public static final String COLUMN_NAME = "name";
@@ -28,7 +29,7 @@ public class DbHelper extends SQLiteOpenHelper implements Serializable {
   public static final String COLUMN_ROOM_NO = "room_no";
   public static final String COLUMN_ADDRESS = "address";
   public static final String COLUMN_PROGRAMME = "programme";
-  public static final String CREATE_TABLE_IF_NOT_EXISTS = "CREATE TABLE IF NOT EXISTS "+ TABLE_NAME + "( "
+  public static final String CREATE_TABLE_IF_NOT_EXISTS = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME + "( "
           + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
           + COLUMN_NAME + " TEXT, "
           + COLUMN_ROLL_NO + " TEXT, "
@@ -44,6 +45,12 @@ public class DbHelper extends SQLiteOpenHelper implements Serializable {
 
   public DbHelper(Context context, String dbName, Integer version) {
     super(context, dbName, null, version);
+  }
+
+  public static DbHelper getDbHelperInstance(Context context, String dbName, Integer version) {
+    if (dbHelper == null)
+      dbHelper = new DbHelper(context, dbName, version);
+    return dbHelper;
   }
 
   @Override

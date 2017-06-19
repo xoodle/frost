@@ -56,7 +56,7 @@ private TextView mNameView;
     }
 
     public void bind(StudentData studentData) {
-      mNameView.setText(studentData.getName());
+      mNameView.setText(""+studentData.getName()+" "+studentData.getRollNo());
     }
   }
 }

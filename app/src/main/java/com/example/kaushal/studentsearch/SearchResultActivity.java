@@ -5,17 +5,23 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.widget.ImageView;
 
 import com.example.kaushal.studentsearch.database.DbHelper;
+import com.squareup.picasso.Picasso;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 
 public class SearchResultActivity extends MainActivity {
@@ -23,7 +29,7 @@ public class SearchResultActivity extends MainActivity {
   private RecyclerView mResultRecyclerView;
   private DataAdapter mDataAdapter;
   private ArrayList<StudentData> studentDataArrayList;
-  LinearLayoutManager mLinearLayoutManager;
+  RecyclerView.LayoutManager mLinearLayoutManager;
   public DbHelper dbHelper;
   private Cursor cursor;
 
@@ -111,8 +117,9 @@ public class SearchResultActivity extends MainActivity {
     @Override
     protected void onPostExecute(Void aVoid) {
       super.onPostExecute(aVoid);
-      mDataAdapter = new DataAdapter(studentDataArrayList);
+      mDataAdapter = new DataAdapter(getApplicationContext(), studentDataArrayList);
       mResultRecyclerView.setAdapter(mDataAdapter);
     }
   }
+
 }

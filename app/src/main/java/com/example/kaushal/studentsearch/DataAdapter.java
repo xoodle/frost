@@ -1,11 +1,21 @@
 package com.example.kaushal.studentsearch;
 
+import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
+import java.io.InputStream;
 import java.util.ArrayList;
 
 /**
@@ -15,8 +25,12 @@ import java.util.ArrayList;
 public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
 
   private ArrayList<StudentData> mStudentData;
+  private Context context;
+  private String packageName;
 
-  public DataAdapter(ArrayList<StudentData> studentData) {
+  public DataAdapter(Context context, ArrayList<StudentData> studentData) {
+    this.context = context;
+    this.packageName = context.getPackageName();
     this.mStudentData = studentData;
   }
 
@@ -27,8 +41,8 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
   }
 
   @Override
-  public void onBindViewHolder(DataAdapter.ViewHolder holder, int position) {
-    holder.bind(mStudentData.get(position));
+  public void onBindViewHolder(ViewHolder holder, int position) {
+    holder.bind(context, packageName, mStudentData.get(position));
   }
 
   @Override
@@ -42,12 +56,13 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
   }
 
   public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-private TextView mNameView;
-
+    private TextView mNameView;
+    private ImageView mImageView;
 
     public ViewHolder(View v) {
       super(v);
       mNameView = (TextView) v.findViewById(R.id.tv_name);
+      mImageView = (ImageView) v.findViewById(R.id.user_image);
     }
 
     @Override
@@ -55,8 +70,23 @@ private TextView mNameView;
       //clicked
     }
 
-    public void bind(StudentData studentData) {
-      mNameView.setText(""+studentData.getName()+" "+studentData.getRollNo());
+    public void bind(Context context, String packageName, StudentData studentData) {
+      mNameView.setText(""+studentData.getName()+" "+studentData.getRollNo()+" "+studentData.getGender());
+      int resID;
+      Resources res = context.getResources();
+      if(studentData.getGender().equals("M")) {
+        resID = res.getIdentifier("boy", "drawable", packageName);
+      } else {
+        resID = res.getIdentifier("girl", "drawable", packageName);
+      }
+      Picasso.with(context)
+              .load("http://oa.cc.iitk.ac.in/Oa/Jsp/Photo/"+studentData.getRollNo()+"_0.jpg")
+              .placeholder(resID)
+              .error(resID)
+              .resize(160, 200)
+              .centerCrop()
+              .into(this.mImageView);
     }
   }
+
 }

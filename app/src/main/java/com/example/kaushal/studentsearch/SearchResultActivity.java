@@ -5,23 +5,18 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.widget.ImageView;
+import android.view.View;
 
 import com.example.kaushal.studentsearch.database.DbHelper;
-import com.squareup.picasso.Picasso;
 
-import java.io.InputStream;
 import java.util.ArrayList;
 
 public class SearchResultActivity extends MainActivity {
@@ -48,8 +43,10 @@ public class SearchResultActivity extends MainActivity {
     mResultRecyclerView.setLayoutManager(mLinearLayoutManager);
     studentDataArrayList = new ArrayList<>();
     String name = getIntent().getExtras().getString("name", "Kaushal  Kishore");
+    String hall = getIntent().getExtras().getString("hall", "HALL5");
+    String[] filter = {name, hall};
     dbHelper = DbHelper.getDbHelperInstance(getApplicationContext(), "students", 1);
-    performQuery(name);
+    performQuery(filter);
   }
 
   @Override
@@ -60,8 +57,8 @@ public class SearchResultActivity extends MainActivity {
     return super.onCreateOptionsMenu(menu);
   }
 
-  private void performQuery(String name) throws Resources.NotFoundException, NullPointerException {
-    new AsyncStudentSearch().execute(name);
+  private void performQuery(String filter[]) throws Resources.NotFoundException, NullPointerException {
+    new AsyncStudentSearch().execute(filter);
   }
 
   public class AsyncStudentSearch extends AsyncTask<String, Void, Void> {
@@ -71,19 +68,20 @@ public class SearchResultActivity extends MainActivity {
     }
 
     @Override
-    protected Void doInBackground(String... name) {
+    protected Void doInBackground(String... filter) {
       try {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         cursor = db.rawQuery(
                 "SELECT * FROM students WHERE name LIKE \"%"
-                        + name[0]
-                        + "%\"",
+                + filter[0]
+                + "%\" AND hall = \""
+                + filter[1]
+                + "\"",
                 null
         );
         if (cursor.getCount() > 0) {
           cursor.moveToFirst();
-
-          do {
+          for(int x=1;x<=cursor.getCount();x++,cursor.moveToNext()) {
             StudentData student = new StudentData(
                     cursor.getString(cursor.getColumnIndex(DbHelper.COLUMN_ADDRESS)),
                     cursor.getString(cursor.getColumnIndex(DbHelper.COLUMN_BLOOD_GROUP)),
@@ -97,12 +95,8 @@ public class SearchResultActivity extends MainActivity {
                     cursor.getString(cursor.getColumnIndex(DbHelper.COLUMN_USER_NAME))
             );
             studentDataArrayList.add(student);
-            if(!cursor.isLast())
-            cursor.moveToNext();
-          } while (!cursor.isLast());
+          }
           cursor.close();
-        } else {
-          throw new Resources.NotFoundException("Student with name " + name[0] + " does not exist.");
         }
       } catch (NullPointerException e) {
         e.printStackTrace();
@@ -117,9 +111,13 @@ public class SearchResultActivity extends MainActivity {
     @Override
     protected void onPostExecute(Void aVoid) {
       super.onPostExecute(aVoid);
-      mDataAdapter = new DataAdapter(getApplicationContext(), studentDataArrayList);
-      mResultRecyclerView.setAdapter(mDataAdapter);
+      if(studentDataArrayList.size()>0) {
+        mDataAdapter = new DataAdapter(getApplicationContext(), studentDataArrayList);
+        mResultRecyclerView.setAdapter(mDataAdapter);
+        mResultRecyclerView.setVisibility(View.VISIBLE);
+      } else {
+        findViewById(R.id.tv_not_found).setVisibility(View.VISIBLE);
+      }
     }
   }
-
 }

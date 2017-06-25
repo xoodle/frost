@@ -10,10 +10,20 @@
               android:paddingTop="10dp"
               tools:context=".SearchResultActivity">
 
+    <TextView
+        android:id="@+id/tv_not_found"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="No such person exists"
+        android:textSize="20sp"
+        android:textStyle="bold|italic"
+        android:visibility="gone"/>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbars="vertical"/>
+        android:scrollbars="vertical"
+        android:visibility="gone"/>
 
 </LinearLayout>

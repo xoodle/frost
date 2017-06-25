@@ -71,7 +71,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
     }
 
     public void bind(Context context, String packageName, StudentData studentData) {
-      mNameView.setText(""+studentData.getName()+" "+studentData.getRollNo()+" "+studentData.getGender());
+      mNameView.setText(""+studentData.getName()+" "+studentData.getRollNo()+" "+studentData.getGender() + " " + studentData.getHall());
       int resID;
       Resources res = context.getResources();
       if(studentData.getGender().equals("M")) {

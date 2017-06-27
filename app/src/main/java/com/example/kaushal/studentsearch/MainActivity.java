@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import com.example.kaushal.studentsearch.database.DbHelper;
 import com.google.gson.Gson;
@@ -25,6 +26,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -44,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
       public void onClick(View v) {
         Intent intent = SearchResultActivity.getNewIntent(MainActivity.this);
         intent.putExtra("name", getSearchQuery());
+        intent.putExtra("hall", getHallFilter());
         startActivity(intent);
       }
     });
@@ -78,13 +81,14 @@ public class MainActivity extends AppCompatActivity {
     return super.onOptionsItemSelected(item);
   }
 
-  public DbHelper getDbHelper() {
-    return dbHelper;
-  }
-
   public String getSearchQuery() {
     String name = mEditText.getText().toString();
     return name;
+  }
+
+  public String getHallFilter() {
+    Spinner spinnerHall = (Spinner) findViewById(R.id.spinner_hall);
+    return spinnerHall.getSelectedItem().toString();
   }
 
   private void refreshDatabase() {

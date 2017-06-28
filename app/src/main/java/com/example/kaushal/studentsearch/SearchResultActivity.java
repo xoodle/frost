@@ -42,11 +42,22 @@ public class SearchResultActivity extends MainActivity {
     mLinearLayoutManager = new LinearLayoutManager(this);
     mResultRecyclerView.setLayoutManager(mLinearLayoutManager);
     studentDataArrayList = new ArrayList<>();
-    String name = getIntent().getExtras().getString("name", "Kaushal  Kishore");
-    String hall = getIntent().getExtras().getString("hall", "HALL5");
-    String[] filter = {name, hall};
-    dbHelper = DbHelper.getDbHelperInstance(getApplicationContext(), "students", 1);
+    String[] filter = getFilterArray();
+    dbHelper = DbHelper.getDbHelperInstance(getApplicationContext(), DbHelper.TABLE_NAME, 1);
     performQuery(filter);
+  }
+
+  private String[] getFilterArray() {
+    Intent i = getIntent();
+    String[] filter = {
+            i.getExtras().getString(DbHelper.COLUMN_NAME, ""),
+            i.getExtras().getString(DbHelper.COLUMN_HALL, ""),
+            i.getExtras().getString(DbHelper.COLUMN_BLOOD_GROUP, ""),
+            i.getExtras().getString(DbHelper.COLUMN_DEPT, ""),
+            i.getExtras().getString(DbHelper.COLUMN_PROGRAMME, ""),
+            i.getExtras().getString(DbHelper.COLUMN_GENDER, "")
+    };
+    return filter;
   }
 
   @Override
@@ -72,11 +83,19 @@ public class SearchResultActivity extends MainActivity {
       try {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         cursor = db.rawQuery(
-                "SELECT * FROM students WHERE name LIKE \"%"
-                + filter[0]
-                + "%\" AND hall = \""
-                + filter[1]
-                + "\"",
+                "SELECT * FROM " + DbHelper.TABLE_NAME
+                + " WHERE " + DbHelper.COLUMN_NAME + " LIKE \"%"
+                + filter[0] + "%\""
+                + " AND " + DbHelper.COLUMN_HALL + " LIKE \"%"
+                + filter[1] + "%\""
+                + " AND " + DbHelper.COLUMN_BLOOD_GROUP + " LIKE \"%"
+                + filter[2] + "%\""
+                + " AND " + DbHelper.COLUMN_DEPT + " LIKE \"%"
+                + filter[3] + "%\""
+                + " AND " + DbHelper.COLUMN_PROGRAMME + " LIKE \"%"
+                + filter[4] + "%\""
+                + " AND " + DbHelper.COLUMN_GENDER + " LIKE \"%"
+                + filter[5] + "%\"",
                 null
         );
         if (cursor.getCount() > 0) {

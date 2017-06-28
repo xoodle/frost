@@ -73,7 +73,7 @@ public class DbHelper extends SQLiteOpenHelper implements Serializable {
       ContentValues contentValues = new ContentValues();
       contentValues.put(COLUMN_ADDRESS, student.getAddress());
       contentValues.put(COLUMN_BLOOD_GROUP, student.getBloodGroup());
-      contentValues.put(COLUMN_DEPT, student.getBloodGroup());
+      contentValues.put(COLUMN_DEPT, student.getDept());
       contentValues.put(COLUMN_GENDER, student.getGender());
       contentValues.put(COLUMN_HALL, student.getHall());
       contentValues.put(COLUMN_NAME, student.getName());

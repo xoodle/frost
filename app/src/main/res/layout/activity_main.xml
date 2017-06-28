@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.example.kaushal.studentsearch.MainActivity">
+    tools:context="com.studentsearch.xoodle.studentsearch.MainActivity">
     <RelativeLayout
        android:layout_width="match_parent"
        android:layout_height="match_parent">

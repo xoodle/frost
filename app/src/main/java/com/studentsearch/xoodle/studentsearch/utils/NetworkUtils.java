@@ -1,4 +1,4 @@
-package com.example.kaushal.studentsearch.utils;
+package com.studentsearch.xoodle.studentsearch.utils;
 
 import android.net.Uri;
 

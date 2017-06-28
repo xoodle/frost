@@ -1,4 +1,4 @@
-package com.example.kaushal.studentsearch;
+package com.studentsearch.xoodle.studentsearch;
 
 import android.content.Context;
 import android.content.Intent;
@@ -15,7 +15,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 
-import com.example.kaushal.studentsearch.database.DbHelper;
+import com.studentsearch.xoodle.studentsearch.database.DbHelper;
 
 import java.util.ArrayList;
 

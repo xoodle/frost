@@ -1,4 +1,4 @@
-package com.example.kaushal.studentsearch;
+package com.studentsearch.xoodle.studentsearch;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -17,7 +17,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-import com.example.kaushal.studentsearch.database.DbHelper;
+import com.studentsearch.xoodle.studentsearch.database.DbHelper;
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;
@@ -29,7 +29,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 
 public class MainActivity extends AppCompatActivity {
 
@@ -61,11 +60,11 @@ public class MainActivity extends AppCompatActivity {
     cursor.moveToFirst();
     ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item);
     arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-    arrayAdapter.add("");
     for(int x=0;x<cursor.getCount();x++) {
       arrayAdapter.add(cursor.getString(cursor.getColumnIndex(DbHelper.COLUMN_HALL)));
       cursor.moveToNext();
     }
+    arrayAdapter.add("");
     ((Spinner) findViewById(R.id.spinner_hall)).setAdapter(arrayAdapter);
     cursor.close();
 
@@ -73,11 +72,11 @@ public class MainActivity extends AppCompatActivity {
     cursor.moveToFirst();
     arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item);
     arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-    arrayAdapter.add("");
     for(int x=0;x<cursor.getCount();x++) {
       arrayAdapter.add(cursor.getString(cursor.getColumnIndex(DbHelper.COLUMN_BLOOD_GROUP)));
       cursor.moveToNext();
     }
+    arrayAdapter.add("");
     ((Spinner) findViewById(R.id.spinner_blood_group)).setAdapter(arrayAdapter);
     cursor.close();
 
@@ -85,11 +84,11 @@ public class MainActivity extends AppCompatActivity {
     cursor.moveToFirst();
     arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item);
     arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-    arrayAdapter.add("");
     for(int x=0;x<cursor.getCount();x++) {
       arrayAdapter.add(cursor.getString(cursor.getColumnIndex(DbHelper.COLUMN_DEPT)));
       cursor.moveToNext();
     }
+    arrayAdapter.add("");
     ((Spinner) findViewById(R.id.spinner_dept)).setAdapter(arrayAdapter);
     cursor.close();
 
@@ -97,11 +96,11 @@ public class MainActivity extends AppCompatActivity {
     cursor.moveToFirst();
     arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item);
     arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-    arrayAdapter.add("");
     for(int x=0;x<cursor.getCount();x++) {
       arrayAdapter.add(cursor.getString(cursor.getColumnIndex(DbHelper.COLUMN_PROGRAMME)));
       cursor.moveToNext();
     }
+    arrayAdapter.add("");
     ((Spinner) findViewById(R.id.spinner_programme)).setAdapter(arrayAdapter);
     cursor.close();
 
@@ -109,11 +108,11 @@ public class MainActivity extends AppCompatActivity {
     cursor.moveToFirst();
     arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item);
     arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-    arrayAdapter.add("");
     for(int x=0;x<cursor.getCount();x++) {
       arrayAdapter.add(cursor.getString(cursor.getColumnIndex(DbHelper.COLUMN_GENDER)));
       cursor.moveToNext();
     }
+    arrayAdapter.add("");
     ((Spinner) findViewById(R.id.spinner_gender)).setAdapter(arrayAdapter);
     cursor.close();
   }

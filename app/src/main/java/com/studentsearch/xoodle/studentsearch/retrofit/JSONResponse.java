@@ -1,9 +1,9 @@
-package com.example.kaushal.studentsearch.retrofit;
+package com.studentsearch.xoodle.studentsearch.retrofit;
 
-import com.example.kaushal.studentsearch.StudentData;
+import com.studentsearch.xoodle.studentsearch.StudentData;
 
 /**
- * Created by kaushal on 15/6/17.
+ * Created by xoodle on 15/6/17.
  */
 
 public class JSONResponse {

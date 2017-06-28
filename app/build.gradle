@@ -4,7 +4,7 @@ android {
     compileSdkVersion 25
     buildToolsVersion "25.0.3"
     defaultConfig {
-        applicationId "com.example.kaushal.studentsearch"
+        applicationId "com.studentsearch.xoodle.studentsearch"
         minSdkVersion 15
         targetSdkVersion 25
         versionCode 1
@@ -43,5 +43,6 @@ dependencies {
     compile 'com.squareup.retrofit2:converter-gson:2.3.0'
     compile 'com.google.code.gson:gson:2.8.0'
     compile 'com.squareup.picasso:picasso:2.5.2'
-
+    //Rounded Image View
+    compile 'com.makeramen:roundedimageview:2.3.0'
 }

@@ -1,10 +1,7 @@
-package com.example.kaushal.studentsearch;
+package com.studentsearch.xoodle.studentsearch;
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,11 +12,10 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import java.io.InputStream;
 import java.util.ArrayList;
 
 /**
- * Created by kaushal on 15/6/17.
+ * Created by xoodle on 15/6/17.
  */
 
 public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
@@ -56,12 +52,17 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
   }
 
   public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-    private TextView mNameView;
+    private TextView mNameView, mRollView, mDeptView, mHallView, mAddressView, mUserBloodView;
     private ImageView mImageView;
 
     public ViewHolder(View v) {
       super(v);
       mNameView = (TextView) v.findViewById(R.id.tv_name);
+      mRollView = (TextView) v.findViewById(R.id.tv_roll);
+      mDeptView = (TextView) v.findViewById(R.id.tv_dept);
+      mHallView = (TextView) v.findViewById(R.id.tv_hall);
+      mAddressView = (TextView) v.findViewById(R.id.tv_address);
+      mUserBloodView = (TextView) v.findViewById(R.id.tv_user_blood);
       mImageView = (ImageView) v.findViewById(R.id.user_image);
     }
 
@@ -71,7 +72,13 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
     }
 
     public void bind(Context context, String packageName, StudentData studentData) {
-      mNameView.setText(""+studentData.getName()+" "+studentData.getRollNo()+" "+studentData.getGender() + " " + studentData.getHall());
+      mNameView.setText("Name: "+studentData.getName());
+      mRollView.setText("Roll No: "+studentData.getRollNo());
+      mDeptView.setText("Programme: "+studentData.getProgramme()+"    Dept:"+studentData.getDept());
+      mHallView.setText("IITK Address: "+studentData.getRoomNo()+ ", "+studentData.getHall());
+      mAddressView.setText("Home Address: "+studentData.getAddress());
+      mUserBloodView.setText("Username: "+studentData.getUserName()+"    Blood Group: "+studentData.getBloodGroup());
+
       int resID;
       Resources res = context.getResources();
       if(studentData.getGender().equals("M")) {
@@ -83,10 +90,9 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
               .load("http://oa.cc.iitk.ac.in/Oa/Jsp/Photo/"+studentData.getRollNo()+"_0.jpg")
               .placeholder(resID)
               .error(resID)
-              .resize(160, 200)
-              .centerCrop()
               .into(this.mImageView);
     }
+
   }
 
 }

@@ -1,4 +1,4 @@
-package com.example.kaushal.studentsearch;
+package com.studentsearch.xoodle.studentsearch;
 
 import android.content.Intent;
 import android.os.Bundle;

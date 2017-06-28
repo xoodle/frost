@@ -1,16 +1,8 @@
-package com.example.kaushal.studentsearch;
+package com.studentsearch.xoodle.studentsearch;
 
-import android.graphics.Movie;
-import android.widget.Toast;
-
-import com.google.gson.GsonBuilder;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
-
-import retrofit.Callback;
-import retrofit.RestAdapter;
-import retrofit.converter.GsonConverter;
 
 /**
  * Created by aryan on 10/6/17.

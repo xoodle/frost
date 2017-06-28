@@ -1,4 +1,4 @@
-package com.example.kaushal.studentsearch;
+package com.studentsearch.xoodle.studentsearch;
 
 import org.junit.Test;
 

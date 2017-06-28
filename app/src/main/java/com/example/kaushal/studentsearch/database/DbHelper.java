@@ -29,7 +29,7 @@ public class DbHelper extends SQLiteOpenHelper implements Serializable {
   public static final String COLUMN_ROOM_NO = "room_no";
   public static final String COLUMN_ADDRESS = "address";
   public static final String COLUMN_PROGRAMME = "programme";
-  public static final String CREATE_TABLE_IF_NOT_EXISTS = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME + "( "
+  private static final String CREATE_TABLE_IF_NOT_EXISTS = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME + "( "
           + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
           + COLUMN_NAME + " TEXT, "
           + COLUMN_ROLL_NO + " TEXT, "
@@ -41,9 +41,9 @@ public class DbHelper extends SQLiteOpenHelper implements Serializable {
           + COLUMN_BLOOD_GROUP + " TEXT, "
           + COLUMN_PROGRAMME + " TEXT, "
           + COLUMN_USER_NAME + " TEXT);";
-  public static final String DROP_TABLE_IF_EXISTS = "DROP TABLE IF EXISTS " + TABLE_NAME;
+  private static final String DROP_TABLE_IF_EXISTS = "DROP TABLE IF EXISTS " + TABLE_NAME;
 
-  public DbHelper(Context context, String dbName, Integer version) {
+  private DbHelper(Context context, String dbName, Integer version) {
     super(context, dbName, null, version);
   }
 

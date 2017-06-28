@@ -148,7 +148,9 @@ public class MainActivity extends AppCompatActivity {
   }
 
   private void passQueryFilterParams(Intent intent) {
-    intent.putExtra(DbHelper.COLUMN_NAME, getSearchQuery());
+    String queryName = getSearchQuery();
+    queryName = queryName.trim().replace(" ", "%");
+    intent.putExtra(DbHelper.COLUMN_NAME, queryName);
     intent.putExtra(DbHelper.COLUMN_HALL, getHallFilter());
     intent.putExtra(DbHelper.COLUMN_BLOOD_GROUP, getBloodGroupFilter());
     intent.putExtra(DbHelper.COLUMN_DEPT, getDeptFilter());

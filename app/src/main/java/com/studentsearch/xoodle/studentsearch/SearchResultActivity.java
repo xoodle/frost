@@ -1,4 +1,4 @@
-package com.example.kaushal.studentsearch;
+package com.studentsearch.xoodle.studentsearch;
 
 import android.content.Context;
 import android.content.Intent;
@@ -15,7 +15,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 
-import com.example.kaushal.studentsearch.database.DbHelper;
+import com.studentsearch.xoodle.studentsearch.database.DbHelper;
 
 import java.util.ArrayList;
 
@@ -42,7 +42,7 @@ public class SearchResultActivity extends MainActivity {
     mLinearLayoutManager = new LinearLayoutManager(this);
     mResultRecyclerView.setLayoutManager(mLinearLayoutManager);
     studentDataArrayList = new ArrayList<>();
-    String name = getIntent().getExtras().getString("name", "Kaushal  Kishore");
+    String name = getIntent().getExtras().getString("name", "Student Search");
     String hall = getIntent().getExtras().getString("hall", "HALL5");
     String[] filter = {name, hall};
     dbHelper = DbHelper.getDbHelperInstance(getApplicationContext(), "students", 1);

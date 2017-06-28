@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.kaushal.studentsearch">
+    package="com.studentsearch.xoodle.studentsearch">
     <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:allowBackup="true"
@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-          android:name=".SplashActivity"
+          android:name="com.studentsearch.xoodle.studentsearch.SplashActivity"
           android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,12 +18,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity">
+        <activity android:name="com.studentsearch.xoodle.studentsearch.MainActivity">
          
         </activity>
-        <activity android:name=".SearchResultActivity"
+        <activity android:name="com.studentsearch.xoodle.studentsearch.SearchResultActivity"
                   android:label="@string/activity_search_result"
-                  android:parentActivityName=".MainActivity"/>
+                  android:parentActivityName="com.studentsearch.xoodle.studentsearch.MainActivity"/>
     </application>
 
 </manifest>

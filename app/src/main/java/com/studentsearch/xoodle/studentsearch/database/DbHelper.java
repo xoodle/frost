@@ -1,4 +1,4 @@
-package com.example.kaushal.studentsearch.database;
+package com.studentsearch.xoodle.studentsearch.database;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -6,12 +6,12 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.example.kaushal.studentsearch.StudentData;
+import com.studentsearch.xoodle.studentsearch.StudentData;
 
 import java.io.Serializable;
 
 /**
- * Created by kaushal on 17/6/17.
+ * Created by xoodle on 17/6/17.
  */
 
 @SuppressWarnings("serial")

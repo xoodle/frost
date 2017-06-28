@@ -1,12 +1,8 @@
-package com.example.kaushal.studentsearch;
+package com.studentsearch.xoodle.studentsearch;
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,11 +11,10 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import java.io.InputStream;
 import java.util.ArrayList;
 
 /**
- * Created by kaushal on 15/6/17.
+ * Created by xoodle on 15/6/17.
  */
 
 public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {

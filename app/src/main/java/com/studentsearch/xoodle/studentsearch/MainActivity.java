@@ -1,4 +1,4 @@
-package com.example.kaushal.studentsearch;
+package com.studentsearch.xoodle.studentsearch;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -14,7 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-import com.example.kaushal.studentsearch.database.DbHelper;
+import com.studentsearch.xoodle.studentsearch.database.DbHelper;
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;

@@ -1,4 +1,4 @@
-package com.example.kaushal.studentsearch;
+package com.studentsearch.xoodle.studentsearch;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
     // Context of the app under test.
     Context appContext = InstrumentationRegistry.getTargetContext();
 
-    assertEquals("com.example.kaushal.studentsearch", appContext.getPackageName());
+    assertEquals("com.studentsearch.xoodle.studentsearch", appContext.getPackageName());
   }
 }

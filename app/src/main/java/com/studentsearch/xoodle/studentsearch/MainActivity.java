@@ -91,11 +91,11 @@ public class MainActivity extends AppCompatActivity {
     cursor.moveToFirst();
     ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item);
     arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+    arrayAdapter.add("Hall");
     for(int x=0;x<cursor.getCount();x++) {
       arrayAdapter.add(cursor.getString(cursor.getColumnIndex(DbHelper.COLUMN_HALL)));
       cursor.moveToNext();
     }
-    arrayAdapter.add("");
     ((Spinner) findViewById(R.id.spinner_hall)).setAdapter(arrayAdapter);
     cursor.close();
 
@@ -103,11 +103,11 @@ public class MainActivity extends AppCompatActivity {
     cursor.moveToFirst();
     arrayAdapter = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item);
     arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+    arrayAdapter.add("");
     for(int x=0;x<cursor.getCount();x++) {
       arrayAdapter.add(cursor.getString(cursor.getColumnIndex(DbHelper.COLUMN_BLOOD_GROUP)));
       cursor.moveToNext();
     }
-    arrayAdapter.add("");
     ((Spinner) findViewById(R.id.spinner_blood_group)).setAdapter(arrayAdapter);
     cursor.close();
 
@@ -115,11 +115,11 @@ public class MainActivity extends AppCompatActivity {
     cursor.moveToFirst();
     arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item);
     arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+    arrayAdapter.add("");
     for(int x=0;x<cursor.getCount();x++) {
       arrayAdapter.add(cursor.getString(cursor.getColumnIndex(DbHelper.COLUMN_DEPT)));
       cursor.moveToNext();
     }
-    arrayAdapter.add("");
     ((Spinner) findViewById(R.id.spinner_dept)).setAdapter(arrayAdapter);
     cursor.close();
 
@@ -127,11 +127,11 @@ public class MainActivity extends AppCompatActivity {
     cursor.moveToFirst();
     arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item);
     arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+    arrayAdapter.add("");
     for(int x=0;x<cursor.getCount();x++) {
       arrayAdapter.add(cursor.getString(cursor.getColumnIndex(DbHelper.COLUMN_PROGRAMME)));
       cursor.moveToNext();
     }
-    arrayAdapter.add("");
     ((Spinner) findViewById(R.id.spinner_programme)).setAdapter(arrayAdapter);
     cursor.close();
 
@@ -139,11 +139,11 @@ public class MainActivity extends AppCompatActivity {
     cursor.moveToFirst();
     arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item);
     arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+    arrayAdapter.add("");
     for(int x=0;x<cursor.getCount();x++) {
       arrayAdapter.add(cursor.getString(cursor.getColumnIndex(DbHelper.COLUMN_GENDER)));
       cursor.moveToNext();
     }
-    arrayAdapter.add("");
     ((Spinner) findViewById(R.id.spinner_gender)).setAdapter(arrayAdapter);
     cursor.close();
   }

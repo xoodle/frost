@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   android:fitsSystemWindows="true"
   tools:context="com.studentsearch.xoodle.studentsearch.MainActivity">
 
-
-    <RelativeLayout
+  <RelativeLayout
        android:layout_width="match_parent"
        android:layout_height="match_parent"
        android:src="@drawable/iitk_image">
@@ -101,6 +99,7 @@
           android:entryValues="@array/dept_values"
           android:layout_margin="15dp"
           android:background="@android:drawable/btn_dropdown"/>
+
       </LinearLayout>
 
       <LinearLayout
@@ -108,48 +107,48 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:weightSum="2">
-      <Spinner
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/spinner_programme"
-        android:entries="@array/program_values"
-        android:entryValues="@array/program_values"
-        android:layout_marginTop="30dp"
-        android:paddingBottom="10dp"
-        android:layout_weight="1"
-        android:paddingTop="10dp"
-        android:layout_margin="15dp"
-        android:background="@android:drawable/btn_dropdown"/>
-      <Spinner
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/spinner_gender"
-        android:entries="@array/gender_values"
-        android:entryValues="@array/gender_values"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:layout_marginTop="30dp"
-        android:layout_weight="1"
-        android:layout_margin="15dp"
-        android:background="@android:drawable/btn_dropdown"/>
+        <Spinner
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:id="@+id/spinner_programme"
+          android:entries="@array/program_values"
+          android:entryValues="@array/program_values"
+          android:layout_marginTop="30dp"
+          android:paddingBottom="10dp"
+          android:layout_weight="1"
+          android:paddingTop="10dp"
+          android:layout_margin="15dp"
+          android:background="@android:drawable/btn_dropdown"/>
+        <Spinner
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:id="@+id/spinner_gender"
+          android:entries="@array/gender_values"
+          android:entryValues="@array/gender_values"
+          android:paddingTop="10dp"
+          android:paddingBottom="10dp"
+          android:layout_marginTop="30dp"
+          android:layout_weight="1"
+          android:layout_margin="15dp"
+          android:background="@android:drawable/btn_dropdown"/>
         </LinearLayout>
 
-    </LinearLayout>
+      </LinearLayout>
 
-    <Button
-      android:id="@+id/button_go"
-      style="@style/Widget.AppCompat.Button.Colored"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_alignParentBottom="true"
-      android:layout_centerHorizontal="true"
-      android:layout_marginBottom="141dp"
-      android:hint="@string/button_text"
-      android:paddingBottom="25dp"
-      android:paddingLeft="50dp"
-      android:paddingRight="50dp"
-      android:paddingTop="25dp"
-      android:text="@string/button_text" />
+      <Button
+        android:id="@+id/button_go"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="141dp"
+        android:hint="@string/button_text"
+        android:paddingBottom="25dp"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"
+        android:paddingTop="25dp"
+        android:text="@string/button_text" />
 
     </RelativeLayout>
 

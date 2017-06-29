@@ -70,9 +70,9 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
       mNameView.setText("Name: "+studentData.getName());
       mRollView.setText("Roll No: "+studentData.getRollNo());
       mDeptView.setText("Programme: "+studentData.getProgramme()+"    Dept:"+studentData.getDept());
-      mHallView.setText("IITK Address: "+studentData.getRoomNo()+ ", "+studentData.getHall());
-      mAddressView.setText("Home Address: "+studentData.getAddress());
-      mUserBloodView.setText("Username: "+studentData.getUserName()+"    Blood Group: "+studentData.getBloodGroup());
+      mHallView.setText("IITK Add.: "+studentData.getRoomNo()+ ", "+studentData.getHall());
+      mAddressView.setText("Home Add.: "+studentData.getAddress());
+      mUserBloodView.setText("Email: "+studentData.getUserName()+"@iitk.ac.in"+"\n"+"Blood Group: "+studentData.getBloodGroup());
 
       int resID;
       Resources res = context.getResources();

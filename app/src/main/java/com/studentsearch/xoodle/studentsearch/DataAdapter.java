@@ -56,8 +56,8 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
       mRollView = (TextView) v.findViewById(R.id.tv_roll);
       mDeptView = (TextView) v.findViewById(R.id.tv_dept);
       mHallView = (TextView) v.findViewById(R.id.tv_hall);
-      mAddressView = (TextView) v.findViewById(R.id.tv_address);
-      mUserBloodView = (TextView) v.findViewById(R.id.tv_user_blood);
+//      mAddressView = (TextView) v.findViewById(R.id.tv_address);
+//      mUserBloodView = (TextView) v.findViewById(R.id.tv_user_blood);
       mImageView = (ImageView) v.findViewById(R.id.user_image);
     }
 
@@ -68,11 +68,12 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
 
     public void bind(Context context, String packageName, StudentData studentData) {
       mNameView.setText(studentData.getName());
-      mRollView.setText("Roll No: "+studentData.getRollNo());
-      mDeptView.setText("Program: "+studentData.getProgramme()+"   Dept:"+studentData.getDept());
+
+      mRollView.setText("Roll Number: "+studentData.getRollNo());
+      mDeptView.setText("Dept: "+studentData.getDept()+" - "+studentData.getProgramme());
       mHallView.setText("IITK Address:"+studentData.getRoomNo()+ ", "+studentData.getHall());
-      mAddressView.setText("Home Address:"+studentData.getAddress());
-      mUserBloodView.setText("Email: "+studentData.getUserName()+"@iitk.ac.in"+"\n"+"Blood Group: "+studentData.getBloodGroup());
+//      mAddressView.setText("Home Address:"+studentData.getAddress());
+//      mUserBloodView.setText("Email: "+studentData.getUserName()+"@iitk.ac.in"+"\n"+"Blood Group: "+studentData.getBloodGroup());
 
       int resID;
       Resources res = context.getResources();

@@ -10,10 +10,6 @@ import com.studentsearch.xoodle.studentsearch.StudentData;
 
 import java.io.Serializable;
 
-/**
- * Created by xoodle on 17/6/17.
- */
-
 @SuppressWarnings("serial")
 public class DbHelper extends SQLiteOpenHelper implements Serializable {
   private static DbHelper dbHelper;

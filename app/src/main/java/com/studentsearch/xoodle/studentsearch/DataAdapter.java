@@ -3,7 +3,6 @@ package com.studentsearch.xoodle.studentsearch;
 import android.content.Context;
 import android.content.res.Resources;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,10 +12,6 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-
-/**
- * Created by xoodle on 15/6/17.
- */
 
 public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
 
@@ -92,7 +87,5 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
               .error(resID)
               .into(this.mImageView);
     }
-
   }
-
 }

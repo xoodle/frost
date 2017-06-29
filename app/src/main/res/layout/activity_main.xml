@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:fitsSystemWindows="true"
+  tools:context="com.studentsearch.xoodle.studentsearch.MainActivity">
+
+  <RelativeLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    tools:context="com.studentsearch.xoodle.studentsearch.MainActivity">
-    <RelativeLayout
-       android:layout_width="match_parent"
-       android:layout_height="match_parent">
+    android:layout_height="match_parent">
 
     <LinearLayout
       android:layout_width="match_parent"
@@ -17,16 +18,16 @@
       android:weightSum="1">
 
     <EditText
-        android:id="@+id/edit_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/search_hint"
-        android:maxLines="1"
-        android:elevation="5dp"
-        android:padding="16dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:layout_marginTop="30dp"/>
+      android:id="@+id/edit_text"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:hint="@string/search_hint"
+      android:maxLines="1"
+      android:elevation="5dp"
+      android:padding="16dp"
+      android:layout_marginLeft="40dp"
+      android:layout_marginRight="40dp"
+      android:layout_marginTop="30dp"/>
 
       <LinearLayout
         android:layout_width="match_parent"
@@ -43,8 +44,6 @@
           android:paddingTop="10dp"
           android:layout_marginTop="30dp"
           android:paddingBottom="10dp"/>
-          <!--android:entries="@array/hall_values"-->
-          <!--android:entryValues="@array/hall_values"-->
 
         <Spinner
           android:id="@+id/spinner_year"
@@ -56,9 +55,8 @@
           android:entries="@array/year_values"
           android:entryValues="@array/year_values"
           android:layout_marginTop="30dp"
-          android:paddingBottom="10dp"
+          android:paddingBottom="10dp"/>
 
-          />
       </LinearLayout>
 
       <LinearLayout
@@ -86,7 +84,6 @@
           android:layout_marginLeft="25dp"
           android:paddingTop="10dp"
           android:paddingBottom="10dp"
-
           android:layout_marginRight="25dp"
           android:entries="@array/dept_values"
           android:layout_marginTop="30dp"
@@ -97,46 +94,46 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-      <Spinner
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/spinner_programme"
-        android:entries="@array/program_values"
-        android:entryValues="@array/program_values"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginRight="45dp"
-        android:paddingBottom="10dp"
-
-        android:paddingTop="10dp"/>
-      <Spinner
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/spinner_gender"
-        android:entries="@array/gender_values"
-        android:entryValues="@array/gender_values"
-        android:layout_marginRight="25dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="25dp"/>
-        </LinearLayout>
+        <Spinner
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:id="@+id/spinner_programme"
+          android:entries="@array/program_values"
+          android:entryValues="@array/program_values"
+          android:layout_marginLeft="25dp"
+          android:layout_marginTop="30dp"
+          android:layout_marginRight="45dp"
+          android:paddingBottom="10dp"
+          android:paddingTop="10dp"/>
+        <Spinner
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:id="@+id/spinner_gender"
+          android:entries="@array/gender_values"
+          android:entryValues="@array/gender_values"
+          android:layout_marginRight="25dp"
+          android:paddingTop="10dp"
+          android:paddingBottom="10dp"
+          android:layout_marginTop="30dp"
+          android:layout_marginLeft="25dp"/>
+      </LinearLayout>
     </LinearLayout>
 
-       <Button
-           android:id="@+id/button_go"
-           style="@style/Widget.AppCompat.Button.Colored"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_alignParentBottom="true"
-           android:layout_centerHorizontal="true"
-           android:layout_marginBottom="141dp"
-           android:hint="@string/button_text"
-           android:paddingBottom="25dp"
-           android:paddingLeft="50dp"
-           android:paddingRight="50dp"
-           android:paddingTop="25dp"
-           android:text="@string/button_text" />
-      </RelativeLayout>
+    <Button
+      android:id="@+id/button_go"
+      style="@style/Widget.AppCompat.Button.Colored"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignParentBottom="true"
+      android:layout_centerHorizontal="true"
+      android:layout_marginBottom="141dp"
+      android:hint="@string/button_text"
+      android:paddingBottom="25dp"
+      android:paddingLeft="50dp"
+      android:paddingRight="50dp"
+      android:paddingTop="25dp"
+      android:text="@string/button_text" />
+
+    </RelativeLayout>
 
 </android.support.design.widget.CoordinatorLayout>

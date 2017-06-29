@@ -1,22 +1,28 @@
 package com.studentsearch.xoodle.studentsearch;
 
+import android.app.Notification;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.AsyncTask;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-
+import android.widget.TextView;
+import android.os.Handler;
 import com.studentsearch.xoodle.studentsearch.database.DbHelper;
 import com.google.gson.Gson;
 
@@ -30,6 +36,8 @@ import java.net.URL;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static android.os.Build.VERSION_CODES.M;
+
 public class MainActivity extends AppCompatActivity {
 
   private EditText mEditText;
@@ -42,6 +50,29 @@ public class MainActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
     mEditText = (EditText) findViewById(R.id.edit_text);
+    mEditText.setOnKeyListener(new View.OnKeyListener()
+    {
+      public boolean onKey(View v, int keyCode, KeyEvent event)
+      {
+        if (event.getAction() == KeyEvent.ACTION_DOWN)
+        {
+          switch (keyCode)
+          {
+            case KeyEvent.KEYCODE_DPAD_CENTER:
+            case KeyEvent.KEYCODE_ENTER:
+              getSearchQuery();
+              Intent intent = SearchResultActivity.getNewIntent(MainActivity.this);
+              passQueryFilterParams(intent);
+              startActivity(intent);
+              return true;
+            default:
+              break;
+          }
+        }
+        return false;
+      }
+    });
+
     mButton = (Button) findViewById(R.id.button_go);
     mButton.setOnClickListener(new View.OnClickListener() {
       @Override
@@ -70,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
 
     cursor = db.rawQuery("SELECT DISTINCT " + DbHelper.COLUMN_BLOOD_GROUP + " FROM " + DbHelper.TABLE_NAME, null);
     cursor.moveToFirst();
-    arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item);
+    arrayAdapter = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item);
     arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
     for(int x=0;x<cursor.getCount();x++) {
       arrayAdapter.add(cursor.getString(cursor.getColumnIndex(DbHelper.COLUMN_BLOOD_GROUP)));

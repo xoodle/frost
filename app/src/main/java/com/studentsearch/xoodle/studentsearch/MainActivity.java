@@ -1,13 +1,13 @@
 package com.studentsearch.xoodle.studentsearch;
 
-import android.app.Notification;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Color;
 import android.os.AsyncTask;
-import android.os.Message;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,13 +16,10 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
-import android.os.Handler;
 import com.studentsearch.xoodle.studentsearch.database.DbHelper;
 import com.google.gson.Gson;
 
@@ -36,7 +33,6 @@ import java.net.URL;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static android.os.Build.VERSION_CODES.M;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -49,6 +45,10 @@ public class MainActivity extends AppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
+    long cnt = DatabaseUtils.queryNumEntries(DbHelper.getDbHelperInstance(getApplicationContext(), DbHelper.TABLE_NAME, 1).getReadableDatabase(), "students");
+    if(cnt == 0) {
+      refreshDatabase();
+    }
     mEditText = (EditText) findViewById(R.id.edit_text);
     mEditText.setOnKeyListener(new View.OnKeyListener()
     {
@@ -161,7 +161,6 @@ public class MainActivity extends AppCompatActivity {
     // Take appropriate action for each action item click
     switch (item.getItemId()) {
       case R.id.action_refresh_database:
-        refreshDatabase();
         break;
       case R.id.menu_settings:
         // refresh
@@ -226,7 +225,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onPreExecute() {
       super.onPreExecute();
       mProgressDialog = new ProgressDialog(MainActivity.this);
-      mProgressDialog.setMessage("Please wait");
+      mProgressDialog.setMessage("Getting data from the web...");
       mProgressDialog.setCancelable(false);
       mProgressDialog.show();
     }
@@ -273,16 +272,46 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onPostExecute(String result) {
       super.onPostExecute(result);
+      if(result == null) {
+        mProgressDialog.dismiss();
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        builder.setMessage("Please connect to the internet and try again");
+        AlertDialog dialog = builder.create();
+        dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+          @Override
+          public void onCancel(DialogInterface dialog) {
+            // or anything else appropriate
+            finish();
+          }
+        });
+        dialog.show();
+      } else {
+        mProgressDialog.setMessage("Preparing database...");
+        new WriteDatabaseAsync().execute(result);
+      }
+    }
+  }
+
+  public class WriteDatabaseAsync extends AsyncTask<String, Void, Void> {
+    @Override
+    protected Void doInBackground(String... json) {
       Gson gson = new Gson();
       StudentData student;
       dbHelper = DbHelper.getDbHelperInstance(getApplicationContext(), "students", 1);
-      Matcher m = Pattern.compile("\\{(.*?)\\}").matcher(result);
+      Matcher m = Pattern.compile("\\{(.*?)\\}").matcher(json[0]);
       while (m.find()) {
         student = gson.fromJson("{" + m.group(1) + "}", StudentData.class);
         dbHelper.insertStudent(student);
       }
+      return null;
+    }
+
+    @Override
+    protected void onPostExecute(Void aVoid) {
+      super.onPostExecute(aVoid);
       if (mProgressDialog.isShowing())
         mProgressDialog.dismiss();
+      recreate();
     }
   }
 }

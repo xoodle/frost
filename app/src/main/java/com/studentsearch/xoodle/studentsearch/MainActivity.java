@@ -7,9 +7,9 @@ import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -20,8 +20,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import com.studentsearch.xoodle.studentsearch.database.DbHelper;
+
 import com.google.gson.Gson;
+import com.studentsearch.xoodle.studentsearch.database.DbHelper;
+import com.studentsearch.xoodle.studentsearch.database.ImageDownloader;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -36,10 +38,11 @@ import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity {
 
+  public DbHelper dbHelper;
+  public ImageDownloader imageDownloader;
   private EditText mEditText;
   private Button mButton;
   private ProgressDialog mProgressDialog;
-  public DbHelper dbHelper;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -152,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
   public boolean onCreateOptionsMenu(Menu menu) {
     super.onCreateOptionsMenu(menu);
     MenuInflater inflater = getMenuInflater();
-    inflater.inflate(R.menu.meu_main_activity, menu);
+    inflater.inflate(R.menu.menu_main_activity, menu);
     return super.onCreateOptionsMenu(menu);
   }
 
@@ -160,6 +163,9 @@ public class MainActivity extends AppCompatActivity {
   public boolean onOptionsItemSelected(MenuItem item) {
     // Take appropriate action for each action item click
     switch (item.getItemId()) {
+      case R.id.download_images:
+        getStudentImages();
+        break;
       case R.id.action_refresh_database:
         break;
       case R.id.menu_settings:
@@ -221,11 +227,44 @@ public class MainActivity extends AppCompatActivity {
     new JsonTask().execute("https://yashsriv.org/api");
   }
 
+  private void getStudentImages() {
+    new ImageDownloaderAsync().execute();
+  }
+
+  public class ImageDownloaderAsync extends AsyncTask<Void, Void, Void> {
+    ProgressDialog asyncDialog = new ProgressDialog(MainActivity.this);
+
+    @Override
+    protected void onPreExecute() {
+      //set message of the dialog
+      asyncDialog.setMessage("Fetching Images...");
+      //show dialog
+      asyncDialog.show();
+      super.onPreExecute();
+    }
+
+    @Override
+    protected Void doInBackground(Void... arg0) {
+      imageDownloader = new ImageDownloader(getApplicationContext());
+      imageDownloader.getPics();
+      return null;
+    }
+
+    @Override
+    protected void onPostExecute(Void result) {
+      //hide the dialog
+      asyncDialog.dismiss();
+
+      super.onPostExecute(result);
+    }
+
+  }
+
   public class JsonTask extends AsyncTask<String, String, String> {
     protected void onPreExecute() {
       super.onPreExecute();
       mProgressDialog = new ProgressDialog(MainActivity.this);
-      mProgressDialog.setMessage("Getting data from the web...");
+      mProgressDialog.setMessage("Getting data from the net...\nMake sure you are connected to IITK network");
       mProgressDialog.setCancelable(false);
       mProgressDialog.show();
     }
@@ -247,7 +286,7 @@ public class MainActivity extends AppCompatActivity {
 
         while ((line = reader.readLine()) != null) {
           buffer.append(line + "\n");
-          Log.d("Response: ", "> " + line);   //here u ll get whole response...... :-)
+          Log.d("Response: ", "> " + line);   //here you will get the whole response
         }
         return buffer.toString();
       } catch (MalformedURLException e) {
@@ -286,7 +325,7 @@ public class MainActivity extends AppCompatActivity {
         });
         dialog.show();
       } else {
-        mProgressDialog.setMessage("Preparing database...");
+        mProgressDialog.setMessage("Preparing database...\nIt may take some time");
         new WriteDatabaseAsync().execute(result);
       }
     }
@@ -314,4 +353,5 @@ public class MainActivity extends AppCompatActivity {
       recreate();
     }
   }
+
 }

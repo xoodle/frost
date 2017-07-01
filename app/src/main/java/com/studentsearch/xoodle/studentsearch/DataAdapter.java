@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.os.Environment;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -84,12 +85,11 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
         errID = res.getIdentifier("girl", "drawable", packageName);
       }
 
-//      ContextWrapper cw = new ContextWrapper(context);
-      File directory = new File(context.getExternalFilesDir(
-              Environment.DIRECTORY_PICTURES), "studentPics");
-//      File directory = cw.getDir("studentPics", Context.MODE_PRIVATE);
-      File image = new File(directory, studentData.getRollNo() + "_0.jpg");
+      File directory = new File(context.getExternalFilesDir(Environment.DIRECTORY_PICTURES), "studentPics");
+      File image = new File(directory, studentData.getRollNo() + "_0");
+//      File image = new File(directory, "160757_0.jpeg");
       if (image.exists()) {
+        Log.i("ad", studentData.getRollNo());
         Picasso.with(context)
                 .load(image)
                 .placeholder(errID)

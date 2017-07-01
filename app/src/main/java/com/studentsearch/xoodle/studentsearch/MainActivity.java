@@ -6,8 +6,11 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -23,9 +26,11 @@ import android.widget.Spinner;
 
 import com.google.gson.Gson;
 import com.studentsearch.xoodle.studentsearch.database.DbHelper;
-import com.studentsearch.xoodle.studentsearch.database.ImageDownloader;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -39,7 +44,6 @@ import java.util.regex.Pattern;
 public class MainActivity extends AppCompatActivity {
 
   public DbHelper dbHelper;
-  public ImageDownloader imageDownloader;
   private EditText mEditText;
   private Button mButton;
   private ProgressDialog mProgressDialog;
@@ -164,7 +168,7 @@ public class MainActivity extends AppCompatActivity {
     // Take appropriate action for each action item click
     switch (item.getItemId()) {
       case R.id.download_images:
-        getStudentImages();
+        new ImageDownloader().execute();
         break;
       case R.id.action_refresh_database:
         break;
@@ -227,38 +231,9 @@ public class MainActivity extends AppCompatActivity {
     new JsonTask().execute("https://yashsriv.org/api");
   }
 
-  private void getStudentImages() {
-    new ImageDownloaderAsync().execute();
-  }
-
-  public class ImageDownloaderAsync extends AsyncTask<Void, Void, Void> {
-    ProgressDialog asyncDialog = new ProgressDialog(MainActivity.this);
-
-    @Override
-    protected void onPreExecute() {
-      //set message of the dialog
-      asyncDialog.setMessage("Fetching Images...");
-      //show dialog
-      asyncDialog.show();
-      super.onPreExecute();
-    }
-
-    @Override
-    protected Void doInBackground(Void... arg0) {
-      imageDownloader = new ImageDownloader(getApplicationContext());
-      imageDownloader.getPics();
-      return null;
-    }
-
-    @Override
-    protected void onPostExecute(Void result) {
-      //hide the dialog
-      asyncDialog.dismiss();
-
-      super.onPostExecute(result);
-    }
-
-  }
+//  private void getStudentImages() {
+//    new ImageDownloader(getApplicationContext()).execute();
+//  }
 
   public class JsonTask extends AsyncTask<String, String, String> {
     protected void onPreExecute() {
@@ -353,5 +328,109 @@ public class MainActivity extends AppCompatActivity {
       recreate();
     }
   }
+
+  public class ImageDownloader extends AsyncTask<Void, Integer, Void> {
+
+    ProgressDialog imageDownloaderDialog = new ProgressDialog(MainActivity.this);
+
+    @Override
+    protected void onPreExecute() {
+      imageDownloaderDialog.setTitle("Fetching Images...");
+      imageDownloaderDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+      imageDownloaderDialog.setIndeterminate(false);
+      imageDownloaderDialog.setCancelable(false);
+      imageDownloaderDialog.setMax(100);
+      imageDownloaderDialog.show();
+      super.onPreExecute();
+    }
+
+    @Override
+    protected Void doInBackground(Void... arg0) {
+      Bitmap mIcon;
+      File directory = null;
+
+      if (isExternalStorageWritable()) {
+        directory = new File(getApplicationContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES), "studentPics");
+      } else {
+        return null;
+      }
+      if (!directory.mkdirs()) {
+        Log.e("imageDownloader", "Directory not created");
+      }
+
+      SQLiteDatabase db = DbHelper.getDbHelperInstance(getApplicationContext(), DbHelper.TABLE_NAME, 1).getReadableDatabase();
+      Cursor cursor = db.rawQuery("SELECT ALL " + DbHelper.COLUMN_ROLL_NO + " FROM " + DbHelper.TABLE_NAME, null);
+      cursor.moveToFirst();
+      final int total = cursor.getCount();
+
+      for (int x = 0; x < total; x++) {
+        String rollno = cursor.getString(cursor.getColumnIndex(DbHelper.COLUMN_ROLL_NO));
+        try {
+          InputStream in = new java.net.URL("http://oa.cc.iitk.ac.in/Oa/Jsp/Photo/" + rollno + "_0.jpg").openStream();
+          mIcon = BitmapFactory.decodeStream(in);
+
+          try {
+            File imageFile = new File(directory, rollno + "_0"); // Create image file
+            FileOutputStream out = new FileOutputStream(imageFile);
+            mIcon.compress(
+                    Bitmap.CompressFormat.JPEG,
+                    100, out);
+            out.flush();
+            out.close();
+          } catch (FileNotFoundException e) {
+            Log.e("ImageDownloader", "doInBackground: File Not Found");
+            cursor.moveToNext();
+            continue;
+          } catch (IOException e) {
+            Log.e("ImageDownloader", "doInBackground: IO Exception");
+            cursor.moveToNext();
+            continue;
+          }
+
+        } catch (Exception e) {
+          Log.e("ImageDownloader", "doInBackground: " + rollno + " Error" + e);
+          cursor.moveToNext();
+          continue;
+        }
+
+        publishProgress((int) ((x * 100) / total));
+        cursor.moveToNext();
+
+        if (isCancelled()) {
+          Log.i("ImageDownloader", "getPics: cancelled");
+          break;
+        }
+
+      }
+      cursor.close();
+      Log.i("ImageDownloader", "getPics: done");
+      return null;
+    }
+
+    protected void onProgressUpdate(Integer... values) {
+      imageDownloaderDialog.setProgress(values[0]);
+    }
+
+    @Override
+    protected void onPostExecute(Void result) {
+      imageDownloaderDialog.dismiss();
+      super.onPostExecute(result);
+    }
+
+    /* Checks if external storage is available for read and write */
+    public boolean isExternalStorageWritable() {
+      String state = Environment.getExternalStorageState();
+      return Environment.MEDIA_MOUNTED.equals(state);
+    }
+
+    /* Checks if external storage is available to at least read */
+    public boolean isExternalStorageReadable() {
+      String state = Environment.getExternalStorageState();
+      return Environment.MEDIA_MOUNTED.equals(state) ||
+              Environment.MEDIA_MOUNTED_READ_ONLY.equals(state);
+    }
+
+  }
+
 
 }

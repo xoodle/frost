@@ -35,15 +35,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_toRightOf="@id/user_image"
         android:layout_marginBottom="4dp"
         android:layout_marginTop="8dp"
+        android:layout_toRightOf="@id/user_image"
         android:fontFamily="sans-serif-smallcaps"
+        android:textColor="@color/colorPrimaryDark"
         android:textIsSelectable="true"
         android:textSize="20sp"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:textColor="@color/colorPrimaryDark"
         android:textStyle="bold"/>
 
     <TextView
@@ -51,38 +49,38 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_name"
-        android:layout_toRightOf="@id/user_image"
         android:layout_marginBottom="4dp"
-        android:textIsSelectable="true"
-        android:textSize="16sp"
+        android:layout_toRightOf="@id/user_image"
         android:ellipsize="end"
         android:maxLines="1"
-        android:textColor="#9E9E9E"/>
+        android:textColor="#9E9E9E"
+        android:textIsSelectable="true"
+        android:textSize="16sp"/>
 
     <TextView
         android:id="@+id/tv_dept"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_roll"
-        android:layout_toRightOf="@id/user_image"
         android:layout_marginBottom="4dp"
-        android:textSize="16sp"
+        android:layout_toRightOf="@id/user_image"
         android:ellipsize="end"
         android:maxLines="1"
-        android:textColor="#9E9E9E"/>
+        android:textColor="#9E9E9E"
+        android:textSize="16sp"/>
 
     <TextView
         android:id="@+id/tv_hall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_dept"
-        android:layout_toRightOf="@id/user_image"
         android:layout_marginBottom="4dp"
-        android:textIsSelectable="true"
-        android:textSize="16sp"
+        android:layout_toRightOf="@id/user_image"
         android:ellipsize="end"
         android:maxLines="1"
-        android:textColor="#9E9E9E"/>
+        android:textColor="#9E9E9E"
+        android:textIsSelectable="true"
+        android:textSize="16sp"/>
 
   </RelativeLayout>
 

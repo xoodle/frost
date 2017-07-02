@@ -2,7 +2,9 @@ package com.studentsearch.xoodle.studentsearch;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.os.Environment;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +13,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
@@ -72,21 +75,36 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
       mRollView.setText("Roll Number: "+studentData.getRollNo());
       mDeptView.setText("Dept: "+studentData.getDept()+" - "+studentData.getProgramme());
       mHallView.setText("IITK Address:"+studentData.getRoomNo()+ ", "+studentData.getHall());
+
 //      mAddressView.setText("Home Address:"+studentData.getAddress());
 //      mUserBloodView.setText("Email: "+studentData.getUserName()+"@iitk.ac.in"+"\n"+"Blood Group: "+studentData.getBloodGroup());
 
-      int resID;
+      int errID;
       Resources res = context.getResources();
-      if(studentData.getGender().equals("M")) {
-        resID = res.getIdentifier("boy", "drawable", packageName);
+      if (studentData.getGender().equals("M")) {
+        errID = res.getIdentifier("boy", "drawable", packageName);
       } else {
-        resID = res.getIdentifier("girl", "drawable", packageName);
+        errID = res.getIdentifier("girl", "drawable", packageName);
       }
-      Picasso.with(context)
-              .load("http://oa.cc.iitk.ac.in/Oa/Jsp/Photo/"+studentData.getRollNo()+"_0.jpg")
-              .placeholder(resID)
-              .error(resID)
-              .into(this.mImageView);
+
+      File directory = new File(context.getExternalFilesDir(Environment.DIRECTORY_PICTURES), "studentPics");
+      File image = new File(directory, studentData.getRollNo() + "_0");
+//      File image = new File(directory, "160757_0.jpeg");
+      if (image.exists()) {
+        Log.i("ad", studentData.getRollNo());
+        Picasso.with(context)
+                .load(image)
+                .placeholder(errID)
+                .error(errID)
+                .into(this.mImageView);
+      } else {
+        Picasso.with(context)
+                .load("http://oa.cc.iitk.ac.in/Oa/Jsp/Photo/" + studentData.getRollNo() + "_0.jpg")
+                .placeholder(errID)
+                .error(errID)
+                .into(this.mImageView);
+      }
+
     }
   }
 }

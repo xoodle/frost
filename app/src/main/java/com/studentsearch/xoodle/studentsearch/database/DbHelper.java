@@ -63,21 +63,26 @@ public class DbHelper extends SQLiteOpenHelper implements Serializable {
     db.execSQL(DROP_TABLE_IF_EXISTS);
   }
 
-  public void insertStudent(StudentData student) {
+  public void insertStudents(StudentData[] students) {
     try {
       SQLiteDatabase db = this.getWritableDatabase();
-      ContentValues contentValues = new ContentValues();
-      contentValues.put(COLUMN_ADDRESS, student.getAddress());
-      contentValues.put(COLUMN_BLOOD_GROUP, student.getBloodGroup());
-      contentValues.put(COLUMN_DEPT, student.getDept());
-      contentValues.put(COLUMN_GENDER, student.getGender());
-      contentValues.put(COLUMN_HALL, student.getHall());
-      contentValues.put(COLUMN_NAME, student.getName());
-      contentValues.put(COLUMN_PROGRAMME, student.getProgramme());
-      contentValues.put(COLUMN_ROLL_NO, student.getRollNo());
-      contentValues.put(COLUMN_ROOM_NO, student.getRoomNo());
-      contentValues.put(COLUMN_USER_NAME, student.getUserName());
-      db.insert(TABLE_NAME, null, contentValues);
+      db.beginTransaction();
+      for (StudentData student : students) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COLUMN_ADDRESS, student.getAddress());
+        contentValues.put(COLUMN_BLOOD_GROUP, student.getBloodGroup());
+        contentValues.put(COLUMN_DEPT, student.getDept());
+        contentValues.put(COLUMN_GENDER, student.getGender());
+        contentValues.put(COLUMN_HALL, student.getHall());
+        contentValues.put(COLUMN_NAME, student.getName());
+        contentValues.put(COLUMN_PROGRAMME, student.getProgramme());
+        contentValues.put(COLUMN_ROLL_NO, student.getRollNo());
+        contentValues.put(COLUMN_ROOM_NO, student.getRoomNo());
+        contentValues.put(COLUMN_USER_NAME, student.getUserName());
+        db.insert(TABLE_NAME, null, contentValues);
+      }
+      db.setTransactionSuccessful();
+      db.endTransaction();
     } catch (Exception e) {
       e.printStackTrace();
       throw e;

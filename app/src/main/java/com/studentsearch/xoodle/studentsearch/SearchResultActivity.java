@@ -21,11 +21,11 @@ import java.util.ArrayList;
 
 public class SearchResultActivity extends MainActivity {
 
+  public DbHelper dbHelper;
+  RecyclerView.LayoutManager mLinearLayoutManager;
   private RecyclerView mResultRecyclerView;
   private DataAdapter mDataAdapter;
   private ArrayList<StudentData> studentDataArrayList;
-  RecyclerView.LayoutManager mLinearLayoutManager;
-  public DbHelper dbHelper;
   private Cursor cursor;
 
   public static Intent getNewIntent(Context c) {
@@ -64,7 +64,7 @@ public class SearchResultActivity extends MainActivity {
   public boolean onCreateOptionsMenu(Menu menu) {
     super.onCreateOptionsMenu(menu);
     MenuInflater inflater = getMenuInflater();
-    inflater.inflate(R.menu.meu_search_activity, menu);
+    inflater.inflate(R.menu.menu_search_activity, menu);
     return super.onCreateOptionsMenu(menu);
   }
 

@@ -51,6 +51,7 @@ public class SearchResultActivity extends MainActivity {
     Intent i = getIntent();
     String[] filter = {
             i.getExtras().getString(DbHelper.COLUMN_NAME, ""),
+            i.getExtras().getString(DbHelper.COLUMN_ROLL_NO, ""),
             i.getExtras().getString(DbHelper.COLUMN_HALL, ""),
             i.getExtras().getString(DbHelper.COLUMN_BLOOD_GROUP, ""),
             i.getExtras().getString(DbHelper.COLUMN_DEPT, ""),
@@ -86,16 +87,18 @@ public class SearchResultActivity extends MainActivity {
                 "SELECT * FROM " + DbHelper.TABLE_NAME
                 + " WHERE " + DbHelper.COLUMN_NAME + " LIKE \"%"
                 + filter[0] + "%\""
-                + " AND " + DbHelper.COLUMN_HALL + " LIKE \"%"
+                + " OR " + DbHelper.COLUMN_ROLL_NO + " LIKE \"%"
                 + filter[1] + "%\""
-                + " AND " + DbHelper.COLUMN_BLOOD_GROUP + " LIKE \"%"
+                + " AND " + DbHelper.COLUMN_HALL + " LIKE \"%"
                 + filter[2] + "%\""
-                + " AND " + DbHelper.COLUMN_DEPT + " LIKE \"%"
+                + " AND " + DbHelper.COLUMN_BLOOD_GROUP + " LIKE \"%"
                 + filter[3] + "%\""
-                + " AND " + DbHelper.COLUMN_PROGRAMME + " LIKE \"%"
+                + " AND " + DbHelper.COLUMN_DEPT + " LIKE \"%"
                 + filter[4] + "%\""
+                + " AND " + DbHelper.COLUMN_PROGRAMME + " LIKE \"%"
+                + filter[5] + "%\""
                 + " AND " + DbHelper.COLUMN_GENDER + " LIKE \"%"
-                + filter[5] + "%\"",
+                + filter[6] + "%\"",
                 null
         );
         if (cursor.getCount() > 0) {

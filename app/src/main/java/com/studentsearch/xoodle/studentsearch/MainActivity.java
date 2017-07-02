@@ -195,6 +195,7 @@ public class MainActivity extends AppCompatActivity {
     intent.putExtra(DbHelper.COLUMN_DEPT, getDeptFilter());
     intent.putExtra(DbHelper.COLUMN_PROGRAMME, getProgrammeFilter());
     intent.putExtra(DbHelper.COLUMN_GENDER, getGenderFilter());
+    intent.putExtra(DbHelper.COLUMN_ROLL_NO, queryName);
   }
 
   public String getSearchQuery() {

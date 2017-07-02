@@ -296,13 +296,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected Void doInBackground(String... json) {
       Gson gson = new Gson();
-      StudentData student;
+      StudentData[] students = gson.fromJson(json[0], StudentData[].class);
       dbHelper = DbHelper.getDbHelperInstance(getApplicationContext(), "students", 1);
-      Matcher m = Pattern.compile("\\{(.*?)\\}").matcher(json[0]);
-      while (m.find()) {
-        student = gson.fromJson("{" + m.group(1) + "}", StudentData.class);
-        dbHelper.insertStudent(student);
-      }
+      dbHelper.insertStudents(students);
       return null;
     }
 

@@ -85,10 +85,10 @@ public class SearchResultActivity extends MainActivity {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         cursor = db.rawQuery(
                 "SELECT * FROM " + DbHelper.TABLE_NAME
-                + " WHERE " + DbHelper.COLUMN_NAME + " LIKE \"%"
+                + " WHERE (" + DbHelper.COLUMN_NAME + " LIKE \"%"
                 + filter[0] + "%\""
                 + " OR " + DbHelper.COLUMN_ROLL_NO + " LIKE \"%"
-                + filter[1] + "%\""
+                + filter[1] + "%\")"
                 + " AND " + DbHelper.COLUMN_HALL + " LIKE \"%"
                 + filter[2] + "%\""
                 + " AND " + DbHelper.COLUMN_BLOOD_GROUP + " LIKE \"%"

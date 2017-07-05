@@ -67,6 +67,11 @@ public class MainActivity extends AppCompatActivity {
     if(cnt == 0) {
       refreshDatabase();
     }
+
+
+//    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+//    builder.setMessage("Do you want to Download images now ?").setPositiveButton("Yes", dialogClickListener)
+//      .setNegativeButton("No", dialogClickListener).show();
     mEditText = (EditText) findViewById(R.id.edit_text);
     mEditText.setOnKeyListener(new View.OnKeyListener()
     {
@@ -359,6 +364,28 @@ public class MainActivity extends AppCompatActivity {
       if (mProgressDialog.isShowing())
         mProgressDialog.dismiss();
       recreate();
+      // calling this funtion to execute an dialox box on first launch only.
+      imageDownloadAlertbox();
+    }
+
+    private void imageDownloadAlertbox() {
+      DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+          switch (which) {
+            case DialogInterface.BUTTON_POSITIVE:
+              new ImageDownloader().execute();
+              break;
+
+            case DialogInterface.BUTTON_NEGATIVE:
+              //No button clicked
+              break;
+          }
+        }
+      };
+      AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+      builder.setMessage("Do you want to download images now ?").setNegativeButton("No", dialogClickListener)
+        .setPositiveButton("Yes", dialogClickListener).show();
     }
   }
 

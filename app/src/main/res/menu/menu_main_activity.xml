@@ -7,11 +7,6 @@
       android:icon="@drawable/ic_download"
       android:title="Download all students' pics"
       app:showAsAction="ifRoom"/>
-  <item
-      android:id="@+id/action_refresh_database"
-      android:icon="@drawable/ic_refresh"
-      android:title="@string/refresh_toolbar"
-      app:showAsAction="collapseActionView|ifRoom"/>
 
   <item
       android:id="@+id/menu_search"

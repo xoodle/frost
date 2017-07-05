@@ -43,7 +43,7 @@ public class MappingUtils {
     deptMap.put("Economics", "ECO");
     deptMap.put("Mechanical Engineering", "ME");
     deptMap.put("Chemistry", "CHY");
-    deptMap.put("Mathematics", "MTH");
+    deptMap.put("Math For Pg Online", "MTH");
     deptMap.put("Biol.Sci. And Bio.Engg.", "BSBE");
     deptMap.put("Earth Sciences","ES");
 

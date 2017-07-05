@@ -137,7 +137,9 @@ public class SearchResultActivity extends AppCompatActivity {
     @Override
     protected void onPostExecute(Void aVoid) {
       super.onPostExecute(aVoid);
-      if(studentDataArrayList.size()>0) {
+      int count = studentDataArrayList.size();
+      if(count > 0) {
+        getSupportActionBar().setSubtitle("Displaying " + count + " Results");
         mDataAdapter = new DataAdapter(getApplicationContext(), studentDataArrayList);
         mResultRecyclerView.setAdapter(mDataAdapter);
         mResultRecyclerView.setVisibility(View.VISIBLE);

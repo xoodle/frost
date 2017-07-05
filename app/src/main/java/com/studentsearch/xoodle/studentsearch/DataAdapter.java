@@ -48,6 +48,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
     this.packageName = context.getPackageName();
     Collections.sort(studentData, comparator);
     this.mStudentData = studentData;
+    Collections.sort(studentData, comparator);
   }
 
   @Override

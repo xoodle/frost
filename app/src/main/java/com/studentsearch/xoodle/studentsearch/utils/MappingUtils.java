@@ -11,6 +11,7 @@ public class MappingUtils {
   private Map<String, String> bloodGroupMap;
   private Map<String, String> genderMap;
   private Map<String, String> programmeMap;
+  private Map<String, String> yearMap;
 
   public MappingUtils() {
     hallMap = new HashMap<>();
@@ -54,6 +55,9 @@ public class MappingUtils {
 
     programmeMap = new HashMap<>();
     programmeMap.put("", "Programme");
+
+    yearMap = new HashMap<>();
+    yearMap.put("", "Year");
   }
 
   public Map<String, String> getHallMap() {
@@ -74,5 +78,9 @@ public class MappingUtils {
 
   public Map<String, String> getProgrammeMap() {
     return programmeMap;
+  }
+
+  public Map<String, String> getYearMap() {
+    return yearMap;
   }
 }

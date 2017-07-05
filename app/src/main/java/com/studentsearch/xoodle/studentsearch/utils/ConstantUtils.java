@@ -10,4 +10,5 @@ public class ConstantUtils {
   public static final String GENDER = "gender";
   public static final String[] GENDER_LIST = {"F", "M"};
   public static final String PROGRAMME = "programme";
+  public static final String YEAR = "year";
 }

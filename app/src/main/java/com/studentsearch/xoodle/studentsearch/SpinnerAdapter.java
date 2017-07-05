@@ -69,6 +69,8 @@ public class SpinnerAdapter extends ArrayAdapter<String> {
         return mappingUtils.getGenderMap();
       case ConstantUtils.PROGRAMME:
         return mappingUtils.getProgrammeMap();
+      case ConstantUtils.YEAR:
+        return mappingUtils.getYearMap();
       default:
         return null;
     }

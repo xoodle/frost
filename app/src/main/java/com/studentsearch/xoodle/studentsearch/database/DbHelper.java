@@ -25,6 +25,7 @@ public class DbHelper extends SQLiteOpenHelper implements Serializable {
   public static final String COLUMN_ROOM_NO = "room_no";
   public static final String COLUMN_ADDRESS = "address";
   public static final String COLUMN_PROGRAMME = "programme";
+  public static final String COLUMN_YEAR = "year";
   private static final String CREATE_TABLE_IF_NOT_EXISTS = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME + "( "
           + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
           + COLUMN_NAME + " TEXT, "
@@ -36,7 +37,8 @@ public class DbHelper extends SQLiteOpenHelper implements Serializable {
           + COLUMN_ADDRESS + " TEXT, "
           + COLUMN_BLOOD_GROUP + " TEXT, "
           + COLUMN_PROGRAMME + " TEXT, "
-          + COLUMN_USER_NAME + " TEXT);";
+          + COLUMN_USER_NAME + " TEXT, "
+          + COLUMN_YEAR + " TEXT);";
   private static final String DROP_TABLE_IF_EXISTS = "DROP TABLE IF EXISTS " + TABLE_NAME;
 
   private DbHelper(Context context, String dbName, Integer version) {
@@ -68,6 +70,19 @@ public class DbHelper extends SQLiteOpenHelper implements Serializable {
       SQLiteDatabase db = this.getWritableDatabase();
       db.beginTransaction();
       for (StudentData student : students) {
+        //reinitialize student to initalize "year"
+        student = new StudentData(
+                student.getAddress(),
+                student.getBloodGroup(),
+                student.getDept(),
+                student.getGender(),
+                student.getHall(),
+                student.getRollNo(),
+                student.getName(),
+                student.getProgramme(),
+                student.getRoomNo(),
+                student.getUserName()
+        );
         ContentValues contentValues = new ContentValues();
         contentValues.put(COLUMN_ADDRESS, student.getAddress());
         contentValues.put(COLUMN_BLOOD_GROUP, student.getBloodGroup());
@@ -79,6 +94,7 @@ public class DbHelper extends SQLiteOpenHelper implements Serializable {
         contentValues.put(COLUMN_ROLL_NO, student.getRollNo());
         contentValues.put(COLUMN_ROOM_NO, student.getRoomNo());
         contentValues.put(COLUMN_USER_NAME, student.getUserName());
+        contentValues.put(COLUMN_YEAR, student.getYear());
         db.insert(TABLE_NAME, null, contentValues);
       }
       db.setTransactionSuccessful();

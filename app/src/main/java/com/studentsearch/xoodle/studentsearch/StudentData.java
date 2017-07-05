@@ -40,6 +40,8 @@ public class StudentData {
   @SerializedName("u")
   public String userName;
 
+  public String year;
+
   public static ArrayList<StudentData> studentDataArrayList;
 
   public StudentData(String address, String bloodGroup, String dept, String gender, String hall, String rollNo, String name, String programme, String roomNo, String userName) {
@@ -53,6 +55,7 @@ public class StudentData {
     this.programme = programme;
     this.roomNo = roomNo;
     this.userName = userName;
+    setYear();
   }
 
   public String getAddress() {
@@ -95,6 +98,10 @@ public class StudentData {
     return userName;
   }
 
+  public String getYear() {
+    return year;
+  }
+
   public void setAddress(String address) {
     this.address = address;
   }
@@ -133,5 +140,9 @@ public class StudentData {
 
   public void setUserName(String userName) {
     this.userName = userName;
+  }
+
+  public void setYear() {
+    year="Y" + getRollNo().substring(0,2);
   }
 }

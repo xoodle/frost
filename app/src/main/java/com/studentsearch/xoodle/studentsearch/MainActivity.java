@@ -158,6 +158,22 @@ public class MainActivity extends AppCompatActivity {
     spinnerAdapter = new SpinnerAdapter(this, android.R.layout.simple_spinner_item, listOfEntries, ConstantUtils.GENDER);
     spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
     ((Spinner) findViewById(R.id.spinner_gender)).setAdapter(spinnerAdapter);
+
+    cursor = db.rawQuery("SELECT DISTINCT " + DbHelper.COLUMN_YEAR + " FROM " + DbHelper.TABLE_NAME, null);
+    cursor.moveToFirst();
+    listOfEntries = new ArrayList<>();
+    listOfEntries.add("");
+    for(int x=0;x<cursor.getCount();x++) {
+      tempEntry = cursor.getString(cursor.getColumnIndex(DbHelper.COLUMN_YEAR));
+      if(!tempEntry.equals(""))
+        listOfEntries.add(tempEntry);
+      cursor.moveToNext();
+    }
+    spinnerAdapter = new SpinnerAdapter(this, android.R.layout.simple_spinner_item, listOfEntries, ConstantUtils.YEAR);
+    spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+    ((Spinner) findViewById(R.id.spinner_year)).setAdapter(spinnerAdapter);
+    cursor.close();
+
   }
 
   @Override
@@ -201,6 +217,7 @@ public class MainActivity extends AppCompatActivity {
     intent.putExtra(DbHelper.COLUMN_PROGRAMME, getProgrammeFilter());
     intent.putExtra(DbHelper.COLUMN_GENDER, getGenderFilter());
     intent.putExtra(DbHelper.COLUMN_ROLL_NO, queryName);
+    intent.putExtra(DbHelper.COLUMN_YEAR, getYearFilter());
   }
 
   public String getSearchQuery() {
@@ -230,6 +247,11 @@ public class MainActivity extends AppCompatActivity {
 
   public String getGenderFilter() {
     Spinner spinnerGender = (Spinner) findViewById(R.id.spinner_gender);
+    return spinnerGender.getSelectedItem().toString();
+  }
+
+  public String getYearFilter() {
+    Spinner spinnerGender = (Spinner) findViewById(R.id.spinner_year);
     return spinnerGender.getSelectedItem().toString();
   }
 

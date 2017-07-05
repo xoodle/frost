@@ -9,8 +9,8 @@
   <RelativeLayout
        android:layout_width="match_parent"
        android:layout_height="match_parent"
-       android:src="@drawable/iitk_image">
-
+       android:src="@drawable/iitk_image"
+        android:background="@color/colorGrey">
     <LinearLayout
       android:layout_width="match_parent"
       android:layout_height="wrap_content"

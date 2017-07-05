@@ -8,11 +8,15 @@ import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.v4.graphics.drawable.DrawableCompat;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -50,6 +54,15 @@ public class MainActivity extends AppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
+//    Toolbar toolbar = (Toolbar) findViewById(R.id.a_main_toolbar);
+//    setSupportActionBar(toolbar);
+    ActionBar ab = getSupportActionBar();
+    Drawable drawable = getResources().getDrawable(R.drawable.ic_menu);
+    DrawableCompat.setTint(drawable, getResources().getColor(R.color.colorWhite));
+    if (ab != null) {
+      ab.setHomeAsUpIndicator(drawable);
+      ab.setDisplayHomeAsUpEnabled(true);
+    }
     long cnt = DatabaseUtils.queryNumEntries(DbHelper.getDbHelperInstance(getApplicationContext(), DbHelper.TABLE_NAME, 1).getReadableDatabase(), "students");
     if(cnt == 0) {
       refreshDatabase();

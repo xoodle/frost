@@ -14,4 +14,9 @@
     <item name="android:windowBackground">@drawable/splash</item>
   </style>
 
+  <style name="CustomTheme" parent="AppTheme">
+    <item name="colorAccent">@color/colorPrimaryDark</item>
+    <item name="android:colorBackground">@color/colorGrey</item>
+  </style>
+
 </resources>

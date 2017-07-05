@@ -12,6 +12,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
@@ -37,8 +38,9 @@ public class SearchResultActivity extends AppCompatActivity {
   public void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_search_result);
-    ActionBar actionBar = getSupportActionBar();
-    actionBar.setDisplayHomeAsUpEnabled(true);
+//    Toolbar toolbar = (Toolbar) findViewById(R.id.a_main_toolbar);
+//    setSupportActionBar(toolbar);
+    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     mResultRecyclerView = (RecyclerView) findViewById(R.id.rv_main);
     mLinearLayoutManager = new LinearLayoutManager(this);
     mResultRecyclerView.setLayoutManager(mLinearLayoutManager);

@@ -54,8 +54,6 @@ public class MainActivity extends AppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
-//    Toolbar toolbar = (Toolbar) findViewById(R.id.a_main_toolbar);
-//    setSupportActionBar(toolbar);
     ActionBar ab = getSupportActionBar();
     Drawable drawable = getResources().getDrawable(R.drawable.ic_menu);
     DrawableCompat.setTint(drawable, getResources().getColor(R.color.colorWhite));
@@ -68,10 +66,6 @@ public class MainActivity extends AppCompatActivity {
       refreshDatabase();
     }
 
-
-//    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-//    builder.setMessage("Do you want to Download images now ?").setPositiveButton("Yes", dialogClickListener)
-//      .setNegativeButton("No", dialogClickListener).show();
     mEditText = (EditText) findViewById(R.id.edit_text);
     mEditText.setOnKeyListener(new View.OnKeyListener()
     {
@@ -208,8 +202,6 @@ public class MainActivity extends AppCompatActivity {
     switch (item.getItemId()) {
       case R.id.download_images:
         new ImageDownloader().execute();
-        break;
-      case R.id.action_refresh_database:
         break;
       case R.id.menu_settings:
         // refresh

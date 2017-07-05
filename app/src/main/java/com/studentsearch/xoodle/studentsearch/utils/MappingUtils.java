@@ -58,6 +58,12 @@ public class MappingUtils {
 
     yearMap = new HashMap<>();
     yearMap.put("", "Year");
+    yearMap.put("Y12", "Y12");
+    yearMap.put("Y13", "Y13");
+    yearMap.put("Y14", "Y14");
+    yearMap.put("Y15", "Y15");
+    yearMap.put("Y16", "Y16");
+    yearMap.put("Y17", "Y17");
   }
 
   public Map<String, String> getHallMap() {

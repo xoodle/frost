@@ -12,20 +12,40 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
+import com.studentsearch.xoodle.studentsearch.utils.MappingUtils;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Map;
 
 public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
 
   private ArrayList<StudentData> mStudentData;
   private Context context;
   private String packageName;
+  private Comparator<StudentData> comparator = new Comparator<StudentData>() {
+    @Override
+    public int compare(StudentData s1, StudentData s2) {
+      MappingUtils mappingUtils = new MappingUtils();
+      Map<String, String> yearMap = mappingUtils.getYearMap();
+      if (yearMap.get(s1.getYear()) == null) {
+        return 1;
+      } else if (yearMap.get(s2.getYear()) == null) {
+        return -1;
+      } else {
+        return -1 * (yearMap.get(s1.getYear()))
+                .compareTo(yearMap.get(s2.getYear()));
+      }
+    }
+  };
 
   public DataAdapter(Context context, ArrayList<StudentData> studentData) {
     this.context = context;
     this.packageName = context.getPackageName();
     this.mStudentData = studentData;
+    Collections.sort(studentData, comparator);
   }
 
   @Override

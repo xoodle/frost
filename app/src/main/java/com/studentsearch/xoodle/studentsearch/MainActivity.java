@@ -19,13 +19,13 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.google.gson.Gson;
 import com.studentsearch.xoodle.studentsearch.database.DbHelper;
+import com.studentsearch.xoodle.studentsearch.utils.ConstantUtils;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -37,9 +37,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -94,65 +92,88 @@ public class MainActivity extends AppCompatActivity {
 
   private void setFilterSpinnerEntries() {
     SQLiteDatabase db = DbHelper.getDbHelperInstance(this, DbHelper.TABLE_NAME, 1).getReadableDatabase();
+    ArrayList<String> listOfEntries;
+    SpinnerAdapter spinnerAdapter;
+    String tempEntry;
+
     Cursor cursor = db.rawQuery("SELECT DISTINCT " + DbHelper.COLUMN_HALL + " FROM " + DbHelper.TABLE_NAME, null);
     cursor.moveToFirst();
-    ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item);
-    arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-    arrayAdapter.add("Hall");
+    listOfEntries = new ArrayList<>();
+    listOfEntries.add("");
     for(int x=0;x<cursor.getCount();x++) {
-      arrayAdapter.add(cursor.getString(cursor.getColumnIndex(DbHelper.COLUMN_HALL)));
+      tempEntry = cursor.getString(cursor.getColumnIndex(DbHelper.COLUMN_HALL));
+      if(!tempEntry.equals(""))
+        listOfEntries.add(tempEntry);
       cursor.moveToNext();
     }
-    ((Spinner) findViewById(R.id.spinner_hall)).setAdapter(arrayAdapter);
+    spinnerAdapter = new SpinnerAdapter(this, android.R.layout.simple_spinner_item, listOfEntries, ConstantUtils.HALL);
+    spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+    ((Spinner) findViewById(R.id.spinner_hall)).setAdapter(spinnerAdapter);
     cursor.close();
 
-    cursor = db.rawQuery("SELECT DISTINCT " + DbHelper.COLUMN_BLOOD_GROUP + " FROM " + DbHelper.TABLE_NAME, null);
-    cursor.moveToFirst();
-    arrayAdapter = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item);
-    arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-    arrayAdapter.add("");
-    for(int x=0;x<cursor.getCount();x++) {
-      arrayAdapter.add(cursor.getString(cursor.getColumnIndex(DbHelper.COLUMN_BLOOD_GROUP)));
-      cursor.moveToNext();
+    listOfEntries = new ArrayList<>();
+    listOfEntries.add("");
+    for(String s : ConstantUtils.BLOOD_GROUP_LIST) {
+      listOfEntries.add(s);
     }
-    ((Spinner) findViewById(R.id.spinner_blood_group)).setAdapter(arrayAdapter);
-    cursor.close();
+    spinnerAdapter = new SpinnerAdapter(this,android.R.layout.simple_spinner_item, listOfEntries, ConstantUtils.BLOOD_GROUP);
+    spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+    ((Spinner) findViewById(R.id.spinner_blood_group)).setAdapter(spinnerAdapter);
 
     cursor = db.rawQuery("SELECT DISTINCT " + DbHelper.COLUMN_DEPT + " FROM " + DbHelper.TABLE_NAME, null);
     cursor.moveToFirst();
-    arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item);
-    arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-    arrayAdapter.add("");
+    listOfEntries = new ArrayList<>();
+    listOfEntries.add("");
     for(int x=0;x<cursor.getCount();x++) {
-      arrayAdapter.add(cursor.getString(cursor.getColumnIndex(DbHelper.COLUMN_DEPT)));
+      tempEntry = cursor.getString(cursor.getColumnIndex(DbHelper.COLUMN_DEPT));
+      if(!tempEntry.equals(""))
+        listOfEntries.add(tempEntry);
       cursor.moveToNext();
     }
-    ((Spinner) findViewById(R.id.spinner_dept)).setAdapter(arrayAdapter);
+    spinnerAdapter = new SpinnerAdapter(this, android.R.layout.simple_spinner_item, listOfEntries, ConstantUtils.DEPT);
+    spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+    ((Spinner) findViewById(R.id.spinner_dept)).setAdapter(spinnerAdapter);
     cursor.close();
 
     cursor = db.rawQuery("SELECT DISTINCT " + DbHelper.COLUMN_PROGRAMME + " FROM " + DbHelper.TABLE_NAME, null);
     cursor.moveToFirst();
-    arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item);
-    arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-    arrayAdapter.add("");
+    listOfEntries = new ArrayList<>();
+    listOfEntries.add("");
     for(int x=0;x<cursor.getCount();x++) {
-      arrayAdapter.add(cursor.getString(cursor.getColumnIndex(DbHelper.COLUMN_PROGRAMME)));
+      tempEntry = cursor.getString(cursor.getColumnIndex(DbHelper.COLUMN_PROGRAMME));
+      if(!tempEntry.equals(""))
+        listOfEntries.add(tempEntry);
       cursor.moveToNext();
     }
-    ((Spinner) findViewById(R.id.spinner_programme)).setAdapter(arrayAdapter);
+    spinnerAdapter = new SpinnerAdapter(this, android.R.layout.simple_spinner_item, listOfEntries, ConstantUtils.PROGRAMME);
+    spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+    ((Spinner) findViewById(R.id.spinner_programme)).setAdapter(spinnerAdapter);
     cursor.close();
 
-    cursor = db.rawQuery("SELECT DISTINCT " + DbHelper.COLUMN_GENDER + " FROM " + DbHelper.TABLE_NAME, null);
+    listOfEntries = new ArrayList<>();
+    listOfEntries.add("");
+    for(String s : ConstantUtils.GENDER_LIST) {
+      listOfEntries.add(s);
+    }
+    spinnerAdapter = new SpinnerAdapter(this, android.R.layout.simple_spinner_item, listOfEntries, ConstantUtils.GENDER);
+    spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+    ((Spinner) findViewById(R.id.spinner_gender)).setAdapter(spinnerAdapter);
+
+    cursor = db.rawQuery("SELECT DISTINCT " + DbHelper.COLUMN_YEAR + " FROM " + DbHelper.TABLE_NAME, null);
     cursor.moveToFirst();
-    arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item);
-    arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-    arrayAdapter.add("");
+    listOfEntries = new ArrayList<>();
+    listOfEntries.add("");
     for(int x=0;x<cursor.getCount();x++) {
-      arrayAdapter.add(cursor.getString(cursor.getColumnIndex(DbHelper.COLUMN_GENDER)));
+      tempEntry = cursor.getString(cursor.getColumnIndex(DbHelper.COLUMN_YEAR));
+      if(!tempEntry.equals(""))
+        listOfEntries.add(tempEntry);
       cursor.moveToNext();
     }
-    ((Spinner) findViewById(R.id.spinner_gender)).setAdapter(arrayAdapter);
+    spinnerAdapter = new SpinnerAdapter(this, android.R.layout.simple_spinner_item, listOfEntries, ConstantUtils.YEAR);
+    spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+    ((Spinner) findViewById(R.id.spinner_year)).setAdapter(spinnerAdapter);
     cursor.close();
+
   }
 
   @Override
@@ -196,6 +217,7 @@ public class MainActivity extends AppCompatActivity {
     intent.putExtra(DbHelper.COLUMN_PROGRAMME, getProgrammeFilter());
     intent.putExtra(DbHelper.COLUMN_GENDER, getGenderFilter());
     intent.putExtra(DbHelper.COLUMN_ROLL_NO, queryName);
+    intent.putExtra(DbHelper.COLUMN_YEAR, getYearFilter());
   }
 
   public String getSearchQuery() {
@@ -228,13 +250,14 @@ public class MainActivity extends AppCompatActivity {
     return spinnerGender.getSelectedItem().toString();
   }
 
+  public String getYearFilter() {
+    Spinner spinnerGender = (Spinner) findViewById(R.id.spinner_year);
+    return spinnerGender.getSelectedItem().toString();
+  }
+
   private void refreshDatabase() {
     new JsonTask().execute("https://yashsriv.org/api");
   }
-
-//  private void getStudentImages() {
-//    new ImageDownloader(getApplicationContext()).execute();
-//  }
 
   public class JsonTask extends AsyncTask<String, String, String> {
     protected void onPreExecute() {
@@ -426,8 +449,5 @@ public class MainActivity extends AppCompatActivity {
       return Environment.MEDIA_MOUNTED.equals(state) ||
               Environment.MEDIA_MOUNTED_READ_ONLY.equals(state);
     }
-
   }
-
-
 }

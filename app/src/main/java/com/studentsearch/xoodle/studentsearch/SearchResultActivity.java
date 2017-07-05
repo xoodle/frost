@@ -56,7 +56,8 @@ public class SearchResultActivity extends MainActivity {
             i.getExtras().getString(DbHelper.COLUMN_BLOOD_GROUP, ""),
             i.getExtras().getString(DbHelper.COLUMN_DEPT, ""),
             i.getExtras().getString(DbHelper.COLUMN_PROGRAMME, ""),
-            i.getExtras().getString(DbHelper.COLUMN_GENDER, "")
+            i.getExtras().getString(DbHelper.COLUMN_GENDER, ""),
+            i.getExtras().getString(DbHelper.COLUMN_YEAR, "")
     };
     return filter;
   }
@@ -98,7 +99,9 @@ public class SearchResultActivity extends MainActivity {
                 + " AND " + DbHelper.COLUMN_PROGRAMME + " LIKE \"%"
                 + filter[5] + "%\""
                 + " AND " + DbHelper.COLUMN_GENDER + " LIKE \"%"
-                + filter[6] + "%\"",
+                + filter[6] + "%\""
+                + " AND " + DbHelper.COLUMN_YEAR + " LIKE \"%"
+                + filter[7] + "%\"",
                 null
         );
         if (cursor.getCount() > 0) {

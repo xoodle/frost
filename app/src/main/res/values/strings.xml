@@ -13,4 +13,5 @@
     <string name="refresh_toolbar">Refresh</string>
     <string name="activity_search_result">Result</string>
     <string name="pins_toolbar">Pin</string>
+    <string name="copy_email">Copy all Email-IDs</string>
 </resources>

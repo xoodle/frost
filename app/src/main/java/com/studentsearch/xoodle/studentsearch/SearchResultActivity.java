@@ -1,5 +1,7 @@
 package com.studentsearch.xoodle.studentsearch;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -14,7 +16,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.studentsearch.xoodle.studentsearch.database.DbHelper;
 
@@ -63,12 +67,41 @@ public class SearchResultActivity extends AppCompatActivity {
     return filter;
   }
 
+  private String getEmailIds() {
+    String emails = "";
+    int counter = studentDataArrayList.size();
+    for(StudentData s : studentDataArrayList) {
+      emails = emails + s.getUserName() + "@iitk.ac.in";
+      if(counter != 1)
+        emails = emails + ", ";
+      counter--;
+    }
+    return emails;
+  }
+
+  private void copyEmailIdsToClipboard() {
+    ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+    ClipData emailClip = ClipData.newPlainText("email ids", getEmailIds());
+    clipboard.setPrimaryClip(emailClip);
+    Toast.makeText(this, "Copied to clipboard", Toast.LENGTH_SHORT).show();
+  }
+
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {
     super.onCreateOptionsMenu(menu);
     MenuInflater inflater = getMenuInflater();
     inflater.inflate(R.menu.menu_search_activity, menu);
     return super.onCreateOptionsMenu(menu);
+  }
+
+  @Override
+  public boolean onOptionsItemSelected(MenuItem item) {
+    switch(item.getItemId()) {
+      case R.id.action_copy_email:
+        copyEmailIdsToClipboard();
+        break;
+    }
+    return super.onOptionsItemSelected(item);
   }
 
   private void performQuery(String filter[]) throws Resources.NotFoundException, NullPointerException {

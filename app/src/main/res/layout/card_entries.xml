@@ -12,7 +12,8 @@
       android:layout_width="match_parent"
       android:layout_height="match_parent"
       android:layout_margin="4dp"
-      android:orientation="vertical">
+      android:orientation="vertical"
+    android:background="@color/colorcards">
 
     <com.makeramen.roundedimageview.RoundedImageView
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -39,7 +40,7 @@
         android:layout_marginTop="8dp"
         android:layout_toRightOf="@id/user_image"
         android:fontFamily="sans-serif-smallcaps"
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="@color/colortext"
         android:textIsSelectable="true"
         android:textSize="20sp"
         android:textStyle="bold"/>
@@ -50,10 +51,11 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_name"
         android:layout_marginBottom="4dp"
+        android:fontFamily="sans-serif-smallcaps"
         android:layout_toRightOf="@id/user_image"
         android:ellipsize="end"
         android:maxLines="1"
-        android:textColor="#9E9E9E"
+        android:textColor="@color/colortext1"
         android:textIsSelectable="true"
         android:textSize="16sp"/>
 
@@ -63,10 +65,11 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_roll"
         android:layout_marginBottom="4dp"
+        android:textColor="@color/colortext1"
+        android:fontFamily="sans-serif-smallcaps"
         android:layout_toRightOf="@id/user_image"
         android:ellipsize="end"
         android:maxLines="1"
-        android:textColor="#9E9E9E"
         android:textSize="16sp"/>
 
     <TextView
@@ -75,10 +78,11 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_dept"
         android:layout_marginBottom="4dp"
+        android:fontFamily="sans-serif-smallcaps"
         android:layout_toRightOf="@id/user_image"
         android:ellipsize="end"
         android:maxLines="1"
-        android:textColor="#9E9E9E"
+        android:textColor="@color/colortext1"
         android:textIsSelectable="true"
         android:textSize="16sp"/>
 

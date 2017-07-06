@@ -392,6 +392,12 @@ public class MainActivity extends AppCompatActivity {
       imageDownloaderDialog.setIndeterminate(false);
       imageDownloaderDialog.setCancelable(false);
       imageDownloaderDialog.setMax(100);
+      imageDownloaderDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Cancel", new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+          dialog.dismiss();
+        }
+      });
       imageDownloaderDialog.show();
       super.onPreExecute();
     }
@@ -482,4 +488,5 @@ public class MainActivity extends AppCompatActivity {
               Environment.MEDIA_MOUNTED_READ_ONLY.equals(state);
     }
   }
+
 }

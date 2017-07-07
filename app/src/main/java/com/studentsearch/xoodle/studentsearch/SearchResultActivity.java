@@ -17,11 +17,18 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.OvershootInterpolator;
 import android.widget.Toast;
 
 import com.studentsearch.xoodle.studentsearch.database.DbHelper;
 
 import java.util.ArrayList;
+
+import jp.wasabeef.recyclerview.adapters.AlphaInAnimationAdapter;
+import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
+import jp.wasabeef.recyclerview.adapters.SlideInBottomAnimationAdapter;
+import jp.wasabeef.recyclerview.adapters.SlideInLeftAnimationAdapter;
+import jp.wasabeef.recyclerview.animators.ScaleInBottomAnimator;
 
 public class SearchResultActivity extends AppCompatActivity {
 
@@ -172,7 +179,10 @@ public class SearchResultActivity extends AppCompatActivity {
       if(count > 0) {
         getSupportActionBar().setSubtitle("Displaying " + count + " Results");
         mDataAdapter = new DataAdapter(getApplicationContext(), studentDataArrayList);
-        mResultRecyclerView.setAdapter(mDataAdapter);
+        ScaleInAnimationAdapter scaleAdapter = new ScaleInAnimationAdapter(mDataAdapter);
+        scaleAdapter.setFirstOnly(false);
+        scaleAdapter.setDuration(300);
+        mResultRecyclerView.setAdapter(scaleAdapter);
         mResultRecyclerView.setVisibility(View.VISIBLE);
       } else {
         findViewById(R.id.tv_not_found).setVisibility(View.VISIBLE);

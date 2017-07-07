@@ -22,6 +22,8 @@
         <activity android:name="com.studentsearch.xoodle.studentsearch.MainActivity">
          
         </activity>
+        <activity android:name=".DetailsActivity"
+                  android:parentActivityName=".SearchResultActivity" />
         <activity android:name="com.studentsearch.xoodle.studentsearch.SearchResultActivity"
                   android:label="@string/activity_search_result"
                   android:parentActivityName="com.studentsearch.xoodle.studentsearch.MainActivity"/>

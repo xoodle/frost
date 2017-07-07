@@ -1,8 +1,16 @@
 package com.studentsearch.xoodle.studentsearch;
 
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
+import android.os.Bundle;
+import android.os.Parcelable;
+import android.support.design.internal.ParcelableSparseArray;
+import android.support.v4.app.FragmentTransaction;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Environment;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
+import com.studentsearch.xoodle.studentsearch.utils.GlobalDrawables;
 import com.studentsearch.xoodle.studentsearch.utils.MappingUtils;
 
 import java.io.File;
@@ -23,6 +32,8 @@ import java.util.Map;
 public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
 
   private ArrayList<StudentData> mStudentData;
+//  private ArrayList<Bitmap> studentImages = new ArrayList<>();
+//  private ArrayList<Integer> imageViews = new ArrayList<>();
   private Context context;
   private String packageName;
   private Comparator<StudentData> comparator = new Comparator<StudentData>() {
@@ -54,12 +65,31 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
   @Override
   public DataAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
     View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_entries, parent, false);
+    view.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        Intent intent = DetailsActivity.getNewIntent(context);
+        GlobalDrawables.drawables.add((((ImageView)v.findViewById(R.id.user_image)).getDrawable()));
+//        Bundle bundle = new Bundle();
+//        bundle.putParcelableArrayList("images", studentImages);
+//        intent.putExtras(bundle);
+//        intent.putIntegerArrayListExtra("image_view_ids", imageViews);
+//        intent.putExtra("list", mStudentData);
+//        intent.putExtra("images", studentImages);
+        context.startActivity(intent);
+      }
+    });
     return new ViewHolder(view);
   }
 
   @Override
   public void onBindViewHolder(ViewHolder holder, int position) {
     holder.bind(context, packageName, mStudentData.get(position));
+//    studentImages.add(holder.mImageView.getDrawable());
+//    holder.mImageView.buildDrawingCache();
+//    studentImages.add(holder.mImageView.getDrawingCache());
+//    imageViews.add(holder.mImageView.getId());
+//    GlobalDrawables.drawables.add(holder.mImageView.getDrawable());
   }
 
   @Override
@@ -89,7 +119,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
 
     @Override
     public void onClick(View v) {
-      //clicked
+      // some action
     }
 
     public void bind(Context context, String packageName, StudentData studentData) {
@@ -118,15 +148,18 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
         Picasso.with(context)
                 .load(image)
                 .placeholder(errID)
-                .error(errID)
                 .into(this.mImageView);
       } else {
         Picasso.with(context)
                 .load("http://oa.cc.iitk.ac.in/Oa/Jsp/Photo/" + studentData.getRollNo() + "_0.jpg")
                 .placeholder(errID)
-                .error(errID)
                 .into(this.mImageView);
       }
+//      GlobalDrawables.drawables.add(mImageView.getDrawable());
+//      mImageView.buildDrawingCache();
+//      GlobalDrawables.bitmaps.add(mImageView.getDrawingCache());
+//      GlobalDrawables.imageViews.add(mImageView);
+
 
     }
   }

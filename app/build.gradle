@@ -46,4 +46,6 @@ dependencies {
     //Rounded Image View
     compile 'com.makeramen:roundedimageview:2.3.0'
     compile 'jp.wasabeef:recyclerview-animators:2.2.7@aar'
+    // Card Slider Android
+    'com.ramotion.cardslider:card-slider:0.1.0'
 }

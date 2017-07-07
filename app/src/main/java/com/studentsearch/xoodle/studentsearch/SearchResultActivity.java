@@ -1,5 +1,6 @@
 package com.studentsearch.xoodle.studentsearch;
 
+import android.app.FragmentTransaction;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
@@ -20,6 +21,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.OvershootInterpolator;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.studentsearch.xoodle.studentsearch.database.DbHelper;
@@ -186,6 +188,7 @@ public class SearchResultActivity extends AppCompatActivity {
       int count = studentDataArrayList.size();
       if(count > 0) {
         getSupportActionBar().setSubtitle("Displaying " + count + " Results");
+
         mDataAdapter = new DataAdapter(getApplicationContext(), studentDataArrayList);
         ScaleInAnimationAdapter scaleAdapter = new ScaleInAnimationAdapter(mDataAdapter);
         scaleAdapter.setFirstOnly(false);

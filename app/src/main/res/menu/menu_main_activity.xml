@@ -2,23 +2,19 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:app="http://schemas.android.com/apk/res-auto">
 
-  <item
-      android:id="@+id/download_images"
-      android:icon="@drawable/ic_download"
-      android:title="Download all students' pics"
-      app:showAsAction="ifRoom"/>
+
 
   <item
-      android:id="@+id/menu_search"
-      android:title="@string/search"
+      android:id="@+id/update"
+      android:title="Update"
       app:showAsAction="never"/>
   <item
-      android:id="@+id/menu_main"
-      android:title="Main Menu"
+      android:id="@+id/download_images"
+      android:title="Download all images"
       app:showAsAction="never"/>
   <item
-      android:id="@+id/menu_settings"
-      android:title="Settings"
+      android:id="@+id/about_app"
+      android:title="About App"
       app:showAsAction="never"/>
 
 </menu>

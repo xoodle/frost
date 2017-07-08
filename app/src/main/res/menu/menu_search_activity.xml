@@ -3,12 +3,6 @@
       xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/action_pin"
-        android:icon="@drawable/ic_bookmark_border"
-        android:title="@string/pins_toolbar"
-        app:showAsAction="always"/>
-
-    <item
         android:id="@+id/action_copy_email"
         android:title="@string/copy_email"
         app:showAsAction="never" />

@@ -22,6 +22,7 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -67,6 +68,25 @@ public class MainActivity extends AppCompatActivity {
     }
 
     mEditText = (EditText) findViewById(R.id.edit_text);
+    mEditText.setOnTouchListener(new View.OnTouchListener() {
+      @Override
+      public boolean onTouch(View v, MotionEvent event) {
+        final int DRAWABLE_LEFT = 0;
+        final int DRAWABLE_TOP = 1;
+        final int DRAWABLE_RIGHT = 2;
+        final int DRAWABLE_BOTTOM = 3;
+
+        if(event.getAction() == MotionEvent.ACTION_UP) {
+          if(event.getRawX() >= (mEditText.getRight() - mEditText.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+            // your action here
+            mEditText.setText("");
+
+            return true;
+          }
+        }
+        return false;
+      }
+    });
     mEditText.setOnKeyListener(new View.OnKeyListener()
     {
       public boolean onKey(View v, int keyCode, KeyEvent event)
@@ -203,14 +223,12 @@ public class MainActivity extends AppCompatActivity {
       case R.id.download_images:
         new ImageDownloader().execute();
         break;
-      case R.id.menu_settings:
-        // refresh
+      case R.id.update:
+        // check for update
+        refreshDatabase();
         break;
-      case R.id.menu_main:
-        // help action
-        break;
-      case R.id.menu_search:
-        // check for updates action
+      case R.id.about_app:
+        // info about app
         break;
       default:
     }

@@ -266,7 +266,7 @@ public class MainActivity extends AppCompatActivity {
   }
 
   private void refreshDatabase() {
-    new JsonTask().execute("https://yashsriv.org/api");
+    new JsonTask().execute("https://search.pclub.in/api/students");
   }
 
   public class JsonTask extends AsyncTask<String, String, String> {

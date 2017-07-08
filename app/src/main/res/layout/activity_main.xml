@@ -36,6 +36,8 @@
       android:layout_marginTop="30dp"
       android:background="@drawable/text_input_box"
       android:backgroundTintMode="multiply"
+      android:drawableLeft="@drawable/ic_search"
+      android:drawablePadding="10dp"
       android:backgroundTint="@color/colorGrey"
       android:layout_marginBottom="15dp"/>
     </LinearLayout>
@@ -46,33 +48,79 @@
         android:orientation="horizontal"
         android:weightSum="2">
 
-        <Spinner
-          android:id="@+id/spinner_hall"
-          android:layout_width="0dp"
-          android:layout_height="60dp"
-          android:paddingTop="10dp"
-          android:layout_marginTop="10dp"
-          android:paddingBottom="10dp"
-          android:layout_marginLeft="10dp"
-          android:layout_weight="1"
-          android:spinnerMode="dropdown"
-          android:dropDownVerticalOffset="50dp"
-          android:dropDownWidth="140dp"/>
+    <RelativeLayout
+      android:layout_width="0dp"
+      android:layout_height="60dp"
+      android:paddingTop="2dp"
+      android:layout_marginTop="10dp"
+      android:paddingBottom="2dp"
+      android:layout_marginLeft="10dp"
+      android:layout_weight="1"
+      android:layout_marginRight="3dp"
+      android:background="@drawable/ic_background"
+      android:orientation="horizontal">
 
-        <Spinner
-          android:id="@+id/spinner_year"
-          android:layout_width="0dp"
-          android:layout_height="60dp"
-          android:paddingTop="10dp"
-          android:entries="@array/year_values"
-          android:entryValues="@array/year_values"
-          android:layout_marginTop="10dp"
-          android:paddingBottom="10dp"
-          android:layout_marginRight="10dp"
-          android:layout_weight="1"
-          android:spinnerMode="dropdown"
-          android:dropDownVerticalOffset="50dp"
-          android:dropDownWidth="140dp"/>
+      <Spinner
+        android:id="@+id/spinner_hall"
+        android:entries="@array/hall_values"
+        android:entryValues="@array/hall_values"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_gravity="center"
+        android:background="@android:color/transparent"
+        android:gravity="center"
+        android:popupBackground="@color/colorWhite"
+        android:layout_marginLeft="5dp"
+        android:spinnerMode="dropdown" />
+
+      <ImageView
+        android:layout_width="120dp"
+        android:layout_height="100dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="100dp"
+        android:layout_centerVertical="true"
+        android:src="@drawable/drop_arrow" />
+
+    </RelativeLayout>
+
+
+
+    <RelativeLayout
+      android:layout_width="0dp"
+      android:layout_height="60dp"
+      android:paddingTop="2dp"
+      android:layout_marginTop="10dp"
+      android:paddingBottom="2dp"
+      android:layout_marginRight="10dp"
+      android:layout_weight="1"
+      android:layout_marginLeft="3dp"
+      android:background="@drawable/ic_background"
+      android:orientation="horizontal">
+
+      <Spinner
+        android:id="@+id/spinner_year"
+        android:entries="@array/year_values"
+        android:entryValues="@array/year_values"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:popupBackground="@color/colorWhite"
+        android:layout_centerVertical="true"
+        android:layout_gravity="center"
+        android:background="@android:color/transparent"
+        android:gravity="center"
+        android:layout_marginLeft="5dp"
+        android:spinnerMode="dropdown" />
+
+      <ImageView
+        android:layout_width="120dp"
+        android:layout_height="100dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="100dp"
+        android:layout_centerVertical="true"
+        android:src="@drawable/drop_arrow" />
+
+    </RelativeLayout>
 
       </LinearLayout>
 
@@ -82,35 +130,78 @@
         android:orientation="horizontal"
         android:weightSum="2">
 
-        <Spinner
-          android:id="@+id/spinner_blood_group"
+        <RelativeLayout
           android:layout_width="0dp"
           android:layout_height="60dp"
-          android:paddingBottom="10dp"
-          android:layout_weight="1"
-          android:paddingTop="10dp"
+          android:paddingTop="2dp"
+          android:layout_marginTop="10dp"
+          android:paddingBottom="2dp"
           android:layout_marginLeft="10dp"
-          android:entries="@array/blood_group_values"
-          android:layout_marginTop="10dp"
-          android:entryValues="@array/blood_group_values"
-          android:spinnerMode="dropdown"
-          android:dropDownVerticalOffset="50dp"
-          android:dropDownWidth="140dp"/>
+          android:layout_weight="1"
+          android:layout_marginRight="3dp"
+          android:background="@drawable/ic_background"
+          android:orientation="horizontal">
 
-        <Spinner
-          android:id="@+id/spinner_dept"
+          <Spinner
+            android:id="@+id/spinner_blood_group"
+            android:entries="@array/blood_group_values"
+            android:entryValues="@array/blood_group_values"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:popupBackground="@color/colorWhite"
+            android:background="@android:color/transparent"
+            android:gravity="center"
+            android:layout_marginLeft="5dp"
+            android:spinnerMode="dropdown" />
+
+          <ImageView
+            android:layout_width="120dp"
+            android:layout_height="100dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="100dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/drop_arrow" />
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
           android:layout_width="0dp"
           android:layout_height="60dp"
-          android:paddingTop="10dp"
-          android:paddingBottom="10dp"
-          android:layout_weight="1"
-          android:entries="@array/dept_values"
+          android:paddingTop="2dp"
           android:layout_marginTop="10dp"
+          android:paddingBottom="2dp"
           android:layout_marginRight="10dp"
-          android:entryValues="@array/dept_values"
-          android:spinnerMode="dropdown"
-          android:dropDownVerticalOffset="50dp"
-          android:dropDownWidth="140dp"/>
+          android:layout_weight="1"
+          android:layout_marginLeft="3dp"
+          android:background="@drawable/ic_background"
+          android:orientation="horizontal">
+
+          <Spinner
+            android:id="@+id/spinner_dept"
+            android:entries="@array/dept_values"
+            android:entryValues="@array/dept_values"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:popupBackground="@color/colorWhite"
+            android:background="@android:color/transparent"
+            android:gravity="center"
+            android:layout_marginLeft="5dp"
+            android:spinnerMode="dropdown" />
+
+          <ImageView
+            android:layout_width="120dp"
+            android:layout_height="100dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="100dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/drop_arrow" />
+
+        </RelativeLayout>
 
       </LinearLayout>
 
@@ -119,32 +210,79 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:weightSum="2">
-        <Spinner
+
+        <RelativeLayout
           android:layout_width="0dp"
           android:layout_height="60dp"
-          android:id="@+id/spinner_programme"
-          android:entries="@array/program_values"
-          android:entryValues="@array/program_values"
+          android:paddingTop="2dp"
           android:layout_marginTop="10dp"
-          android:paddingBottom="10dp"
-          android:layout_weight="1"
-          android:paddingTop="10dp"
+          android:paddingBottom="2dp"
           android:layout_marginLeft="10dp"
-          android:spinnerMode="dropdown"
-          android:dropDownVerticalOffset="50dp"
-          android:dropDownWidth="140dp"/>
-        <Spinner
+          android:layout_weight="1"
+          android:layout_marginRight="3dp"
+          android:background="@drawable/ic_background"
+          android:orientation="horizontal">
+
+          <Spinner
+            android:id="@+id/spinner_programme"
+            android:entries="@array/program_values"
+            android:entryValues="@array/program_values"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:popupBackground="@color/colorWhite"
+            android:background="@android:color/transparent"
+            android:gravity="center"
+            android:layout_marginLeft="5dp"
+            android:spinnerMode="dropdown" />
+
+          <ImageView
+            android:layout_width="120dp"
+            android:layout_height="100dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="100dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/drop_arrow" />
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
           android:layout_width="0dp"
           android:layout_height="60dp"
+          android:paddingTop="2dp"
+          android:layout_marginTop="10dp"
+          android:paddingBottom="2dp"
+          android:layout_marginRight="10dp"
+          android:layout_weight="1"
+          android:layout_marginLeft="3dp"
+          android:background="@drawable/ic_background"
+          android:orientation="horizontal">
+
+        <Spinner
           android:id="@+id/spinner_gender"
           android:entries="@array/gender_values"
           android:entryValues="@array/gender_values"
-          android:paddingTop="10dp"
-          android:paddingBottom="10dp"
-          android:layout_marginTop="10dp"
-          android:layout_weight="1"
-          android:layout_marginRight="10dp"
-          android:dropDownWidth="140dp"/>
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_centerVertical="true"
+          android:layout_gravity="center"
+          android:background="@android:color/transparent"
+          android:gravity="center"
+          android:popupBackground="@color/colorWhite"
+          android:layout_marginLeft="5dp"
+          android:spinnerMode="dropdown" />
+
+        <ImageView
+          android:layout_width="120dp"
+          android:layout_height="100dp"
+          android:layout_alignParentRight="true"
+          android:layout_marginLeft="100dp"
+          android:layout_centerVertical="true"
+          android:src="@drawable/drop_arrow" />
+        </RelativeLayout>
+
         </LinearLayout>
 
       <Button

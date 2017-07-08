@@ -10,6 +10,8 @@ import com.studentsearch.xoodle.studentsearch.StudentData;
 
 import java.io.Serializable;
 
+import static android.R.attr.data;
+
 @SuppressWarnings("serial")
 public class DbHelper extends SQLiteOpenHelper implements Serializable {
   private static DbHelper dbHelper;
@@ -65,10 +67,12 @@ public class DbHelper extends SQLiteOpenHelper implements Serializable {
     db.execSQL(DROP_TABLE_IF_EXISTS);
   }
 
+
   public void insertStudents(StudentData[] students) {
     try {
       SQLiteDatabase db = this.getWritableDatabase();
       db.beginTransaction();
+      db.delete(TABLE_NAME, null, null);
       for (StudentData student : students) {
         //reinitialize student to initalize "year"
         student = new StudentData(

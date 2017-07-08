@@ -410,7 +410,7 @@ public class MainActivity extends AppCompatActivity {
       imageDownloaderDialog.setIndeterminate(false);
       imageDownloaderDialog.setCancelable(false);
       imageDownloaderDialog.setMax(100);
-      imageDownloaderDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Cancel", new DialogInterface.OnClickListener() {
+      imageDownloaderDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Do in Background", new DialogInterface.OnClickListener() {
         @Override
         public void onClick(DialogInterface dialog, int which) {
           dialog.dismiss();

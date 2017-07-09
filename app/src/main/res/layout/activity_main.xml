@@ -38,7 +38,6 @@
       android:backgroundTintMode="multiply"
       android:drawableLeft="@drawable/ic_search"
       android:drawablePadding="10dp"
-      android:backgroundTint="@color/colorGrey"
       android:layout_marginBottom="15dp"
       android:drawableRight="@drawable/ic_bookmark"/>
     </LinearLayout>

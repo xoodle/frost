@@ -10,14 +10,16 @@
               android:paddingTop="8dp"
               tools:context=".SearchResultActivity">
 
-    <TextView
-        android:id="@+id/tv_not_found"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="No such person exists"
-        android:textSize="20sp"
-        android:textStyle="bold|italic"
-        android:visibility="gone"/>
+        <TextView
+          android:id="@+id/tv_not_found"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:text="No such person exists!"
+          android:textSize="30sp"
+          android:textStyle="bold|italic"
+          android:visibility="gone"
+          android:gravity="center"
+          android:textColor="#D50000"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_main"

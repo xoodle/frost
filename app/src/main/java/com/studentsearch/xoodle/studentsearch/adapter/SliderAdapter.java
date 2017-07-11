@@ -23,12 +23,14 @@ public class SliderAdapter extends RecyclerView.Adapter<SliderCard> {
   private final ArrayList<Drawable> drawables;
   private final View.OnClickListener listener;
   private Context context;
+  private ArrayList<StudentData> studentList;
 
-  public SliderAdapter(Context context, View.OnClickListener listener) {
+  public SliderAdapter(Context context, ArrayList<StudentData> studentList, View.OnClickListener listener) {
     this.drawables = GlobalDrawables.drawables;
-    this.count = (this.drawables).size();
+    this.count = studentList.size();
     this.context = context;
     this.listener = listener;
+    this.studentList = studentList;
   }
 
   @Override
@@ -52,7 +54,7 @@ public class SliderAdapter extends RecyclerView.Adapter<SliderCard> {
   @Override
   public void onBindViewHolder(SliderCard holder, int position) {
 //    holder.setContent(imageViewIds.get(position));
-    holder.setContent(position);
+    holder.setContent(position, studentList.get(position));
   }
 
   @Override

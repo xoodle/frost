@@ -69,14 +69,15 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
       @Override
       public void onClick(View v) {
         Intent intent = DetailsActivity.getNewIntent(context);
-        GlobalDrawables.drawables.add((((ImageView)v.findViewById(R.id.user_image)).getDrawable()));
+//        GlobalDrawables.drawables.add((((ImageView)v.findViewById(R.id.user_image)).getDrawable()));
 //        Bundle bundle = new Bundle();
 //        bundle.putParcelableArrayList("images", studentImages);
 //        intent.putExtras(bundle);
 //        intent.putIntegerArrayListExtra("image_view_ids", imageViews);
 //        intent.putExtra("list", mStudentData);
 //        intent.putExtra("images", studentImages);
-        context.startActivity(intent);
+        intent.putParcelableArrayListExtra("student_list", mStudentData);
+        v.getContext().startActivity(intent);
       }
     });
     return new ViewHolder(view);
@@ -148,11 +149,13 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
         Picasso.with(context)
                 .load(image)
                 .placeholder(errID)
+                .error(errID)
                 .into(this.mImageView);
       } else {
         Picasso.with(context)
                 .load("http://oa.cc.iitk.ac.in/Oa/Jsp/Photo/" + studentData.getRollNo() + "_0.jpg")
                 .placeholder(errID)
+                .error(errID)
                 .into(this.mImageView);
       }
 //      GlobalDrawables.drawables.add(mImageView.getDrawable());

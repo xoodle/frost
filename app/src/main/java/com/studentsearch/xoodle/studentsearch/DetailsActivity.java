@@ -22,7 +22,7 @@ import java.util.ArrayList;
 
 public class DetailsActivity extends AppCompatActivity {
   private final int[] pics = {R.drawable.p1, R.drawable.p2, R.drawable.p3, R.drawable.p4, R.drawable.p5};
-//  ArrayList<StudentData> studentList;
+  ArrayList<StudentData> studentList;
 //  ArrayList<Bitmap> images;
   ArrayList<Integer> imageViewIds = new ArrayList<>();
   private SliderAdapter sliderAdapter;
@@ -43,7 +43,8 @@ public class DetailsActivity extends AppCompatActivity {
 //    images = getIntent().getParcelableArrayListExtra("images");
 //    imageViewIds = getIntent().getIntegerArrayListExtra("image_view_ids");
 //    images = (ArrayList<Bitmap>) (getIntent().getSerializableExtra("images"));
-    sliderAdapter = new SliderAdapter(this, new OnCardClickListener());
+    studentList =  getIntent().getParcelableArrayListExtra("student_list");
+    sliderAdapter = new SliderAdapter(this, studentList, new OnCardClickListener());
     initRecyclerView();
   }
 

@@ -1,5 +1,8 @@
 package com.studentsearch.xoodle.studentsearch;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
@@ -8,7 +11,7 @@ import java.util.ArrayList;
  * Created by aryan on 10/6/17.
  */
 
-public class StudentData {
+public class StudentData implements Parcelable {
 
   @SerializedName("a")
   public String address;
@@ -42,6 +45,16 @@ public class StudentData {
 
   public String year;
 
+  public static final Parcelable.Creator<StudentData> CREATOR = new Parcelable.Creator<StudentData>() {
+    public StudentData createFromParcel(Parcel in) {
+      return new StudentData(in);
+    }
+
+    public StudentData[] newArray(int size) {
+      return new StudentData[size];
+    }
+  };
+
   public static ArrayList<StudentData> studentDataArrayList;
 
   public StudentData(String address, String bloodGroup, String dept, String gender, String hall, String rollNo, String name, String programme, String roomNo, String userName) {
@@ -56,6 +69,38 @@ public class StudentData {
     this.roomNo = roomNo;
     this.userName = userName;
     setYear();
+  }
+
+  private StudentData(Parcel in) {
+    // This order must match the order in writeToParcel()
+    address = in.readString();
+    bloodGroup = in.readString();
+    dept = in.readString();
+    gender = in.readString();
+    hall = in.readString();
+    rollNo = in.readString();
+    name = in.readString();
+    programme = in.readString();
+    roomNo = in.readString();
+    userName = in.readString();
+  }
+
+  public void writeToParcel(Parcel out, int flags) {
+    // Again this order must match the Question(Parcel) constructor
+    out.writeString(address);
+    out.writeString(bloodGroup);
+    out.writeString(dept);
+    out.writeString(gender);
+    out.writeString(hall);
+    out.writeString(rollNo);
+    out.writeString(name);
+    out.writeString(programme);
+    out.writeString(roomNo);
+    out.writeString(userName);
+  }
+
+  public int describeContents() {
+    return 0;
   }
 
   public String getAddress() {

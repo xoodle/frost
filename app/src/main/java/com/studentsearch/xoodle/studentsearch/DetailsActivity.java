@@ -2,18 +2,16 @@ package com.studentsearch.xoodle.studentsearch;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
-
 import com.studentsearch.xoodle.studentsearch.adapter.SliderAdapter;
 import com.studentsearch.xoodle.studentsearch.cardslider.CardSliderLayoutManager;
 import com.studentsearch.xoodle.studentsearch.cardslider.CardSnapHelper;
-
+import com.studentsearch.xoodle.studentsearch.utils.ConstantUtils;
 import java.util.ArrayList;
 
 /**
@@ -21,10 +19,7 @@ import java.util.ArrayList;
  */
 
 public class DetailsActivity extends AppCompatActivity {
-  private final int[] pics = {R.drawable.p1, R.drawable.p2, R.drawable.p3, R.drawable.p4, R.drawable.p5};
   ArrayList<StudentData> studentList;
-//  ArrayList<Bitmap> images;
-  ArrayList<Integer> imageViewIds = new ArrayList<>();
   private SliderAdapter sliderAdapter;
   private CardSliderLayoutManager layoutManger;
   private RecyclerView recyclerView;
@@ -39,11 +34,7 @@ public class DetailsActivity extends AppCompatActivity {
   protected void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_details);
-//    studentList = (ArrayList<StudentData>) (getIntent().getSerializableExtra("list"));
-//    images = getIntent().getParcelableArrayListExtra("images");
-//    imageViewIds = getIntent().getIntegerArrayListExtra("image_view_ids");
-//    images = (ArrayList<Bitmap>) (getIntent().getSerializableExtra("images"));
-    studentList =  getIntent().getParcelableArrayListExtra("student_list");
+    studentList =  getIntent().getParcelableArrayListExtra(ConstantUtils.STUDENT_LIST);
     sliderAdapter = new SliderAdapter(this, studentList, new OnCardClickListener());
     initRecyclerView();
   }
@@ -52,7 +43,6 @@ public class DetailsActivity extends AppCompatActivity {
     recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
     recyclerView.setAdapter(sliderAdapter);
     recyclerView.setHasFixedSize(true);
-
     recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
       @Override
       public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
@@ -61,9 +51,7 @@ public class DetailsActivity extends AppCompatActivity {
         }
       }
     });
-
     layoutManger = (CardSliderLayoutManager) recyclerView.getLayoutManager();
-
     new CardSnapHelper().attachToRecyclerView(recyclerView);
   }
 
@@ -72,23 +60,19 @@ public class DetailsActivity extends AppCompatActivity {
     if (pos == RecyclerView.NO_POSITION || pos == currentPosition) {
       return;
     }
-
     onActiveCardChange(pos);
   }
 
   private void onActiveCardChange(int pos) {
     int animH[] = new int[] {R.anim.slide_in_right, R.anim.slide_out_left};
     int animV[] = new int[] {R.anim.slide_in_top, R.anim.slide_out_bottom};
-
     final boolean left2right = pos < currentPosition;
     if (left2right) {
       animH[0] = R.anim.slide_in_left;
       animH[1] = R.anim.slide_out_right;
-
       animV[0] = R.anim.slide_in_bottom;
       animV[1] = R.anim.slide_out_top;
     }
-
     currentPosition = pos;
   }
 

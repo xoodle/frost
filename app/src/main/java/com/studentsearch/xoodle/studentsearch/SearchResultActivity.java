@@ -1,6 +1,5 @@
 package com.studentsearch.xoodle.studentsearch;
 
-import android.app.FragmentTransaction;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
@@ -20,19 +19,10 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.OvershootInterpolator;
-import android.widget.LinearLayout;
 import android.widget.Toast;
-
 import com.studentsearch.xoodle.studentsearch.database.DbHelper;
-
 import java.util.ArrayList;
-
-import jp.wasabeef.recyclerview.adapters.AlphaInAnimationAdapter;
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
-import jp.wasabeef.recyclerview.adapters.SlideInBottomAnimationAdapter;
-import jp.wasabeef.recyclerview.adapters.SlideInLeftAnimationAdapter;
-import jp.wasabeef.recyclerview.animators.ScaleInBottomAnimator;
 
 public class SearchResultActivity extends AppCompatActivity {
 

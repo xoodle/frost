@@ -5,8 +5,6 @@ import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.ArrayList;
-
 /**
  * Created by aryan on 10/6/17.
  */
@@ -54,8 +52,6 @@ public class StudentData implements Parcelable {
       return new StudentData[size];
     }
   };
-
-  public static ArrayList<StudentData> studentDataArrayList;
 
   public StudentData(String address, String bloodGroup, String dept, String gender, String hall, String rollNo, String name, String programme, String roomNo, String userName) {
     this.address = address;

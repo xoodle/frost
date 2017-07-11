@@ -17,7 +17,6 @@ import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -29,11 +28,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
-
 import com.google.gson.Gson;
 import com.studentsearch.xoodle.studentsearch.database.DbHelper;
 import com.studentsearch.xoodle.studentsearch.utils.ConstantUtils;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -80,16 +77,12 @@ public class MainActivity extends AppCompatActivity {
     mEditText.setOnTouchListener(new View.OnTouchListener() {
       @Override
       public boolean onTouch(View v, MotionEvent event) {
-        final int DRAWABLE_LEFT = 0;
-        final int DRAWABLE_TOP = 1;
         final int DRAWABLE_RIGHT = 2;
-        final int DRAWABLE_BOTTOM = 3;
 
         if(event.getAction() == MotionEvent.ACTION_UP) {
           if(event.getRawX() >= (mEditText.getRight() - mEditText.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
             // your action here
             mEditText.setText("");
-
             return true;
           }
         }
@@ -248,7 +241,6 @@ public class MainActivity extends AppCompatActivity {
 
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
-    // Take appropriate action for each action item click
     switch (item.getItemId()) {
       case R.id.download_images:
         DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
@@ -553,5 +545,4 @@ public class MainActivity extends AppCompatActivity {
               Environment.MEDIA_MOUNTED_READ_ONLY.equals(state);
     }
   }
-
 }

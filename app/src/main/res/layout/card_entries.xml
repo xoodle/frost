@@ -40,7 +40,7 @@
         android:layout_marginTop="5dp"
         android:layout_toRightOf="@id/user_image"
         android:fontFamily="sans-serif-smallcaps"
-        android:textColor="@color/colortext"
+        android:textColor="@color/colorPrimaryDark"
         android:textIsSelectable="true"
         android:textSize="20sp"
         android:textStyle="bold"/>

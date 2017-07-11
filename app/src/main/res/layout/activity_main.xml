@@ -20,9 +20,9 @@
       android:layout_alignParentTop="true">
       <ImageView
         android:layout_width="match_parent"
-        android:layout_height="140dp"
-        android:scaleType="fitXY"
-        android:src="@drawable/iitk_imgiiii"/>
+        android:id="@+id/image_fit"
+        android:layout_height="160dp"
+        android:scaleType="fitXY"/>
     </RelativeLayout>
     <RelativeLayout
       android:id="@+id/search_view"

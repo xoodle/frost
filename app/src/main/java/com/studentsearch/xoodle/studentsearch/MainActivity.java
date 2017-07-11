@@ -12,6 +12,7 @@ import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
@@ -26,6 +27,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 
 import com.google.gson.Gson;
@@ -50,11 +52,18 @@ public class MainActivity extends AppCompatActivity {
   private EditText mEditText;
   private Button mButton;
   private ProgressDialog mProgressDialog;
+  public static Integer[] mThumbIds = {R.drawable.iitk_imgiiii, R.drawable.iitk_image_1, R.drawable.iitk2,R.drawable.iitk_image_4, R.drawable.iitk_image_5, R.drawable.iitk_image_6};
+  public ImageView iv;
+  int i;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
+    iv = (ImageView) findViewById(R.id.image_fit);
+    i = 0;
+    t.start();
+
     ActionBar ab = getSupportActionBar();
     Drawable drawable = getResources().getDrawable(R.drawable.ic_menu);
     DrawableCompat.setTint(drawable, getResources().getColor(R.color.colorWhite));
@@ -121,6 +130,27 @@ public class MainActivity extends AppCompatActivity {
     });
     setFilterSpinnerEntries();
   }
+  Thread t = new Thread() {
+    @Override
+    public void run() {
+      try {
+        while (!isInterrupted()) {
+          Thread.sleep(3000);
+          runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+              iv.setImageResource(mThumbIds[i]);
+              i++;
+              if (i >= mThumbIds.length) {
+                i = 0;
+              }
+            }
+          });
+        }
+      } catch (InterruptedException e) {
+      }
+    }
+  };
 
   private void setFilterSpinnerEntries() {
     SQLiteDatabase db = DbHelper.getDbHelperInstance(this, DbHelper.TABLE_NAME, 1).getReadableDatabase();

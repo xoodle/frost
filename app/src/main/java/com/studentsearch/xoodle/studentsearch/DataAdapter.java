@@ -55,20 +55,21 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
   @Override
   public DataAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
     View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_entries, parent, false);
-    view.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        Intent intent = DetailsActivity.getNewIntent(context);
-        intent.putParcelableArrayListExtra(ConstantUtils.STUDENT_LIST, mStudentData);
-        v.getContext().startActivity(intent);
-      }
-    });
     return new ViewHolder(view);
   }
 
   @Override
-  public void onBindViewHolder(ViewHolder holder, int position) {
+  public void onBindViewHolder(ViewHolder holder, final int position) {
     holder.bind(context, packageName, mStudentData.get(position));
+    holder.getView().setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        Intent intent = DetailsActivity.getNewIntent(context);
+        intent.putParcelableArrayListExtra(ConstantUtils.STUDENT_LIST, mStudentData);
+        intent.putExtra(ConstantUtils.CARD_SLIDER_POSITION, position);
+        v.getContext().startActivity(intent);
+      }
+    });
   }
 
   @Override
@@ -83,10 +84,12 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
 
   public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     private TextView mNameView, mRollView, mDeptView, mHallView, mUserBloodView;
+    private View view;
     private ImageView mImageView;
 
     public ViewHolder(View v) {
       super(v);
+      view = v;
       mNameView = (TextView) v.findViewById(R.id.tv_name);
       mRollView = (TextView) v.findViewById(R.id.tv_roll);
       mDeptView = (TextView) v.findViewById(R.id.tv_dept);
@@ -134,6 +137,10 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
                 .error(errID)
                 .into(this.mImageView);
       }
+    }
+
+    private View getView() {
+      return view;
     }
   }
 }

@@ -12,4 +12,5 @@ public class ConstantUtils {
   public static final String PROGRAMME = "programme";
   public static final String YEAR = "year";
   public static final String STUDENT_LIST = "student_list";
+  public static final String CARD_SLIDER_POSITION = "card_slider_position";
 }

@@ -13,6 +13,8 @@
     <color name="colortext">#1B5E20</color>
     <color name="colortext1">#424242</color>
     <color name="darkGray">#616161</color>
+    <color name="ts_year_background">@android:color/holo_blue_dark</color>
+
 
 
 </resources>

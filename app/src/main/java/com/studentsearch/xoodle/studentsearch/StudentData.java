@@ -79,6 +79,7 @@ public class StudentData implements Parcelable {
     programme = in.readString();
     roomNo = in.readString();
     userName = in.readString();
+    year = in.readString();
   }
 
   public void writeToParcel(Parcel out, int flags) {
@@ -93,6 +94,7 @@ public class StudentData implements Parcelable {
     out.writeString(programme);
     out.writeString(roomNo);
     out.writeString(userName);
+    out.writeString(getYear());
   }
 
   public int describeContents() {
@@ -185,5 +187,9 @@ public class StudentData implements Parcelable {
 
   public void setYear() {
     year="Y" + getRollNo().substring(0,2);
+  }
+
+  public String makeAndGetYear() {
+    return "Y" + getRollNo().substring(0,2);
   }
 }

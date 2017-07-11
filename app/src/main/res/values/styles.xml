@@ -10,17 +10,29 @@
         <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
     </style>
 
-  <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
-    <item name="android:windowBackground">@drawable/splash</item>
-  </style>
+    <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash</item>
+    </style>
 
-  <style name="CustomTheme" parent="AppTheme">
-    <item name="colorAccent">@color/colorPrimaryDark</item>
-    <item name="android:colorBackground">@color/colorGrey</item>
-  </style>
+    <style name="CustomTheme" parent="AppTheme">
+        <item name="colorAccent">@color/colorPrimaryDark</item>
+        <item name="android:colorBackground">@color/colorGrey</item>
+    </style>
+
   <style name="AppTheme.WhiteAccent">
     <item name="colorAccent">#FAFAFA</item> <!-- Whatever color you want-->
   </style>
+
+    <style name="TemperatureTextView">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/ts_year_background</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="PlaceTextView">
+        <item name="android:textSize">24sp</item>
+        <item name="android:gravity">center</item>
+    </style>
 
 </resources>
 

@@ -2,7 +2,7 @@
     <string name="app_name">    Student Search</string>
     <string name="options_menu">Options Menu</string>
     <string name="selectHall">Select Hall</string>
-    <string name="search_hint">Search by Name/Roll no</string>
+    <string name="search_hint"> Name/Roll no/Username</string>
     <string name="button_text">Search</string>
     <string name="search">Search</string>
     <string name="settings">Settings</string>

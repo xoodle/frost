@@ -22,7 +22,7 @@
         android:layout_width="match_parent"
         android:id="@+id/image_fit"
         android:layout_height="160dp"
-        android:src="@drawable/iitk_image_1"
+        android:src="@drawable/iitk_image_2"
         android:scaleType="fitXY"/>
     </RelativeLayout>
     <RelativeLayout
@@ -36,7 +36,7 @@
         android:layout_height="60dp"
         android:hint="@string/search_hint"
         android:maxLines="1"
-        android:elevation="5dp"
+        android:elevation="2dp"
         android:padding="16dp"
         android:imeOptions="actionSearch"
         android:imeActionId="@+id/action_go_search"

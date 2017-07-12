@@ -56,10 +56,10 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:orientation="vertical"
-      android:layout_marginTop="230dp">
+      android:layout_marginTop="228dp">
       <RelativeLayout
         android:id="@+id/spinner_one"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -71,11 +71,12 @@
           android:entryValues="@array/hall_values"
           android:layout_width="153dp"
           android:layout_marginLeft="5dp"
-          android:dropDownWidth="150dp"
+          android:dropDownWidth="155dp"
+          android:background="@drawable/spinner_background"
           android:layout_height="wrap_content"
           android:dropDownVerticalOffset="30dp"
           android:popupBackground="@color/colorWhite"
-          android:layout_marginStart="5dp"
+          android:layout_marginStart="10dp"
           android:spinnerMode="dropdown" />
 
 
@@ -84,9 +85,10 @@
           android:layout_alignParentEnd="true"
           android:id="@+id/spinner_year"
           android:entries="@array/year_values"
+          android:background="@drawable/spinner_background"
           android:entryValues="@array/year_values"
-          android:dropDownWidth="150dp"
-          android:layout_marginRight="5dp"
+          android:dropDownWidth="155dp"
+          android:layout_marginRight="10dp"
           android:dropDownVerticalOffset="30dp"
           android:layout_width="153dp"
           android:layout_height="wrap_content"
@@ -98,7 +100,7 @@
 
       <RelativeLayout
         android:id="@+id/spinner_two"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -108,10 +110,11 @@
           android:entries="@array/blood_group_values"
           android:entryValues="@array/blood_group_values"
           android:layout_width="153dp"
-          android:dropDownWidth="150dp"
-          android:layout_marginLeft="5dp"
+          android:dropDownWidth="155dp"
+          android:layout_marginLeft="10dp"
           android:dropDownVerticalOffset="30dp"
           android:layout_height="wrap_content"
+          android:background="@drawable/spinner_background"
           android:popupBackground="@color/colorWhite"
           android:spinnerMode="dropdown" />
 
@@ -119,10 +122,11 @@
           android:id="@+id/spinner_dept"
           android:entries="@array/dept_values"
           android:entryValues="@array/dept_values"
-          android:layout_width="158dp"
-          android:dropDownWidth="150dp"
-          android:layout_marginRight="5dp"
+          android:layout_width="153dp"
+          android:dropDownWidth="155dp"
+          android:layout_marginRight="10dp"
           android:layout_alignParentEnd="true"
+          android:background="@drawable/spinner_background"
           android:dropDownVerticalOffset="30dp"
           android:layout_height="wrap_content"
           android:popupBackground="@color/colorWhite"
@@ -133,7 +137,7 @@
 
       <RelativeLayout
         android:id="@+id/spinner_three"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -143,8 +147,9 @@
           android:entries="@array/program_values"
           android:entryValues="@array/program_values"
           android:layout_width="153dp"
-          android:dropDownWidth="150dp"
-          android:layout_marginLeft="5dp"
+          android:dropDownWidth="155dp"
+          android:layout_marginLeft="10dp"
+          android:background="@drawable/spinner_background"
           android:layout_height="wrap_content"
           android:dropDownVerticalOffset="30dp"
           android:popupBackground="@color/colorWhite"
@@ -153,9 +158,10 @@
         <Spinner
           android:layout_alignParentEnd="true"
           android:id="@+id/spinner_gender"
-          android:layout_marginRight="5dp"
+          android:layout_marginRight="10dp"
           android:entries="@array/gender_values"
-          android:dropDownWidth="150dp"
+          android:background="@drawable/spinner_background"
+          android:dropDownWidth="155dp"
           android:dropDownVerticalOffset="30dp"
           android:entryValues="@array/gender_values"
           android:layout_width="153dp"

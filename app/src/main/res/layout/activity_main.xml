@@ -22,6 +22,7 @@
         android:layout_width="match_parent"
         android:id="@+id/image_fit"
         android:layout_height="160dp"
+        android:src="@drawable/iitk_image_1"
         android:scaleType="fitXY"/>
     </RelativeLayout>
     <RelativeLayout

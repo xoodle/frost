@@ -251,7 +251,24 @@ public class MainActivity extends AppCompatActivity {
     // Take appropriate action for each action item click
     switch (item.getItemId()) {
       case R.id.download_images:
-        new ImageDownloader().execute();
+        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+          @Override
+          public void onClick(DialogInterface dialog, int which) {
+            switch (which) {
+              case DialogInterface.BUTTON_POSITIVE:
+                new ImageDownloader().execute();
+                break;
+
+              case DialogInterface.BUTTON_NEGATIVE:
+                //No button clicked
+                break;
+            }
+          }
+        };
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        builder.setMessage("Do you want to download images now ?").setNegativeButton("No", dialogClickListener)
+          .setPositiveButton("Yes", dialogClickListener).show();
+
         break;
       case R.id.update:
         // check for update

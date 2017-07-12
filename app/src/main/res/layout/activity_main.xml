@@ -1,309 +1,194 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:tools="http://schemas.android.com/tools"
-  android:layout_width="match_parent"
-  android:layout_height="match_parent"
-  android:fitsSystemWindows="true"
-  tools:context="com.studentsearch.xoodle.studentsearch.MainActivity">
+                                                 xmlns:tools="http://schemas.android.com/tools"
+                                                 android:layout_width="match_parent"
+                                                 android:layout_height="match_parent"
+                                                 android:fitsSystemWindows="true"
+                                                 tools:context="com.studentsearch.xoodle.studentsearch.MainActivity">
 
-  <LinearLayout
+  <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/colorGrey">
 
-  <LinearLayout
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:orientation="vertical">
-      <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:src="@drawable/iitk_imgiiii"/>
-
-    <EditText
-      android:id="@+id/edit_text"
+    <RelativeLayout
       android:layout_width="match_parent"
-      android:layout_height="0dp"
-      android:hint="@string/search_hint"
-      android:maxLines="1"
-      android:elevation="5dp"
-      android:layout_weight="1"
-      android:padding="16dp"
-      android:imeOptions="actionSend"
-      android:layout_marginLeft="10dp"
-      android:layout_marginRight="10dp"
-      android:layout_marginTop="30dp"
-      android:background="@drawable/text_input_box"
-      android:backgroundTintMode="multiply"
-      android:drawableLeft="@drawable/ic_search"
-      android:drawablePadding="10dp"
-      android:layout_marginBottom="15dp"
-      android:drawableRight="@drawable/ic_bookmark"/>
-    </LinearLayout>
-
-  <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="2">
-
-    <RelativeLayout
-      android:layout_width="0dp"
-      android:layout_height="60dp"
-      android:paddingTop="2dp"
-      android:layout_marginTop="10dp"
-      android:paddingBottom="2dp"
-      android:layout_marginLeft="10dp"
-      android:layout_weight="1"
-      android:layout_marginRight="3dp"
-      android:background="@drawable/ic_background"
-      android:orientation="horizontal">
-
-      <Spinner
-        android:id="@+id/spinner_hall"
-        android:entries="@array/hall_values"
-        android:entryValues="@array/hall_values"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_gravity="center"
-        android:background="@android:color/transparent"
-        android:gravity="center"
-        android:popupBackground="@color/colorWhite"
-        android:layout_marginLeft="5dp"
-        android:spinnerMode="dropdown" />
-
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      android:id="@+id/iitk_image"
+      android:layout_alignParentTop="true">
       <ImageView
-        android:layout_width="120dp"
-        android:layout_height="100dp"
-        android:layout_alignParentRight="true"
-        android:layout_marginLeft="100dp"
-        android:layout_centerVertical="true"
-        android:src="@drawable/drop_arrow" />
+        android:layout_width="match_parent"
+        android:id="@+id/image_fit"
+        android:layout_height="160dp"
+        android:src="@drawable/iitk_imgiiii"
+        android:scaleType="fitXY"/>
+    </RelativeLayout>
+    <RelativeLayout
+      android:id="@+id/search_view"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/iitk_image">
+      <EditText
+        android:id="@+id/edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:hint="@string/search_hint"
+        android:maxLines="1"
+        android:elevation="2dp"
+        android:padding="16dp"
+        android:imeOptions="actionSearch"
+        android:imeActionId="@+id/action_go_search"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/text_input_box"
+        android:backgroundTintMode="multiply"
+        android:drawableStart="@drawable/ic_search"
+        android:drawablePadding="10dp"
+        android:layout_marginBottom="15dp"
+        android:drawableEnd="@drawable/ic_bookmark"/>
 
     </RelativeLayout>
 
-
-
-    <RelativeLayout
-      android:layout_width="0dp"
-      android:layout_height="60dp"
-      android:paddingTop="2dp"
-      android:layout_marginTop="10dp"
-      android:paddingBottom="2dp"
-      android:layout_marginRight="10dp"
-      android:layout_weight="1"
-      android:layout_marginLeft="3dp"
-      android:background="@drawable/ic_background"
-      android:orientation="horizontal">
-
-      <Spinner
-        android:id="@+id/spinner_year"
-        android:entries="@array/year_values"
-        android:entryValues="@array/year_values"
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      android:layout_marginTop="230dp">
+      <RelativeLayout
+        android:id="@+id/spinner_one"
+        android:layout_marginTop="30dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:popupBackground="@color/colorWhite"
-        android:layout_centerVertical="true"
-        android:layout_gravity="center"
-        android:background="@android:color/transparent"
-        android:gravity="center"
-        android:layout_marginLeft="5dp"
-        android:spinnerMode="dropdown" />
+        android:orientation="horizontal">
 
-      <ImageView
-        android:layout_width="120dp"
-        android:layout_height="100dp"
-        android:layout_alignParentRight="true"
-        android:layout_marginLeft="100dp"
-        android:layout_centerVertical="true"
-        android:src="@drawable/drop_arrow" />
-
-    </RelativeLayout>
-
-      </LinearLayout>
-
-      <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="2">
-
-        <RelativeLayout
-          android:layout_width="0dp"
-          android:layout_height="60dp"
-          android:paddingTop="2dp"
-          android:layout_marginTop="10dp"
-          android:paddingBottom="2dp"
-          android:layout_marginLeft="10dp"
-          android:layout_weight="1"
-          android:layout_marginRight="3dp"
-          android:background="@drawable/ic_background"
-          android:orientation="horizontal">
-
-          <Spinner
-            android:id="@+id/spinner_blood_group"
-            android:entries="@array/blood_group_values"
-            android:entryValues="@array/blood_group_values"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_gravity="center"
-            android:popupBackground="@color/colorWhite"
-            android:background="@android:color/transparent"
-            android:gravity="center"
-            android:layout_marginLeft="5dp"
-            android:spinnerMode="dropdown" />
-
-          <ImageView
-            android:layout_width="120dp"
-            android:layout_height="100dp"
-            android:layout_alignParentRight="true"
-            android:layout_marginLeft="100dp"
-            android:layout_centerVertical="true"
-            android:src="@drawable/drop_arrow" />
-
-        </RelativeLayout>
-
-
-        <RelativeLayout
-          android:layout_width="0dp"
-          android:layout_height="60dp"
-          android:paddingTop="2dp"
-          android:layout_marginTop="10dp"
-          android:paddingBottom="2dp"
-          android:layout_marginRight="10dp"
-          android:layout_weight="1"
-          android:layout_marginLeft="3dp"
-          android:background="@drawable/ic_background"
-          android:orientation="horizontal">
-
-          <Spinner
-            android:id="@+id/spinner_dept"
-            android:entries="@array/dept_values"
-            android:entryValues="@array/dept_values"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_gravity="center"
-            android:popupBackground="@color/colorWhite"
-            android:background="@android:color/transparent"
-            android:gravity="center"
-            android:layout_marginLeft="5dp"
-            android:spinnerMode="dropdown" />
-
-          <ImageView
-            android:layout_width="120dp"
-            android:layout_height="100dp"
-            android:layout_alignParentRight="true"
-            android:layout_marginLeft="100dp"
-            android:layout_centerVertical="true"
-            android:src="@drawable/drop_arrow" />
-
-        </RelativeLayout>
-
-      </LinearLayout>
-
-      <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="2">
-
-        <RelativeLayout
-          android:layout_width="0dp"
-          android:layout_height="60dp"
-          android:paddingTop="2dp"
-          android:layout_marginTop="10dp"
-          android:paddingBottom="2dp"
-          android:layout_marginLeft="10dp"
-          android:layout_weight="1"
-          android:layout_marginRight="3dp"
-          android:background="@drawable/ic_background"
-          android:orientation="horizontal">
-
-          <Spinner
-            android:id="@+id/spinner_programme"
-            android:entries="@array/program_values"
-            android:entryValues="@array/program_values"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_gravity="center"
-            android:popupBackground="@color/colorWhite"
-            android:background="@android:color/transparent"
-            android:gravity="center"
-            android:layout_marginLeft="5dp"
-            android:spinnerMode="dropdown" />
-
-          <ImageView
-            android:layout_width="120dp"
-            android:layout_height="100dp"
-            android:layout_alignParentRight="true"
-            android:layout_marginLeft="100dp"
-            android:layout_centerVertical="true"
-            android:src="@drawable/drop_arrow" />
-
-        </RelativeLayout>
-
-
-        <RelativeLayout
-          android:layout_width="0dp"
-          android:layout_height="60dp"
-          android:paddingTop="2dp"
-          android:layout_marginTop="10dp"
-          android:paddingBottom="2dp"
-          android:layout_marginRight="10dp"
-          android:layout_weight="1"
-          android:layout_marginLeft="3dp"
-          android:background="@drawable/ic_background"
-          android:orientation="horizontal">
 
         <Spinner
-          android:id="@+id/spinner_gender"
-          android:entries="@array/gender_values"
-          android:entryValues="@array/gender_values"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_centerVertical="true"
-          android:layout_gravity="center"
-          android:background="@android:color/transparent"
-          android:gravity="center"
-          android:popupBackground="@color/colorWhite"
+          android:id="@+id/spinner_hall"
+          android:entries="@array/hall_values"
+          android:entryValues="@array/hall_values"
+          android:layout_width="153dp"
           android:layout_marginLeft="5dp"
+          android:dropDownWidth="150dp"
+          android:layout_height="wrap_content"
+          android:dropDownVerticalOffset="30dp"
+          android:popupBackground="@color/colorWhite"
+          android:layout_marginStart="5dp"
           android:spinnerMode="dropdown" />
 
-        <ImageView
-          android:layout_width="120dp"
-          android:layout_height="100dp"
-          android:layout_alignParentRight="true"
-          android:layout_marginLeft="100dp"
-          android:layout_centerVertical="true"
-          android:src="@drawable/drop_arrow" />
-        </RelativeLayout>
 
-        </LinearLayout>
 
+        <Spinner
+          android:layout_alignParentEnd="true"
+          android:id="@+id/spinner_year"
+          android:entries="@array/year_values"
+          android:entryValues="@array/year_values"
+          android:dropDownWidth="150dp"
+          android:layout_marginRight="5dp"
+          android:dropDownVerticalOffset="30dp"
+          android:layout_width="153dp"
+          android:layout_height="wrap_content"
+          android:popupBackground="@color/colorWhite"
+          android:spinnerMode="dropdown" />
+
+
+      </RelativeLayout>
+
+      <RelativeLayout
+        android:id="@+id/spinner_two"
+        android:layout_marginTop="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Spinner
+          android:id="@+id/spinner_blood_group"
+          android:entries="@array/blood_group_values"
+          android:entryValues="@array/blood_group_values"
+          android:layout_width="153dp"
+          android:dropDownWidth="150dp"
+          android:layout_marginLeft="5dp"
+          android:dropDownVerticalOffset="30dp"
+          android:layout_height="wrap_content"
+          android:popupBackground="@color/colorWhite"
+          android:spinnerMode="dropdown" />
+
+        <Spinner
+          android:id="@+id/spinner_dept"
+          android:entries="@array/dept_values"
+          android:entryValues="@array/dept_values"
+          android:layout_width="158dp"
+          android:dropDownWidth="150dp"
+          android:layout_marginRight="5dp"
+          android:layout_alignParentEnd="true"
+          android:dropDownVerticalOffset="30dp"
+          android:layout_height="wrap_content"
+          android:popupBackground="@color/colorWhite"
+          android:spinnerMode="dropdown" />
+
+
+      </RelativeLayout>
+
+      <RelativeLayout
+        android:id="@+id/spinner_three"
+        android:layout_marginTop="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Spinner
+          android:id="@+id/spinner_programme"
+          android:entries="@array/program_values"
+          android:entryValues="@array/program_values"
+          android:layout_width="153dp"
+          android:dropDownWidth="150dp"
+          android:layout_marginLeft="5dp"
+          android:layout_height="wrap_content"
+          android:dropDownVerticalOffset="30dp"
+          android:popupBackground="@color/colorWhite"
+          android:spinnerMode="dropdown" />
+
+        <Spinner
+          android:layout_alignParentEnd="true"
+          android:id="@+id/spinner_gender"
+          android:layout_marginRight="5dp"
+          android:entries="@array/gender_values"
+          android:dropDownWidth="150dp"
+          android:dropDownVerticalOffset="30dp"
+          android:entryValues="@array/gender_values"
+          android:layout_width="153dp"
+          android:layout_height="wrap_content"
+          android:popupBackground="@color/colorWhite"
+          android:spinnerMode="dropdown" />
+
+
+      </RelativeLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_alignParentBottom="true"
+      android:layout_marginBottom="12dp">
       <Button
         android:id="@+id/button_go"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
         android:hint="@string/button_text"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:paddingBottom="10dp"
         android:paddingLeft="50dp"
         android:paddingRight="50dp"
-        android:background="@color/colorPrimary"
+        android:background="@drawable/button_background"
         android:paddingTop="10dp"
         android:textSize="20sp"
-        android:layout_marginTop="60dp"
         android:text="@string/button_text" />
-
-  </LinearLayout>
+    </RelativeLayout>
+  </RelativeLayout>
 
 </android.support.design.widget.CoordinatorLayout>

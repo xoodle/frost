@@ -67,7 +67,8 @@ public class SearchResultActivity extends AppCompatActivity {
             i.getExtras().getString(DbHelper.COLUMN_DEPT, ""),
             i.getExtras().getString(DbHelper.COLUMN_PROGRAMME, ""),
             i.getExtras().getString(DbHelper.COLUMN_GENDER, ""),
-            i.getExtras().getString(DbHelper.COLUMN_YEAR, "")
+            i.getExtras().getString(DbHelper.COLUMN_YEAR, ""),
+            i.getExtras().getString(DbHelper.COLUMN_USER_NAME, "")
     };
     return filter;
   }
@@ -128,7 +129,9 @@ public class SearchResultActivity extends AppCompatActivity {
                 + " WHERE (" + DbHelper.COLUMN_NAME + " LIKE \"%"
                 + filter[0] + "%\""
                 + " OR " + DbHelper.COLUMN_ROLL_NO + " LIKE \"%"
-                + filter[1] + "%\")"
+                + filter[0] + "%\""
+                + " OR " + DbHelper.COLUMN_USER_NAME + " LIKE \"%"
+                + filter[0] + "%\")"
                 + " AND " + DbHelper.COLUMN_HALL + " LIKE \"%"
                 + filter[2] + "%\""
                 + " AND " + DbHelper.COLUMN_BLOOD_GROUP + " LIKE \"%"

@@ -12,6 +12,7 @@ import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
@@ -26,6 +27,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 
 import com.google.gson.Gson;
@@ -50,11 +52,18 @@ public class MainActivity extends AppCompatActivity {
   private EditText mEditText;
   private Button mButton;
   private ProgressDialog mProgressDialog;
+  public static Integer[] mThumbIds = {R.drawable.iitk_image_1, R.drawable.iitk_image_2, R.drawable.iitk2,R.drawable.iitk_image_4, R.drawable.iitk_image_5, R.drawable.iitk_image_6};
+  public ImageView iv;
+  int i;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
+    iv = (ImageView) findViewById(R.id.image_fit);
+    i = 0;
+    t.start();
+
     ActionBar ab = getSupportActionBar();
     Drawable drawable = getResources().getDrawable(R.drawable.ic_menu);
     DrawableCompat.setTint(drawable, getResources().getColor(R.color.colorWhite));
@@ -121,6 +130,27 @@ public class MainActivity extends AppCompatActivity {
     });
     setFilterSpinnerEntries();
   }
+  Thread t = new Thread() {
+    @Override
+    public void run() {
+      try {
+        while (!isInterrupted()) {
+          Thread.sleep(3000);
+          runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+              iv.setImageResource(mThumbIds[i]);
+              i++;
+              if (i >= mThumbIds.length) {
+                i = 0;
+              }
+            }
+          });
+        }
+      } catch (InterruptedException e) {
+      }
+    }
+  };
 
   private void setFilterSpinnerEntries() {
     SQLiteDatabase db = DbHelper.getDbHelperInstance(this, DbHelper.TABLE_NAME, 1).getReadableDatabase();
@@ -138,7 +168,7 @@ public class MainActivity extends AppCompatActivity {
         listOfEntries.add(tempEntry);
       cursor.moveToNext();
     }
-    spinnerAdapter = new SpinnerAdapter(this, android.R.layout.simple_spinner_item, listOfEntries, ConstantUtils.HALL);
+    spinnerAdapter = new SpinnerAdapter(this, R.layout.support_simple_spinner_dropdown_item, listOfEntries, ConstantUtils.HALL);
     spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
     ((Spinner) findViewById(R.id.spinner_hall)).setAdapter(spinnerAdapter);
     cursor.close();
@@ -221,7 +251,24 @@ public class MainActivity extends AppCompatActivity {
     // Take appropriate action for each action item click
     switch (item.getItemId()) {
       case R.id.download_images:
-        new ImageDownloader().execute();
+        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+          @Override
+          public void onClick(DialogInterface dialog, int which) {
+            switch (which) {
+              case DialogInterface.BUTTON_POSITIVE:
+                new ImageDownloader().execute();
+                break;
+
+              case DialogInterface.BUTTON_NEGATIVE:
+                //No button clicked
+                break;
+            }
+          }
+        };
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        builder.setMessage("Do you want to download images now ?").setNegativeButton("No", dialogClickListener)
+          .setPositiveButton("Yes", dialogClickListener).show();
+
         break;
       case R.id.update:
         // check for update

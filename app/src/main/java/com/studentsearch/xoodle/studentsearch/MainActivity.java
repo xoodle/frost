@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
   private EditText mEditText;
   private Button mButton;
   private ProgressDialog mProgressDialog;
-  public static Integer[] mThumbIds = {R.drawable.iitk_imgiiii, R.drawable.iitk_image_1, R.drawable.iitk2,R.drawable.iitk_image_4, R.drawable.iitk_image_5, R.drawable.iitk_image_6};
+  public static Integer[] mThumbIds = {R.drawable.iitk_image_1, R.drawable.iitk_image_2, R.drawable.iitk2,R.drawable.iitk_image_4, R.drawable.iitk_image_5, R.drawable.iitk_image_6};
   public ImageView iv;
   int i;
 

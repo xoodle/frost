@@ -18,6 +18,9 @@
     <item name="colorAccent">@color/colorPrimaryDark</item>
     <item name="android:colorBackground">@color/colorGrey</item>
   </style>
+  <style name="AppTheme.WhiteAccent">
+    <item name="colorAccent">#FAFAFA</item> <!-- Whatever color you want-->
+  </style>
 
 </resources>
 

@@ -11,8 +11,10 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -106,6 +108,9 @@ public class SearchResultActivity extends AppCompatActivity {
       case R.id.action_copy_email:
         copyEmailIdsToClipboard();
         break;
+      case android.R.id.home:
+        onBackPressed();
+        return true;
     }
     return super.onOptionsItemSelected(item);
   }

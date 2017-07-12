@@ -168,7 +168,7 @@ public class MainActivity extends AppCompatActivity {
         listOfEntries.add(tempEntry);
       cursor.moveToNext();
     }
-    spinnerAdapter = new SpinnerAdapter(this, android.R.layout.simple_spinner_item, listOfEntries, ConstantUtils.HALL);
+    spinnerAdapter = new SpinnerAdapter(this, R.layout.support_simple_spinner_dropdown_item, listOfEntries, ConstantUtils.HALL);
     spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
     ((Spinner) findViewById(R.id.spinner_hall)).setAdapter(spinnerAdapter);
     cursor.close();

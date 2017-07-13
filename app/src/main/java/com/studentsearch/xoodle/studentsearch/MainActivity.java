@@ -12,7 +12,6 @@ import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.Handler;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
@@ -130,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
     public void run() {
       try {
         while (!isInterrupted()) {
-          Thread.sleep(3000);
+          Thread.sleep(5000);
           runOnUiThread(new Runnable() {
             @Override
             public void run() {

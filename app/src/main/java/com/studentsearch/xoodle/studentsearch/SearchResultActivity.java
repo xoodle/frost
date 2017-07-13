@@ -11,8 +11,10 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -67,7 +69,8 @@ public class SearchResultActivity extends AppCompatActivity {
             i.getExtras().getString(DbHelper.COLUMN_DEPT, ""),
             i.getExtras().getString(DbHelper.COLUMN_PROGRAMME, ""),
             i.getExtras().getString(DbHelper.COLUMN_GENDER, ""),
-            i.getExtras().getString(DbHelper.COLUMN_YEAR, "")
+            i.getExtras().getString(DbHelper.COLUMN_YEAR, ""),
+            i.getExtras().getString(DbHelper.COLUMN_USER_NAME, "")
     };
     return filter;
   }
@@ -105,6 +108,9 @@ public class SearchResultActivity extends AppCompatActivity {
       case R.id.action_copy_email:
         copyEmailIdsToClipboard();
         break;
+      case android.R.id.home:
+        onBackPressed();
+        return true;
     }
     return super.onOptionsItemSelected(item);
   }
@@ -128,7 +134,9 @@ public class SearchResultActivity extends AppCompatActivity {
                 + " WHERE (" + DbHelper.COLUMN_NAME + " LIKE \"%"
                 + filter[0] + "%\""
                 + " OR " + DbHelper.COLUMN_ROLL_NO + " LIKE \"%"
-                + filter[1] + "%\")"
+                + filter[0] + "%\""
+                + " OR " + DbHelper.COLUMN_USER_NAME + " LIKE \"%"
+                + filter[0] + "%\")"
                 + " AND " + DbHelper.COLUMN_HALL + " LIKE \"%"
                 + filter[2] + "%\""
                 + " AND " + DbHelper.COLUMN_BLOOD_GROUP + " LIKE \"%"

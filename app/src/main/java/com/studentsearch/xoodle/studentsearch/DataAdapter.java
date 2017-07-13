@@ -83,7 +83,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
       mDeptView = (TextView) v.findViewById(R.id.tv_dept);
       mHallView = (TextView) v.findViewById(R.id.tv_hall);
 //      mAddressView = (TextView) v.findViewById(R.id.tv_address);
-//      mUserBloodView = (TextView) v.findViewById(R.id.tv_user_blood);
+      mUserBloodView = (TextView) v.findViewById(R.id.tv_user_blood);
       mImageView = (ImageView) v.findViewById(R.id.user_image);
     }
 
@@ -98,7 +98,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
       mRollView.setText("Roll Number: "+studentData.getRollNo());
       mDeptView.setText("Dept: "+studentData.getDept()+" - "+studentData.getProgramme());
       mHallView.setText("IITK Address:"+studentData.getRoomNo()+ ", "+studentData.getHall());
-
+      mUserBloodView.setText("Blood Group: "+studentData.getBloodGroup());
 //      mAddressView.setText("Home Address:"+studentData.getAddress());
 //      mUserBloodView.setText("Email: "+studentData.getUserName()+"@iitk.ac.in"+"\n"+"Blood Group: "+studentData.getBloodGroup());
 

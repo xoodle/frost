@@ -43,7 +43,6 @@ public class MappingUtils {
     deptMap.put("Economics", "ECO");
     deptMap.put("Mechanical Engineering", "ME");
     deptMap.put("Chemistry", "CHY");
-    deptMap.put("Math For Pg Online", "MTH");
     deptMap.put("Biol.Sci. And Bio.Engg.", "BSBE");
     deptMap.put("Earth Sciences","ES");
 
@@ -58,6 +57,8 @@ public class MappingUtils {
 
     yearMap = new HashMap<>();
     yearMap.put("", "Year");
+    yearMap.put("Y10", "Y10");
+    yearMap.put("Y11", "Y11");
     yearMap.put("Y12", "Y12");
     yearMap.put("Y13", "Y13");
     yearMap.put("Y14", "Y14");

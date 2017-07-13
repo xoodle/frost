@@ -31,6 +31,8 @@ import android.widget.Spinner;
 import com.google.gson.Gson;
 import com.studentsearch.xoodle.studentsearch.database.DbHelper;
 import com.studentsearch.xoodle.studentsearch.utils.ConstantUtils;
+import com.studentsearch.xoodle.studentsearch.utils.MappingUtils;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -150,6 +152,7 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<String> listOfEntries;
     SpinnerAdapter spinnerAdapter;
     String tempEntry;
+    MappingUtils mpu = new MappingUtils();
 
     Cursor cursor = db.rawQuery("SELECT DISTINCT " + DbHelper.COLUMN_HALL + " FROM " + DbHelper.TABLE_NAME, null);
     cursor.moveToFirst();
@@ -216,11 +219,12 @@ public class MainActivity extends AppCompatActivity {
 
     cursor = db.rawQuery("SELECT DISTINCT " + DbHelper.COLUMN_YEAR + " FROM " + DbHelper.TABLE_NAME, null);
     cursor.moveToFirst();
+
     listOfEntries = new ArrayList<>();
     listOfEntries.add("");
     for(int x=0;x<cursor.getCount();x++) {
       tempEntry = cursor.getString(cursor.getColumnIndex(DbHelper.COLUMN_YEAR));
-      if(!tempEntry.equals(""))
+      if(!tempEntry.equals("") && mpu.getYearMap().get(tempEntry) != null)
         listOfEntries.add(tempEntry);
       cursor.moveToNext();
     }

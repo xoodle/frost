@@ -71,9 +71,11 @@ public class SearchResultActivity extends AppCompatActivity {
     String emails = "";
     int counter = studentDataArrayList.size();
     for(StudentData s : studentDataArrayList) {
-      emails = emails + s.getUserName() + "@iitk.ac.in";
-      if(counter != 1)
-        emails = emails + ", ";
+      if(!s.equals("")) {
+        emails = emails + s.getUserName() + "@iitk.ac.in";
+        if (counter != 1)
+          emails = emails + ", ";
+      }
       counter--;
     }
     return emails;

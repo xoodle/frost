@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="recycler_view_left_offset">9dp</dimen>
-    <dimen name="left_offset">61dp</dimen>
+    <dimen name="recycler_view_left_offset">5dp</dimen>
+    <dimen name="left_offset">20dp</dimen>
     <dimen name="card_width">148dp</dimen>
     <dimen name="card_corner_radius">10dp</dimen>
+    <dimen name="image_left_offset">20dp</dimen>
+    <dimen name="text_left_offset">60dp</dimen>
+    <dimen name="text_size">14sp</dimen>
+    <dimen name="detail_margin_top">5dp</dimen>
+    <dimen name="image_dimen">22dp</dimen>
 </resources>

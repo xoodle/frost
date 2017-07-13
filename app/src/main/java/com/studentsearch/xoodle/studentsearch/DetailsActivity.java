@@ -13,7 +13,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextSwitcher;
 import android.widget.TextView;
 import android.widget.ViewSwitcher;
@@ -45,14 +47,24 @@ public class DetailsActivity extends AppCompatActivity {
   private int nameOffset2;
   private long nameAnimDuration;
 
+  private float motionX1, motionX2;
+  private final float MIN_DIST = 150;
+
   private TextSwitcher yearSwitcher;
   private TextSwitcher deptSwitcher;
+  private TextSwitcher hallSwitcher;
+  private TextSwitcher rollSwitcher;
+  private TextSwitcher usernameSwitcher;
+  private TextSwitcher bloodGroupSwitcher;
+  private TextSwitcher placeSwitcher;
 
   private TextView hallText;
   private TextView rollNo;
   private TextView bloodGroup;
   private TextView userName;
   private TextView address;
+
+  private ImageView deptImage;
 
 
   public static Intent getNewIntent(Context context) {
@@ -64,12 +76,14 @@ public class DetailsActivity extends AppCompatActivity {
   protected void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_details);
-    studentList =  getIntent().getParcelableArrayListExtra(ConstantUtils.STUDENT_LIST);
+//    studentList =  getIntent().getParcelableArrayListExtra(ConstantUtils.STUDENT_LIST);
+    studentList = SearchResultActivity.studentDataArrayList;
     currentPosition = getIntent().getIntExtra(ConstantUtils.CARD_SLIDER_POSITION, 0);
     sliderAdapter = new SliderAdapter(this, studentList, new OnCardClickListener());
     initRecyclerView();
     initNameText();
     initSwitchers();
+    initImages();
     initTextViews();
   }
 
@@ -109,26 +123,52 @@ public class DetailsActivity extends AppCompatActivity {
   private void initSwitchers() {
 //    yearSwitcher = (TextSwitcher) findViewById(R.id.ts_year);
 //    yearSwitcher.setFactory(new TextViewFactory(R.style.TemperatureTextView, true));
-//    yearSwitcher.setCurrentText(studentList.get(currentPosition).getYear());
+//    yearSwitcher.setText(studentList.get(currentPosition).getYear());
 
     deptSwitcher = (TextSwitcher) findViewById(R.id.ts_dept);
     deptSwitcher.setFactory(new TextViewFactory(R.style.PlaceTextView, false));
     deptSwitcher.setCurrentText(studentList.get(currentPosition).getDept().toUpperCase());
+
+    hallSwitcher = (TextSwitcher) findViewById(R.id.ts_hall);
+    hallSwitcher.setFactory(new TextViewFactory(R.style.PlaceTextView, false));
+    hallSwitcher.setCurrentText(studentList.get(currentPosition).getRoomNo() + ", " + studentList.get(currentPosition).getHall().toUpperCase());
+
+    rollSwitcher = (TextSwitcher) findViewById(R.id.ts_roll_no);
+    rollSwitcher.setFactory(new TextViewFactory(R.style.PlaceTextView, false));
+    rollSwitcher.setCurrentText(studentList.get(currentPosition).getRollNo().toUpperCase());
+
+    usernameSwitcher = (TextSwitcher) findViewById(R.id.ts_username);
+    usernameSwitcher.setFactory(new TextViewFactory(R.style.PlaceTextView, false));
+    usernameSwitcher.setCurrentText(studentList.get(currentPosition).getUserName() + "@iitk.ac.in");
+
+    bloodGroupSwitcher = (TextSwitcher) findViewById(R.id.ts_blood_group);
+    bloodGroupSwitcher.setFactory(new TextViewFactory(R.style.PlaceTextView, false));
+    bloodGroupSwitcher.setCurrentText(studentList.get(currentPosition).getBloodGroup());
+
+    placeSwitcher = (TextSwitcher) findViewById(R.id.ts_place);
+    placeSwitcher.setFactory(new TextViewFactory(R.style.PlaceTextView, false));
+    placeSwitcher.setCurrentText(studentList.get(currentPosition).getAddress().toUpperCase());
+
+  }
+
+  private void initImages() {
+    deptImage = (ImageView) findViewById(R.id.dept_image);
+    deptImage.setImageDrawable(getDrawable(R.drawable.ic_dept));
   }
 
   private void initTextViews() {
-    hallText = (TextView) findViewById(R.id.tv_hall);
-    rollNo = (TextView) findViewById(R.id.tv_roll_no);
-    bloodGroup = (TextView) findViewById(R.id.tv_blood_group);
-    userName = (TextView) findViewById(R.id.tv_user_name);
-    address = (TextView) findViewById(R.id.tv_address);
+//    hallText = (TextView) findViewById(R.id.tv_hall);
+//    rollNo = (TextView) findViewById(R.id.tv_roll_no);
+//    bloodGroup = (TextView) findViewById(R.id.tv_blood_group);
+//    userName = (TextView) findViewById(R.id.tv_user_name);
+//    address = (TextView) findViewById(R.id.tv_address);
 
     StudentData student = studentList.get(currentPosition);
-    hallText.setText("\u25CF " + student.getHall());
-    rollNo.setText("\u25CF " + student.getRollNo());
-    bloodGroup.setText("\u25CF " + student.getBloodGroup());
-    userName.setText("\u25CF " + student.getUserName());
-    address.setText("\u25CF " + student.getAddress());
+//    hallText.setText("\u25CF " + student.getHall());
+//    rollNo.setText("\u25CF " + student.getRollNo());
+//    bloodGroup.setText("\u25CF " + student.getBloodGroup());
+//    userName.setText("\u25CF " + student.getUserName());
+//    address.setText("\u25CF " + student.getAddress());
   }
 
   private void setNameText(String text, boolean left2right) {
@@ -183,24 +223,46 @@ public class DetailsActivity extends AppCompatActivity {
       animV[1] = R.anim.slide_out_top;
     }
 
-    StudentData student = studentList.get(pos % studentList.size());
+    StudentData student = studentList.get(pos);
 
     setNameText(student.getName().toUpperCase(), left2right);
 
 //    yearSwitcher.setInAnimation(DetailsActivity.this, animH[0]);
 //    yearSwitcher.setOutAnimation(DetailsActivity.this, animH[1]);
-//    String year = student.makeAndGetYear();
-//    yearSwitcher.setText(year);
+//    yearSwitcher.setText(student.getYear());
+
+    deptImage.setImageDrawable(getDrawable(R.drawable.ic_dept));
 
     deptSwitcher.setInAnimation(DetailsActivity.this, animV[0]);
     deptSwitcher.setOutAnimation(DetailsActivity.this, animV[1]);
     deptSwitcher.setText(student.getDept().toUpperCase());
 
-    hallText.setText("\u25CF " + student.getHall());
-    rollNo.setText("\u25CF " + student.getRollNo());
-    bloodGroup.setText("\u25CF " + student.getBloodGroup());
-    userName.setText("\u25CF " + student.getUserName());
-    address.setText("\u25CF " + student.getAddress());
+    hallSwitcher.setInAnimation(DetailsActivity.this, animV[0]);
+    hallSwitcher.setOutAnimation(DetailsActivity.this, animV[1]);
+    hallSwitcher.setText(student.getRoomNo() + ", " + student.getHall().toUpperCase());
+
+    rollSwitcher.setInAnimation(DetailsActivity.this, animV[0]);
+    rollSwitcher.setOutAnimation(DetailsActivity.this, animV[1]);
+    rollSwitcher.setText(student.getRollNo().toUpperCase());
+
+    usernameSwitcher.setInAnimation(DetailsActivity.this, animV[0]);
+    usernameSwitcher.setOutAnimation(DetailsActivity.this, animV[1]);
+    usernameSwitcher.setText(student.getUserName() + "@iitk.ac.in");
+
+    bloodGroupSwitcher.setInAnimation(DetailsActivity.this, animV[0]);
+    bloodGroupSwitcher.setOutAnimation(DetailsActivity.this, animV[1]);
+    bloodGroupSwitcher.setText(student.getBloodGroup());
+
+    placeSwitcher.setInAnimation(DetailsActivity.this, animV[0]);
+    placeSwitcher.setOutAnimation(DetailsActivity.this, animV[1]);
+    placeSwitcher.setText(student.getAddress().toUpperCase());
+
+//    hallText.setText("\u25CF " + student.getHall());
+//    hallText.setText(student.getHall());
+//    rollNo.setText(student.getRollNo());
+//    bloodGroup.setText(student.getBloodGroup());
+//    userName.setText(student.getUserName());
+//    address.setText(student.getAddress());
 
     currentPosition = pos;
   }
@@ -215,10 +277,43 @@ public class DetailsActivity extends AppCompatActivity {
     return true;
   }
 
+  @Override
+  public boolean onTouchEvent(MotionEvent event) {
+    switch (event.getAction()) {
+      case MotionEvent.ACTION_DOWN:
+        motionX1 = event.getX();
+        break;
+      case MotionEvent.ACTION_UP:
+        motionX2 = event.getX();
+        if(Math.abs(motionX1 - motionX2) > MIN_DIST) {
+          if(motionX1 - motionX2 < 0) {
+            moveLeft();
+          } else {
+            moveRight();
+          }
+        }
+    }
+    return super.onTouchEvent(event);
+  }
+
   private class OnCardClickListener implements View.OnClickListener {
     @Override
     public void onClick(View v) {
       // some action
+    }
+  }
+
+  private void moveLeft() {
+    if(currentPosition != 0) {
+      layoutManger.scrollToPosition(--currentPosition);
+      onActiveCardChange(currentPosition);
+    }
+  }
+
+  private void moveRight() {
+    if(currentPosition != studentList.size() - 1) {
+      layoutManger.scrollToPosition(++currentPosition);
+      onActiveCardChange(currentPosition);
     }
   }
 

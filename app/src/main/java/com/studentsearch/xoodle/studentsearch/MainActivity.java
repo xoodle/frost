@@ -224,7 +224,7 @@ public class MainActivity extends AppCompatActivity {
     listOfEntries.add("");
     for(int x=0;x<cursor.getCount();x++) {
       tempEntry = cursor.getString(cursor.getColumnIndex(DbHelper.COLUMN_YEAR));
-      if(!tempEntry.equals("") && mpu.getYearMap().get(tempEntry) != null)
+      if(!tempEntry.equals(""))
         listOfEntries.add(tempEntry);
       cursor.moveToNext();
     }

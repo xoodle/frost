@@ -65,7 +65,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
       @Override
       public void onClick(View v) {
         Intent intent = DetailsActivity.getNewIntent(context);
-        intent.putParcelableArrayListExtra(ConstantUtils.STUDENT_LIST, mStudentData);
+//        intent.putParcelableArrayListExtra(ConstantUtils.STUDENT_LIST, mStudentData);
         intent.putExtra(ConstantUtils.CARD_SLIDER_POSITION, position);
         v.getContext().startActivity(intent);
       }

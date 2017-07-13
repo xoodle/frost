@@ -30,7 +30,7 @@ public class SearchResultActivity extends AppCompatActivity {
   RecyclerView.LayoutManager mLinearLayoutManager;
   private RecyclerView mResultRecyclerView;
   private DataAdapter mDataAdapter;
-  private ArrayList<StudentData> studentDataArrayList;
+  public static ArrayList<StudentData> studentDataArrayList;
   private Cursor cursor;
 
   public static Intent getNewIntent(Context c) {

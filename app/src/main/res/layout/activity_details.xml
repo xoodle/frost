@@ -25,10 +25,12 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:textSize="28sp"
+                android:textColor="@color/colorPrimaryDark"
                 android:textStyle="bold"/>
 
             <TextView
                 android:id="@+id/tv_name_2"
+                android:textColor="@color/colorPrimaryDark"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="28sp"
@@ -229,10 +231,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
+        android:layout_marginBottom="1dp"
         android:orientation="horizontal">
 
         <ImageView
             android:id="@+id/facebook"
+            android:clickable="true"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="1"
@@ -241,6 +245,7 @@
 
         <ImageView
             android:id="@+id/mail"
+            android:clickable="true"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="1"

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
@@ -31,38 +30,4 @@
     </item>
 
 </selector>
-||||||| merged common ancestors
-=======
-<?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-  <item>
-    <layer-list>
-      <item>
-        <shape>
-          <gradient
-            android:startColor="@color/colorWhite"
-            android:endColor="#EEEEEE"
-            android:angle="270" />
-          <stroke
-            android:width="1dp"
-            android:color="@color/darkGray" />
-          <corners
-            android:radius="4dp" />
-          <padding
-            android:left="3dp"
-            android:top="2dp"
-            android:right="2dp"
-            android:bottom="3dp" />
-        </shape>
-      </item>
-      <item
-        android:top="12dp"
-        android:right="15dp">
-        <bitmap android:src="@drawable/ic_keyboard_arrow_down_black"
-                android:gravity="top|right" />
-      </item>
-    </layer-list>
-  </item>
 
-</selector>
->>>>>>> 958ca0b69245371e63e36746a9a8a7511e52bc0c

@@ -5,6 +5,7 @@ import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -15,6 +16,7 @@ import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextSwitcher;
 import android.widget.TextView;
@@ -27,6 +29,8 @@ import com.studentsearch.xoodle.studentsearch.utils.ConstantUtils;
 import com.studentsearch.xoodle.studentsearch.utils.MappingUtils;
 
 import java.util.ArrayList;
+
+import static android.R.attr.name;
 
 /**
  * Created by kaushal on 7/7/17.
@@ -63,6 +67,8 @@ public class DetailsActivity extends AppCompatActivity {
   private TextView bloodGroup;
   private TextView userName;
   private TextView address;
+  private String name_fb;
+  private String email;
 
   private ImageView deptImage;
 
@@ -71,6 +77,8 @@ public class DetailsActivity extends AppCompatActivity {
     Intent i = new Intent(context, DetailsActivity.class);
     return i;
   }
+
+
 
   @Override
   protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -85,6 +93,34 @@ public class DetailsActivity extends AppCompatActivity {
     initSwitchers();
     initImages();
     initTextViews();
+    ImageView imageLogo1 = (ImageView)findViewById(R.id.facebook);
+    imageLogo1.setOnClickListener(new View.OnClickListener() {
+
+      @Override
+      public void onClick(View v) {
+        // TODO Auto-generated method stub
+        name_fb = (studentList.get(currentPosition).getName());
+        String url = "https://m.facebook.com/public/"+name_fb;
+
+        Intent i = new Intent(Intent.ACTION_VIEW);
+        i.setData(Uri.parse(url));
+        startActivity(i);
+      }
+    });
+    ImageView imageLogo2 = (ImageView)findViewById(R.id.mail);
+    imageLogo2.setOnClickListener(new View.OnClickListener() {
+
+      @Override
+      public void onClick(View v) {
+        email = studentList.get(currentPosition).getUserName();
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("plain/text");
+        intent.putExtra(Intent.EXTRA_EMAIL, new String[] { email+"@iitk.ac.in" });
+        intent.putExtra(Intent.EXTRA_SUBJECT, "Subject");
+        intent.putExtra(Intent.EXTRA_TEXT, "Email body");
+        startActivity(Intent.createChooser(intent, ""));
+      }
+    });
   }
 
   private void initRecyclerView() {

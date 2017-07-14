@@ -22,6 +22,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -44,13 +46,15 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
+import static com.studentsearch.xoodle.studentsearch.R.id.imageView;
+
 public class MainActivity extends AppCompatActivity {
 
   public DbHelper dbHelper;
   private EditText mEditText;
   private Button mButton;
   private ProgressDialog mProgressDialog;
-  public static Integer[] mThumbIds = {R.drawable.iitk_image_1, R.drawable.iitk_image_2, R.drawable.iitk2,R.drawable.iitk_image_4, R.drawable.iitk_image_5, R.drawable.iitk_image_6};
+  public static Integer[] mThumbIds = {R.drawable.iitk_image_1, R.drawable.iitk_image_2, R.drawable.iitk2,R.drawable.iitk_image_4,R.drawable.iitk_imgiiii, R.drawable.iitk_image_5, R.drawable.iitk_image_6};
   public ImageView iv;
   int i;
 
@@ -128,11 +132,13 @@ public class MainActivity extends AppCompatActivity {
     public void run() {
       try {
         while (!isInterrupted()) {
-          Thread.sleep(4800);
+          Thread.sleep(8800);
           runOnUiThread(new Runnable() {
             @Override
             public void run() {
               iv.setImageResource(mThumbIds[i]);
+              Animation fadeIn = AnimationUtils.loadAnimation(MainActivity.this, R.anim.fade_in);
+              iv.startAnimation(fadeIn);
               i++;
               if (i >= mThumbIds.length) {
                 i = 0;

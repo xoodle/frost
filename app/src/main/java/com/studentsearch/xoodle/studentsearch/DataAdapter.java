@@ -94,7 +94,6 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
       mRollView = (TextView) v.findViewById(R.id.tv_roll);
       mDeptView = (TextView) v.findViewById(R.id.tv_dept);
       mHallView = (TextView) v.findViewById(R.id.tv_hall);
-//      mAddressView = (TextView) v.findViewById(R.id.tv_address);
       mUserBloodView = (TextView) v.findViewById(R.id.tv_user_blood);
       mImageView = (ImageView) v.findViewById(R.id.user_image);
     }
@@ -110,8 +109,6 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
       mDeptView.setText("Dept: "+studentData.getDept()+" - "+studentData.getProgramme());
       mHallView.setText("IITK Address:"+studentData.getRoomNo()+ ", "+studentData.getHall());
       mUserBloodView.setText("Blood Group: "+studentData.getBloodGroup());
-//      mAddressView.setText("Home Address:"+studentData.getAddress());
-//      mUserBloodView.setText("Email: "+studentData.getUserName()+"@iitk.ac.in"+"\n"+"Blood Group: "+studentData.getBloodGroup());
 
       int errID;
       Resources res = context.getResources();
@@ -124,7 +121,6 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
       File directory = new File(context.getExternalFilesDir(Environment.DIRECTORY_PICTURES), "studentPics");
       File image = new File(directory, studentData.getRollNo() + "_0");
       if (image.exists()) {
-        Log.i("ad", studentData.getRollNo());
         Picasso.with(context)
                 .load(image)
                 .placeholder(errID)

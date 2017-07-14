@@ -5,8 +5,7 @@
 
 <item
   android:id="@+id/reset_entries"
-  android:title="Reset all entries"
-  android:icon="@drawable/ic_reset"
+  android:title="RESET"
   app:showAsAction="ifRoom"/>
   <item
       android:id="@+id/update"

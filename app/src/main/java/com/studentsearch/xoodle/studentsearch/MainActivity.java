@@ -12,8 +12,6 @@ import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.Handler;
-import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -28,6 +26,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+
 import com.google.gson.Gson;
 import com.studentsearch.xoodle.studentsearch.database.DbHelper;
 import com.studentsearch.xoodle.studentsearch.utils.ConstantUtils;
@@ -44,8 +43,6 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
-
-import static android.R.attr.onClick;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -66,8 +63,7 @@ public class MainActivity extends AppCompatActivity {
     t.start();
 
     ActionBar ab = getSupportActionBar();
-    Drawable drawable = getResources().getDrawable(R.drawable.ic_menu);
-    DrawableCompat.setTint(drawable, getResources().getColor(R.color.colorWhite));
+    Drawable drawable = getResources().getDrawable(R.mipmap.ic_launcher);
     if (ab != null) {
       ab.setHomeAsUpIndicator(drawable);
       ab.setDisplayHomeAsUpEnabled(true);

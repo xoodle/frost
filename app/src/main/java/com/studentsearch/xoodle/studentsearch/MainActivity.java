@@ -234,7 +234,7 @@ public class MainActivity extends AppCompatActivity {
           }
         };
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-        builder.setMessage("Do you want to download images now ?").setNegativeButton("No", dialogClickListener)
+        builder.setMessage("Do you want to download the images of all the students? (~100MB) ").setNegativeButton("No", dialogClickListener)
                 .setPositiveButton("Yes", dialogClickListener).show();
         break;
 
@@ -370,7 +370,7 @@ public class MainActivity extends AppCompatActivity {
           }
         };
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-        builder.setMessage("Do you want to download images now ?").setNegativeButton("No", dialogClickListener)
+        builder.setMessage("Do you want to download the images of all the students? (~100MB) ").setNegativeButton("No", dialogClickListener)
           .setPositiveButton("Yes", dialogClickListener).show();
         break;
       case R.id.update:
@@ -550,7 +550,7 @@ public class MainActivity extends AppCompatActivity {
         }
       };
       AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-      builder.setMessage("Do you want to download images now ?").setNegativeButton("No", dialogClickListener)
+      builder.setMessage("Do you want to download the images of all the students? (~100MB) ").setNegativeButton("No", dialogClickListener)
         .setPositiveButton("Yes", dialogClickListener).show();
     }
   }
@@ -566,12 +566,12 @@ public class MainActivity extends AppCompatActivity {
       imageDownloaderDialog.setIndeterminate(false);
       imageDownloaderDialog.setCancelable(false);
       imageDownloaderDialog.setMax(100);
-      imageDownloaderDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Do in Background", new DialogInterface.OnClickListener() {
-        @Override
-        public void onClick(DialogInterface dialog, int which) {
-          dialog.dismiss();
-        }
-      });
+//      imageDownloaderDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Do in Background", new DialogInterface.OnClickListener() {
+//        @Override
+//        public void onClick(DialogInterface dialog, int which) {
+//          dialog.dismiss();
+//        }
+//      });
       imageDownloaderDialog.show();
       super.onPreExecute();
     }

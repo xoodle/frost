@@ -16,7 +16,7 @@ import android.widget.ProgressBar;
  */
 
 public class SplashActivity extends AppCompatActivity {
-  ProgressBar mprogressBar;
+//  ProgressBar mprogressBar;
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -24,12 +24,6 @@ public class SplashActivity extends AppCompatActivity {
     Animation anim1 = AnimationUtils.loadAnimation(this,R.anim.anim_down);
     ImageView img =(ImageView)findViewById(R.id.imageView);
     img.setAnimation(anim1);
-
-    mprogressBar = (ProgressBar) findViewById(R.id.progressBar);
-    ObjectAnimator anim = ObjectAnimator.ofInt(mprogressBar, "progress", 0, 100);
-    anim.setDuration(2000);
-    anim.setInterpolator(new DecelerateInterpolator());
-    anim.start();
 
     Handler handler = new Handler();
 
@@ -41,6 +35,6 @@ public class SplashActivity extends AppCompatActivity {
         finish();
 
       }
-    },2000);
+    },1000);
   }
 }

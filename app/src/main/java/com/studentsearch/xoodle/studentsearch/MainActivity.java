@@ -1,8 +1,10 @@
 package com.studentsearch.xoodle.studentsearch;
 
+import android.app.FragmentManager;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
@@ -12,9 +14,10 @@ import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.Handler;
 import android.support.v4.graphics.drawable.DrawableCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -24,9 +27,12 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.Spinner;
 import com.google.gson.Gson;
 import com.studentsearch.xoodle.studentsearch.database.DbHelper;
@@ -47,6 +53,11 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+  private DrawerLayout mDrawerLayout;
+  private ActionBarDrawerToggle mDrawerToggle;
+  private ListView mDrawerList;
+  private ArrayAdapter<String> mAdapter;
+
   public DbHelper dbHelper;
   private EditText mEditText;
   private Button mButton;
@@ -63,13 +74,36 @@ public class MainActivity extends AppCompatActivity {
     i = 0;
     t.start();
 
-    ActionBar ab = getSupportActionBar();
+    final ActionBar actionBar = getSupportActionBar();
     Drawable drawable = getResources().getDrawable(R.drawable.ic_menu);
     DrawableCompat.setTint(drawable, getResources().getColor(R.color.colorWhite));
-    if (ab != null) {
-      ab.setHomeAsUpIndicator(drawable);
-      ab.setDisplayHomeAsUpEnabled(true);
+    if (actionBar != null) {
+      actionBar.setHomeAsUpIndicator(drawable);
+      actionBar.setDisplayHomeAsUpEnabled(true);
     }
+    mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+    mDrawerList = (ListView)findViewById(R.id.left_drawer);
+    addDrawerItems();
+    mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.drawer_open, R.string.drawer_close) {
+
+      /** Called when a drawer has settled in a completely closed state. */
+      public void onDrawerClosed(View view) {
+        super.onDrawerClosed(view);
+        actionBar.setTitle("Student Search");
+        invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
+      }
+
+      /** Called when a drawer has settled in a completely open state. */
+      public void onDrawerOpened(View drawerView) {
+        super.onDrawerOpened(drawerView);
+        actionBar.setTitle("Student Search");
+        invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
+      }
+    };
+
+    // Set the drawer toggle as the DrawerListener
+    mDrawerLayout.addDrawerListener(mDrawerToggle);
+
     long cnt = DatabaseUtils.queryNumEntries(DbHelper.getDbHelperInstance(getApplicationContext(), DbHelper.TABLE_NAME, 1).getReadableDatabase(), "students");
     if(cnt == 0) {
       refreshDatabase();
@@ -125,12 +159,26 @@ public class MainActivity extends AppCompatActivity {
     });
     setFilterSpinnerEntries();
   }
+
+  @Override
+  protected void onPostCreate(Bundle savedInstanceState) {
+    super.onPostCreate(savedInstanceState);
+    // Sync the toggle state after onRestoreInstanceState has occurred.
+    mDrawerToggle.syncState();
+  }
+
+  @Override
+  public void onConfigurationChanged(Configuration newConfig) {
+    super.onConfigurationChanged(newConfig);
+    mDrawerToggle.onConfigurationChanged(newConfig);
+  }
+
   Thread t = new Thread() {
     @Override
     public void run() {
       try {
         while (!isInterrupted()) {
-          Thread.sleep(3000);
+          Thread.sleep(5000);
           runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -146,6 +194,66 @@ public class MainActivity extends AppCompatActivity {
       }
     }
   };
+
+  private void addDrawerItems() {
+    String[] drawerItems = { "Update Database", "Download all Images", "About App" };
+    mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, drawerItems);
+    mDrawerList.setAdapter(mAdapter);
+    mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
+  }
+
+  private class DrawerItemClickListener implements ListView.OnItemClickListener {
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+      Log.i("dsc", "onItemClick: " + position);
+      selectItem(position);
+    }
+  }
+
+  /** Swaps fragments in the main content view */
+  private void selectItem(int position) {
+    switch (position) {
+      case 0:
+        // check for update
+        refreshDatabase();
+        break;
+
+      case 1:
+        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+          @Override
+          public void onClick(DialogInterface dialog, int which) {
+            switch (which) {
+              case DialogInterface.BUTTON_POSITIVE:
+                new ImageDownloader().execute();
+                break;
+
+              case DialogInterface.BUTTON_NEGATIVE:
+                //No button clicked
+                break;
+            }
+          }
+        };
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        builder.setMessage("Do you want to download the images of all the students? (~100MB) ").setNegativeButton("No", dialogClickListener)
+                .setPositiveButton("Yes", dialogClickListener).show();
+        break;
+
+      case 2:
+        // info about app
+        break;
+      default:
+    }
+    mDrawerList.setItemChecked(position, true);
+    mDrawerLayout.closeDrawer(mDrawerList);
+  }
+
+  @Override
+  public boolean onPrepareOptionsMenu(Menu menu) {
+    // If the nav drawer is open, hide action items related to the content view
+    boolean drawerOpen = mDrawerLayout.isDrawerOpen(mDrawerList);
+//    menu.findItem(R.id.action_websearch).setVisible(!drawerOpen);
+    return super.onPrepareOptionsMenu(menu);
+  }
 
   private void setFilterSpinnerEntries() {
     SQLiteDatabase db = DbHelper.getDbHelperInstance(this, DbHelper.TABLE_NAME, 1).getReadableDatabase();
@@ -262,9 +370,8 @@ public class MainActivity extends AppCompatActivity {
           }
         };
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-        builder.setMessage("Do you want to download images now ?").setNegativeButton("No", dialogClickListener)
+        builder.setMessage("Do you want to download the images of all the students? (~100MB) ").setNegativeButton("No", dialogClickListener)
           .setPositiveButton("Yes", dialogClickListener).show();
-
         break;
       case R.id.update:
         // check for update
@@ -275,6 +382,12 @@ public class MainActivity extends AppCompatActivity {
         break;
       default:
     }
+    // Pass the event to ActionBarDrawerToggle, if it returns
+    // true, then it has handled the app icon touch event
+    if (mDrawerToggle.onOptionsItemSelected(item)) {
+      return true;
+    }
+    // Handle your other action bar items...
     return super.onOptionsItemSelected(item);
   }
 
@@ -437,7 +550,7 @@ public class MainActivity extends AppCompatActivity {
         }
       };
       AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-      builder.setMessage("Do you want to download images now ?").setNegativeButton("No", dialogClickListener)
+      builder.setMessage("Do you want to download the images of all the students? (~100MB) ").setNegativeButton("No", dialogClickListener)
         .setPositiveButton("Yes", dialogClickListener).show();
     }
   }
@@ -453,12 +566,12 @@ public class MainActivity extends AppCompatActivity {
       imageDownloaderDialog.setIndeterminate(false);
       imageDownloaderDialog.setCancelable(false);
       imageDownloaderDialog.setMax(100);
-      imageDownloaderDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Do in Background", new DialogInterface.OnClickListener() {
-        @Override
-        public void onClick(DialogInterface dialog, int which) {
-          dialog.dismiss();
-        }
-      });
+//      imageDownloaderDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Do in Background", new DialogInterface.OnClickListener() {
+//        @Override
+//        public void onClick(DialogInterface dialog, int which) {
+//          dialog.dismiss();
+//        }
+//      });
       imageDownloaderDialog.show();
       super.onPreExecute();
     }

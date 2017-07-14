@@ -1,200 +1,205 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                                 xmlns:tools="http://schemas.android.com/tools"
-                                                 android:layout_width="match_parent"
-                                                 android:layout_height="match_parent"
-                                                 android:fitsSystemWindows="true"
-                                                 tools:context="com.studentsearch.xoodle.studentsearch.MainActivity">
-
-  <RelativeLayout
+<android.support.v4.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/colorGrey">
+    android:fitsSystemWindows="true"
+    tools:context="com.studentsearch.xoodle.studentsearch.MainActivity">
+  <!-- The main content view -->
+  <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:orientation="vertical"
+      android:background="@color/colorGrey">
 
     <RelativeLayout
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:orientation="vertical"
-      android:id="@+id/iitk_image"
-      android:layout_alignParentTop="true">
-      <ImageView
         android:layout_width="match_parent"
-        android:id="@+id/image_fit"
-        android:layout_height="160dp"
-        android:src="@drawable/iitk_imgiiii"
-        android:scaleType="fitXY"/>
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/iitk_image"
+        android:layout_alignParentTop="true">
+      <ImageView
+          android:layout_width="match_parent"
+          android:id="@+id/image_fit"
+          android:layout_height="160dp"
+          android:src="@drawable/iitk_imgiiii"
+          android:scaleType="fitXY"/>
     </RelativeLayout>
     <RelativeLayout
-      android:id="@+id/search_view"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_below="@id/iitk_image">
-      <EditText
-        android:id="@+id/edit_text"
+        android:id="@+id/search_view"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:hint="@string/search_hint"
-        android:maxLines="1"
-        android:elevation="2dp"
-        android:padding="16dp"
-        android:imeOptions="actionSearch"
-        android:imeActionId="@+id/action_go_search"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/text_input_box"
-        android:backgroundTintMode="multiply"
-        android:drawableStart="@drawable/ic_search"
-        android:drawablePadding="10dp"
-        android:layout_marginBottom="15dp"
-        android:drawableEnd="@drawable/ic_bookmark"/>
-
+        android:layout_height="wrap_content"
+        android:layout_below="@id/iitk_image">
+      <EditText
+          android:id="@+id/edit_text"
+          android:layout_width="match_parent"
+          android:layout_height="60dp"
+          android:hint="@string/search_hint"
+          android:maxLines="1"
+          android:elevation="2dp"
+          android:padding="16dp"
+          android:imeOptions="actionSearch"
+          android:imeActionId="@+id/action_go_search"
+          android:layout_marginLeft="10dp"
+          android:layout_marginRight="10dp"
+          android:layout_marginTop="10dp"
+          android:background="@drawable/text_input_box"
+          android:backgroundTintMode="multiply"
+          android:drawableStart="@drawable/ic_search"
+          android:drawablePadding="10dp"
+          android:layout_marginBottom="15dp"
+          android:drawableEnd="@drawable/ic_bookmark"/>
     </RelativeLayout>
 
     <LinearLayout
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:orientation="vertical"
-      android:layout_marginTop="228dp">
-      <RelativeLayout
-        android:id="@+id/spinner_one"
-        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="vertical"
+        android:layout_marginTop="228dp">
+      <RelativeLayout
+          android:id="@+id/spinner_one"
+          android:layout_marginTop="20dp"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal">
 
 
         <Spinner
-          android:id="@+id/spinner_hall"
-          android:entries="@array/hall_values"
-          android:entryValues="@array/hall_values"
-          android:layout_width="153dp"
-          android:layout_marginLeft="5dp"
-          android:dropDownWidth="155dp"
-          android:background="@drawable/spinner_background"
-          android:layout_height="wrap_content"
-          android:dropDownVerticalOffset="30dp"
-          android:popupBackground="@color/colorWhite"
-          android:layout_marginStart="10dp"
-          android:spinnerMode="dropdown" />
-
-
+            android:id="@+id/spinner_hall"
+            android:entries="@array/hall_values"
+            android:entryValues="@array/hall_values"
+            android:layout_width="153dp"
+            android:layout_marginLeft="5dp"
+            android:dropDownWidth="155dp"
+            android:background="@drawable/spinner_background"
+            android:layout_height="wrap_content"
+            android:dropDownVerticalOffset="30dp"
+            android:popupBackground="@color/colorWhite"
+            android:layout_marginStart="10dp"
+            android:spinnerMode="dropdown" />
 
         <Spinner
-          android:layout_alignParentEnd="true"
-          android:id="@+id/spinner_year"
-          android:entries="@array/year_values"
-          android:background="@drawable/spinner_background"
-          android:entryValues="@array/year_values"
-          android:dropDownWidth="155dp"
-          android:layout_marginRight="10dp"
-          android:dropDownVerticalOffset="30dp"
-          android:layout_width="153dp"
-          android:layout_height="wrap_content"
-          android:popupBackground="@color/colorWhite"
-          android:spinnerMode="dropdown" />
+            android:layout_alignParentEnd="true"
+            android:id="@+id/spinner_year"
+            android:entries="@array/year_values"
+            android:background="@drawable/spinner_background"
+            android:entryValues="@array/year_values"
+            android:dropDownWidth="155dp"
+            android:layout_marginRight="10dp"
+            android:dropDownVerticalOffset="30dp"
+            android:layout_width="153dp"
+            android:layout_height="wrap_content"
+            android:popupBackground="@color/colorWhite"
+            android:spinnerMode="dropdown" />
+      </RelativeLayout>
 
+      <RelativeLayout
+          android:id="@+id/spinner_two"
+          android:layout_marginTop="20dp"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal">
+
+        <Spinner
+            android:id="@+id/spinner_blood_group"
+            android:entries="@array/blood_group_values"
+            android:entryValues="@array/blood_group_values"
+            android:layout_width="153dp"
+            android:dropDownWidth="155dp"
+            android:layout_marginLeft="10dp"
+            android:dropDownVerticalOffset="30dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/spinner_background"
+            android:popupBackground="@color/colorWhite"
+            android:spinnerMode="dropdown" />
+
+        <Spinner
+            android:id="@+id/spinner_dept"
+            android:entries="@array/dept_values"
+            android:entryValues="@array/dept_values"
+            android:layout_width="153dp"
+            android:dropDownWidth="155dp"
+            android:layout_marginRight="10dp"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/spinner_background"
+            android:dropDownVerticalOffset="30dp"
+            android:layout_height="wrap_content"
+            android:popupBackground="@color/colorWhite"
+            android:spinnerMode="dropdown" />
 
       </RelativeLayout>
 
       <RelativeLayout
-        android:id="@+id/spinner_two"
-        android:layout_marginTop="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+          android:id="@+id/spinner_three"
+          android:layout_marginTop="20dp"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal">
 
         <Spinner
-          android:id="@+id/spinner_blood_group"
-          android:entries="@array/blood_group_values"
-          android:entryValues="@array/blood_group_values"
-          android:layout_width="153dp"
-          android:dropDownWidth="155dp"
-          android:layout_marginLeft="10dp"
-          android:dropDownVerticalOffset="30dp"
-          android:layout_height="wrap_content"
-          android:background="@drawable/spinner_background"
-          android:popupBackground="@color/colorWhite"
-          android:spinnerMode="dropdown" />
+            android:id="@+id/spinner_programme"
+            android:entries="@array/program_values"
+            android:entryValues="@array/program_values"
+            android:layout_width="153dp"
+            android:dropDownWidth="155dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/spinner_background"
+            android:layout_height="wrap_content"
+            android:dropDownVerticalOffset="30dp"
+            android:popupBackground="@color/colorWhite"
+            android:spinnerMode="dropdown" />
 
         <Spinner
-          android:id="@+id/spinner_dept"
-          android:entries="@array/dept_values"
-          android:entryValues="@array/dept_values"
-          android:layout_width="153dp"
-          android:dropDownWidth="155dp"
-          android:layout_marginRight="10dp"
-          android:layout_alignParentEnd="true"
-          android:background="@drawable/spinner_background"
-          android:dropDownVerticalOffset="30dp"
-          android:layout_height="wrap_content"
-          android:popupBackground="@color/colorWhite"
-          android:spinnerMode="dropdown" />
-
-
-      </RelativeLayout>
-
-      <RelativeLayout
-        android:id="@+id/spinner_three"
-        android:layout_marginTop="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <Spinner
-          android:id="@+id/spinner_programme"
-          android:entries="@array/program_values"
-          android:entryValues="@array/program_values"
-          android:layout_width="153dp"
-          android:dropDownWidth="155dp"
-          android:layout_marginLeft="10dp"
-          android:background="@drawable/spinner_background"
-          android:layout_height="wrap_content"
-          android:dropDownVerticalOffset="30dp"
-          android:popupBackground="@color/colorWhite"
-          android:spinnerMode="dropdown" />
-
-        <Spinner
-          android:layout_alignParentEnd="true"
-          android:id="@+id/spinner_gender"
-          android:layout_marginRight="10dp"
-          android:entries="@array/gender_values"
-          android:background="@drawable/spinner_background"
-          android:dropDownWidth="155dp"
-          android:dropDownVerticalOffset="30dp"
-          android:entryValues="@array/gender_values"
-          android:layout_width="153dp"
-          android:layout_height="wrap_content"
-          android:popupBackground="@color/colorWhite"
-          android:spinnerMode="dropdown" />
-
-
+            android:layout_alignParentEnd="true"
+            android:id="@+id/spinner_gender"
+            android:layout_marginRight="10dp"
+            android:entries="@array/gender_values"
+            android:background="@drawable/spinner_background"
+            android:dropDownWidth="155dp"
+            android:dropDownVerticalOffset="30dp"
+            android:entryValues="@array/gender_values"
+            android:layout_width="153dp"
+            android:layout_height="wrap_content"
+            android:popupBackground="@color/colorWhite"
+            android:spinnerMode="dropdown" />
       </RelativeLayout>
     </LinearLayout>
 
     <RelativeLayout
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_alignParentBottom="true"
-      android:layout_marginBottom="12dp">
-      <Button
-        android:id="@+id/button_go"
-        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:hint="@string/button_text"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:paddingBottom="10dp"
-        android:paddingLeft="50dp"
-        android:paddingRight="50dp"
-        android:background="@drawable/button_background"
-        android:paddingTop="10dp"
-        android:textSize="20sp"
-        android:text="@string/button_text" />
+        android:layout_marginBottom="12dp">
+      <Button
+          android:id="@+id/button_go"
+          style="@style/Widget.AppCompat.Button.Colored"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_alignParentBottom="true"
+          android:hint="@string/button_text"
+          android:layout_marginLeft="10dp"
+          android:layout_marginRight="10dp"
+          android:paddingBottom="10dp"
+          android:paddingLeft="50dp"
+          android:paddingRight="50dp"
+          android:background="@drawable/button_background"
+          android:paddingTop="10dp"
+          android:textSize="20sp"
+          android:text="@string/button_text" />
     </RelativeLayout>
+
   </RelativeLayout>
 
-</android.support.design.widget.CoordinatorLayout>
+  <!-- The navigation drawer -->
+  <ListView android:id="@+id/left_drawer"
+            android:layout_width="250dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:choiceMode="singleChoice"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="0dp"
+            android:background="#fff"/>
+
+</android.support.v4.widget.DrawerLayout>

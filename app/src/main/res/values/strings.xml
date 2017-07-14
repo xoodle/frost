@@ -14,4 +14,6 @@
     <string name="activity_search_result">Result</string>
     <string name="pins_toolbar">Pin</string>
     <string name="copy_email">Copy all Email-IDs</string>
+    <string name="drawer_open">Open Drawer</string>
+    <string name="drawer_close">Close Drawer</string>
 </resources>

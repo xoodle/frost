@@ -45,6 +45,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
+import static android.R.attr.onClick;
+
 public class MainActivity extends AppCompatActivity {
 
   public DbHelper dbHelper;
@@ -130,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
     public void run() {
       try {
         while (!isInterrupted()) {
-          Thread.sleep(3000);
+          Thread.sleep(4800);
           runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -272,6 +274,23 @@ public class MainActivity extends AppCompatActivity {
         break;
       case R.id.about_app:
         // info about app
+        break;
+      case R.id.reset_entries:
+        //reset all entries
+        Spinner sp1 = (Spinner) findViewById(R.id.spinner_dept);
+        sp1.setSelection(0);
+        Spinner sp2 = (Spinner) findViewById(R.id.spinner_hall);
+        sp2.setSelection(0);
+        Spinner sp3 = (Spinner) findViewById(R.id.spinner_year);
+        sp3.setSelection(0);
+        Spinner sp4 = (Spinner) findViewById(R.id.spinner_gender);
+        sp4.setSelection(0);
+        Spinner sp5 = (Spinner) findViewById(R.id.spinner_programme);
+        sp5.setSelection(0);
+        Spinner sp6 = (Spinner) findViewById(R.id.spinner_blood_group);
+        sp6.setSelection(0);
+        EditText editText =(EditText) findViewById(R.id.edit_text);
+        editText.setText("");
         break;
       default:
     }

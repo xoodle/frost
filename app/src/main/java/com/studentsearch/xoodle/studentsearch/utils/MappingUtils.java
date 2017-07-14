@@ -32,19 +32,19 @@ public class MappingUtils {
 
     deptMap = new HashMap<>();
     deptMap.put("", "Departments");
-    deptMap.put("Physics", "PHY");
-    deptMap.put("Materials Science & Engg.", "MSE");
-    deptMap.put("Computer Science & Engg.", "CSE");
-    deptMap.put("Civil Engg.", "CE");
-    deptMap.put("Electrical Engg.", "EE");
+    deptMap.put("Physics", "Physics");
+    deptMap.put("Materials Science & Engg.", "Material Science");
+    deptMap.put("Computer Science & Engg.", "Computer Science");
+    deptMap.put("Civil Engg.", "Civil");
+    deptMap.put("Electrical Engg.", "Electrical");
     deptMap.put("Humanities & Soc. Sciences", "HSS");
-    deptMap.put("Aerospace Engg.", "AE");
-    deptMap.put("Chemical Engg.", "CHE");
-    deptMap.put("Economics", "ECO");
-    deptMap.put("Mechanical Engineering", "ME");
-    deptMap.put("Chemistry", "CHY");
+    deptMap.put("Aerospace Engg.", "Aerospace");
+    deptMap.put("Chemical Engg.", "Chemical");
+    deptMap.put("Economics", "Economics");
+    deptMap.put("Mechanical Engineering", "Mechanical");
+    deptMap.put("Chemistry", "Chemistry");
     deptMap.put("Biol.Sci. And Bio.Engg.", "BSBE");
-    deptMap.put("Earth Sciences","ES");
+    deptMap.put("Earth Sciences","Earth Sciences");
 
     bloodGroupMap = new HashMap<>();
     bloodGroupMap.put("", "Blood Group");
@@ -65,6 +65,8 @@ public class MappingUtils {
     yearMap.put("Y15", "Y15");
     yearMap.put("Y16", "Y16");
     yearMap.put("Y17", "Y17");
+    yearMap.put("YY8", "Y8");
+    yearMap.put("YY9", "Y9");
   }
 
   public Map<String, String> getHallMap() {

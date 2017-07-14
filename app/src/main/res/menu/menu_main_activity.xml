@@ -3,7 +3,11 @@
       xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
-
+<item
+  android:id="@+id/reset_entries"
+  android:title="Reset all entries"
+  android:icon="@drawable/ic_reset"
+  app:showAsAction="ifRoom"/>
   <item
       android:id="@+id/update"
       android:title="Update Database"

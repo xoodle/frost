@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
+import android.media.Image;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
@@ -22,8 +23,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -132,13 +135,18 @@ public class MainActivity extends AppCompatActivity {
     public void run() {
       try {
         while (!isInterrupted()) {
-          Thread.sleep(8800);
+          Thread.sleep(7800);
           runOnUiThread(new Runnable() {
             @Override
             public void run() {
               iv.setImageResource(mThumbIds[i]);
-              Animation fadeIn = AnimationUtils.loadAnimation(MainActivity.this, R.anim.fade_in);
-              iv.startAnimation(fadeIn);
+//              Animation fadeIn = AnimationUtils.loadAnimation(MainActivity.this, R.anim.fade_in);
+//              iv.startAnimation(fadeIn);
+              Animation fadeIn = new AlphaAnimation(0, 1);
+              fadeIn.setInterpolator(new DecelerateInterpolator());
+              fadeIn.setDuration(3000);
+
+              iv.setAnimation(fadeIn);
               i++;
               if (i >= mThumbIds.length) {
                 i = 0;

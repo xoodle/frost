@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:clipToPadding="false"
+  android:scrollbars="none"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+<LinearLayout
+  android:orientation="vertical"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+
+      <TextView
+        android:text="Application Info :"
+        android:textColor="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:textSize="28dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="10dp"/>
+  <TextView
+    android:text="Version : 1.0.0"
+    android:textColor="@color/colorAccentDark"
+    android:layout_width="match_parent"
+    android:textSize="20dp"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="5dp"
+    android:layout_marginStart="10dp"/>
+  <TextView
+    android:text="Developed under PClub IITK"
+    android:textColor="@color/colorPrimary"
+    android:layout_width="match_parent"
+    android:textSize="18dp"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="5dp"
+    android:layout_marginStart="10dp"/>
+  <TextView
+    android:text="This app is open source at: github.com/xoodle/frost"
+    android:textColor="@color/colorPrimary"
+    android:layout_width="match_parent"
+    android:textSize="18dp"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="5dp"
+    android:layout_marginStart="10dp"/>
+      <!--<TextView-->
+        <!--android:id="@id/text_application_info"-->
+        <!--style="@style/textContentStyle"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content" />-->
+
+      <TextView
+        android:text="Developed in IITK by :"
+        android:textColor="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:textSize="28dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="10dp"/>
+  <TextView
+    android:text="Aryan Sharma (Y16)"
+    android:textColor="@color/colorAccent"
+    android:layout_width="match_parent"
+    android:textSize="25dp"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="5dp"
+    android:layout_marginStart="10dp"/>
+  <TextView
+    android:text="saryan@iitk.ac.in|github.com/aryanshar"
+    android:textColor="@color/colorPrimaryDark"
+    android:layout_width="match_parent"
+    android:textSize="18dp"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="5dp"
+    android:layout_marginStart="10dp"/>
+  <TextView
+    android:text="Kaushal Kishore (Y16)"
+    android:textColor="@color/colorAccent"
+    android:layout_width="match_parent"
+    android:textSize="25dp"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:layout_marginStart="10dp"/>
+  <TextView
+    android:text="kaushalk@iitk.ac.in|github.com/kaushal-k"
+    android:textColor="@color/colorPrimaryDark"
+    android:layout_width="match_parent"
+    android:textSize="18dp"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="5dp"
+    android:layout_marginStart="10dp"/>
+  <TextView
+    android:text="Utkarsh Barsaiyan (Y16)"
+    android:textColor="@color/colorAccent"
+    android:layout_width="match_parent"
+    android:textSize="25dp"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:layout_marginStart="10dp"/>
+  <TextView
+    android:text="butkarsh@iitk.ac.in|github.com/ubarsaiyan"
+    android:textColor="@color/colorPrimaryDark"
+    android:layout_width="match_parent"
+    android:textSize="18dp"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="5dp"
+    android:layout_marginStart="10dp"/>
+      <!--<TextView-->
+        <!--android:id="@id/text_developer_info"-->
+        <!--style="@style/textContentStyle"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content" />-->
+      <!--<TextView-->
+        <!--android:text="@string/libraries_title"-->
+        <!--style="@style/HeadlineTextStyle" />-->
+      <!--<TextView-->
+        <!--android:id="@id/text_libraries"-->
+        <!--style="@style/textContentStyle"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content" />-->
+
+  <TextView
+    android:text="Mentoring Credits :"
+    android:textColor="@color/colorPrimary"
+    android:layout_width="match_parent"
+    android:textSize="28dp"
+    android:layout_marginTop="20dp"
+    android:layout_marginStart="10dp"
+    android:layout_height="wrap_content"/>
+  <TextView
+    android:text="Siddharth Ganeriwala"
+    android:textColor="@color/colorAccentDark"
+    android:layout_width="match_parent"
+    android:textSize="18dp"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="5dp"
+    android:layout_marginStart="10dp"/>
+  <TextView
+    android:text="Yash Srivastava"
+    android:textColor="@color/colorAccentDark"
+    android:layout_width="match_parent"
+    android:textSize="18dp"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="5dp"
+    android:layout_marginStart="10dp"/>
+
+  <TextView
+        android:text="License :"
+        android:textColor="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:textSize="28dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="10dp"
+        android:layout_height="wrap_content"/>
+
+  <TextView
+    android:text="MIT License
+
+Copyright (c) 2017 xoodle | PclubIITK
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the SOFTWARE), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED AS IS, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.  "
+    android:textColor="@color/colorPrimary"
+    android:layout_width="match_parent"
+    android:textSize="14dp"
+    android:paddingBottom="20dp"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="5dp"
+    android:layout_marginStart="10dp"/>
+      <!--<TextView-->
+        <!--android:id="@id/text_license"-->
+        <!--style="@style/textContentStyle"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content" />-->
+
+      <!--<TextView-->
+        <!--android:id="@id/text_3rd_party_licenses"-->
+        <!--style="@style/textContentStyle"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content" />-->      <!--<TextView-->
+        <!--android:id="@id/text_privacy_policy"-->
+        <!--style="@style/textContentStyle"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content" />-->
+
+    </LinearLayout>
+
+</ScrollView>

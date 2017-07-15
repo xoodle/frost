@@ -284,6 +284,8 @@ public class MainActivity extends AppCompatActivity {
         break;
       case R.id.about_app:
         // info about app
+        Intent intent = new Intent(this, AboutAppActivity.class);
+        this.startActivity(intent);
         break;
       case R.id.reset_entries:
         //reset all entries

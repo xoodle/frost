@@ -20,8 +20,10 @@
             </intent-filter>
         </activity>
         <activity android:name="com.studentsearch.xoodle.studentsearch.MainActivity">
-         
         </activity>
+      <activity android:name=".AboutAppActivity"
+                android:parentActivityName=".MainActivity"
+                android:label="About App"/>
         <activity android:name=".DetailsActivity"
                   android:parentActivityName=".SearchResultActivity" />
         <activity android:name="com.studentsearch.xoodle.studentsearch.SearchResultActivity"

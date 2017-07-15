@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <item type="id" name="content_frame"/>
+  <item type="id" name="text_application_info" />
+  <item type="id" name="text_developer_info" />
+  <item type="id" name="text_license" />
+  <item type="id" name="text_3rd_party_licenses" />
+  <item type="id" name="text_privacy_policy" />
+</resources>

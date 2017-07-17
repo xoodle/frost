@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <attr name="titleTextSize" format="dimension|reference" />
+    <attr name="contentTextSize" format="dimension|reference" />
     <declare-styleable name="CardSlider">
         <!-- Active card offset from start of RecyclerView. Default value is 50dp. -->
         <attr name="activeCardLeftOffset" format="dimension"/>

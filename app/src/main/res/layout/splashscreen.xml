@@ -5,18 +5,6 @@
                 android:weightSum="1">
 
 
-  <ProgressBar
-    style="?android:attr/progressBarStyleLarge"
-    android:layout_width="53dp"
-    android:layout_height="54dp"
-    android:id="@+id/progressBar"
-    android:max="48"
-    android:progress="1"
-    android:theme="@style/AppTheme.WhiteAccent"
-    android:progressDrawable="@drawable/circular_screen"
-    android:layout_alignParentBottom="true"
-    android:layout_marginBottom="80dp"
-    android:layout_centerHorizontal="true" />
 
   <ImageView
     android:layout_width="wrap_content"

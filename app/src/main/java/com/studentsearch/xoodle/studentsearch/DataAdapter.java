@@ -110,8 +110,6 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
       mDeptView.setText("Dept: "+studentData.getDept()+" - "+studentData.getProgramme());
       mHallView.setText("IITK Address:"+studentData.getRoomNo()+ ", "+studentData.getHall());
       mUserBloodView.setText("Blood Group: "+studentData.getBloodGroup());
-//      mAddressView.setText("Home Address:"+studentData.getAddress());
-//      mUserBloodView.setText("Email: "+studentData.getUserName()+"@iitk.ac.in"+"\n"+"Blood Group: "+studentData.getBloodGroup());
 
       int errID;
       Resources res = context.getResources();

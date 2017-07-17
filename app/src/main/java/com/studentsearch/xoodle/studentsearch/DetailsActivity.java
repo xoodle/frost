@@ -116,8 +116,6 @@ public class DetailsActivity extends AppCompatActivity {
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("plain/text");
         intent.putExtra(Intent.EXTRA_EMAIL, new String[] { email+"@iitk.ac.in" });
-        intent.putExtra(Intent.EXTRA_SUBJECT, "Subject");
-        intent.putExtra(Intent.EXTRA_TEXT, "Email body");
         startActivity(Intent.createChooser(intent, ""));
       }
     });

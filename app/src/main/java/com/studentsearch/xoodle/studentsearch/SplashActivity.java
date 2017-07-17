@@ -1,22 +1,19 @@
 package com.studentsearch.xoodle.studentsearch;
 
-import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 
 /**
  * Created by aryan on 7/6/17.
  */
 
 public class SplashActivity extends AppCompatActivity {
-  ProgressBar mprogressBar;
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -25,11 +22,11 @@ public class SplashActivity extends AppCompatActivity {
     ImageView img =(ImageView)findViewById(R.id.imageView);
     img.setAnimation(anim1);
 
-    mprogressBar = (ProgressBar) findViewById(R.id.progressBar);
-    ObjectAnimator anim = ObjectAnimator.ofInt(mprogressBar, "progress", 0, 100);
-    anim.setDuration(2000);
-    anim.setInterpolator(new DecelerateInterpolator());
-    anim.start();
+//    mprogressBar = (ProgressBar) findViewById(R.id.progressBar);
+//    ObjectAnimator anim = ObjectAnimator.ofInt(mprogressBar, "progress", 0, 100);
+//    anim.setDuration(2000);
+//    anim.setInterpolator(new DecelerateInterpolator());
+//    anim.start();
 
     Handler handler = new Handler();
 

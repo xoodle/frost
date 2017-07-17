@@ -12,7 +12,6 @@ import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
-import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -27,6 +26,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+
 import com.google.gson.Gson;
 import com.studentsearch.xoodle.studentsearch.database.DbHelper;
 import com.studentsearch.xoodle.studentsearch.utils.ConstantUtils;
@@ -63,8 +63,7 @@ public class MainActivity extends AppCompatActivity {
     t.start();
 
     ActionBar ab = getSupportActionBar();
-    Drawable drawable = getResources().getDrawable(R.drawable.ic_menu);
-    DrawableCompat.setTint(drawable, getResources().getColor(R.color.colorWhite));
+    Drawable drawable = getResources().getDrawable(R.mipmap.ic_launcher);
     if (ab != null) {
       ab.setHomeAsUpIndicator(drawable);
       ab.setDisplayHomeAsUpEnabled(true);
@@ -129,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
     public void run() {
       try {
         while (!isInterrupted()) {
-          Thread.sleep(5000);
+          Thread.sleep(4800);
           runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -271,6 +270,25 @@ public class MainActivity extends AppCompatActivity {
         break;
       case R.id.about_app:
         // info about app
+        Intent intent = new Intent(this, AboutAppActivity.class);
+        this.startActivity(intent);
+        break;
+      case R.id.reset_entries:
+        //reset all entries
+        Spinner sp1 = (Spinner) findViewById(R.id.spinner_dept);
+        sp1.setSelection(0);
+        Spinner sp2 = (Spinner) findViewById(R.id.spinner_hall);
+        sp2.setSelection(0);
+        Spinner sp3 = (Spinner) findViewById(R.id.spinner_year);
+        sp3.setSelection(0);
+        Spinner sp4 = (Spinner) findViewById(R.id.spinner_gender);
+        sp4.setSelection(0);
+        Spinner sp5 = (Spinner) findViewById(R.id.spinner_programme);
+        sp5.setSelection(0);
+        Spinner sp6 = (Spinner) findViewById(R.id.spinner_blood_group);
+        sp6.setSelection(0);
+        EditText editText =(EditText) findViewById(R.id.edit_text);
+        editText.setText("");
         break;
       default:
     }

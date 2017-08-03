@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
@@ -61,7 +62,7 @@
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="210dp"
-        android:layout_marginTop="18dp"
+        android:layout_marginTop="12dp"
         android:layout_marginStart="@dimen/recycler_view_left_offset"
         android:clipChildren="false"
         android:overScrollMode="never"
@@ -230,7 +231,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="8dp"
         android:layout_marginBottom="1dp"
         android:orientation="horizontal">
 
@@ -238,7 +239,7 @@
             android:id="@+id/facebook"
             android:clickable="true"
             android:layout_width="0dp"
-            android:layout_height="50dp"
+            android:layout_height="48dp"
             android:layout_weight="1"
             android:layout_gravity="center_horizontal"
             android:src="@drawable/facebook2"/>

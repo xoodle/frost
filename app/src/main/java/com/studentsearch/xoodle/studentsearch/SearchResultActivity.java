@@ -123,8 +123,7 @@ public class SearchResultActivity extends AppCompatActivity {
     protected Void doInBackground(String... filter) {
       try {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        cursor = db.rawQuery(
-                "SELECT * FROM " + DbHelper.TABLE_NAME
+        String query = "SELECT * FROM " + DbHelper.TABLE_NAME
                 + " WHERE (" + DbHelper.COLUMN_NAME + " LIKE \"%"
                 + filter[0] + "%\""
                 + " OR " + DbHelper.COLUMN_ROLL_NO + " LIKE \"%"
@@ -140,11 +139,24 @@ public class SearchResultActivity extends AppCompatActivity {
                 + " AND " + DbHelper.COLUMN_PROGRAMME + " LIKE \"%"
                 + filter[5] + "%\""
                 + " AND " + DbHelper.COLUMN_GENDER + " LIKE \"%"
-                + filter[6] + "%\""
-                + " AND " + DbHelper.COLUMN_YEAR + " LIKE \"%"
-                + filter[7] + "%\"",
-                null
-        );
+                + filter[6] + "%\"";
+        if(!filter[7].equals("Others")) {
+          query = query + " AND " + DbHelper.COLUMN_YEAR + " LIKE \"%"
+                  + filter[7] + "%\"";
+        }
+        else {
+          query = query + " AND ("
+                  + DbHelper.COLUMN_YEAR + "!=\"Y10\" " + "AND "
+                  + DbHelper.COLUMN_YEAR + "!=\"Y11\" " + "AND "
+                  + DbHelper.COLUMN_YEAR + "!=\"Y12\" " + "AND "
+                  + DbHelper.COLUMN_YEAR + "!=\"Y13\" " + "AND "
+                  + DbHelper.COLUMN_YEAR + "!=\"Y14\" " + "AND "
+                  + DbHelper.COLUMN_YEAR + "!=\"Y15\" " + "AND "
+                  + DbHelper.COLUMN_YEAR + "!=\"Y16\" " + "AND "
+                  + DbHelper.COLUMN_YEAR + "!=\"Y17\" " + "AND "
+                  + DbHelper.COLUMN_YEAR + "!=\"Y18\")";
+        }
+        cursor = db.rawQuery(query, null);
         if (cursor.getCount() > 0) {
           cursor.moveToFirst();
           for(int x=1;x<=cursor.getCount();x++,cursor.moveToNext()) {

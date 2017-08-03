@@ -124,6 +124,20 @@ public class SpinnerAdapter extends ArrayAdapter<String> {
             return o1.length() - o2.length();
           }
         };
+      case ConstantUtils.YEAR:
+        return new Comparator<String>() {
+          @Override
+          public int compare(String o1, String o2) {
+            if(o1.equals(""))
+              return -1;
+            else if(o2.equals(""))
+              return 1;
+
+            o1 = ( getMapping().get(o1) != null ) ? (getMapping().get(o1)) : (o1);
+            o2 = ( getMapping().get(o2) != null ) ? (getMapping().get(o2)) : (o2);
+            return o2.compareTo(o1);
+          }
+        };
       default:
         return new Comparator<String>() {
           @Override

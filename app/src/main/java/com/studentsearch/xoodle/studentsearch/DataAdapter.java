@@ -31,17 +31,19 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
     @Override
     public int compare(StudentData s1, StudentData s2) {
       MappingUtils mappingUtils = new MappingUtils();
+      int result;
       Map<String, String> yearMap = mappingUtils.getYearMap();
       if (yearMap.get(s1.getYear()) == null && yearMap.get(s2.getYear()) == null) {
-        return 0;
+        result = 0;
       } else if (yearMap.get(s1.getYear()) == null && yearMap.get(s2.getYear()) != null) {
-        return 1;
+        result = 1;
       } else if(yearMap.get(s1.getYear()) != null && yearMap.get(s2.getYear()) == null) {
-        return -1;
+        result = -1;
       } else {
-        return (yearMap.get(s2.getYear()))
+        result = (yearMap.get(s2.getYear()))
                 .compareTo(yearMap.get(s1.getYear()));
       }
+      return result;
     }
   };
 

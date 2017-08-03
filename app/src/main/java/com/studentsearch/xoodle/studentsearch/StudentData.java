@@ -186,9 +186,6 @@ public class StudentData implements Parcelable {
   }
 
   public void setYear() {
-    if(rollNo.charAt(0) == 'Y')
-      year = rollNo.substring(0, 2);
-    else
-      year = "Y" + rollNo.substring(0, 2);
+    year = "Y" + rollNo.substring(0, 2);
   }
 }

@@ -236,10 +236,13 @@ public class MainActivity extends AppCompatActivity {
     listOfEntries.add("");
     for(int x=0;x<cursor.getCount();x++) {
       tempEntry = cursor.getString(cursor.getColumnIndex(DbHelper.COLUMN_YEAR));
-      if(!tempEntry.equals(""))
-        listOfEntries.add(tempEntry);
+      if(!tempEntry.equals("")) {
+        if(mpu.getYearMap().get(tempEntry) != null)
+          listOfEntries.add(tempEntry);
+      }
       cursor.moveToNext();
     }
+    listOfEntries.add("Others");
     spinnerAdapter = new SpinnerAdapter(this, android.R.layout.simple_spinner_item, listOfEntries, ConstantUtils.YEAR);
     spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
     ((Spinner) findViewById(R.id.spinner_year)).setAdapter(spinnerAdapter);

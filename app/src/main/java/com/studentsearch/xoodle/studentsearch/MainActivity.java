@@ -85,15 +85,25 @@ public class MainActivity extends AppCompatActivity {
       @Override
       public boolean onTouch(View v, MotionEvent event) {
         final int DRAWABLE_RIGHT = 2;
+        final int DRAWABLE_LEFT = 0;
 
         if(event.getAction() == MotionEvent.ACTION_UP) {
-          if(event.getRawX() >= (mEditText.getRight() - mEditText.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
-            // your action here
+          if(event.getRawX() >= (mEditText.getRight() - mEditText.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width()-mEditText.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
             mEditText.setText("");
             return true;
           }
+          if(event.getRawX() <= (mEditText.getCompoundDrawables()[DRAWABLE_LEFT].getBounds().width()+(mEditText.getCompoundDrawables()[DRAWABLE_LEFT].getBounds().width())))
+          {
+            Intent intent = SearchResultActivity.getNewIntent(MainActivity.this);
+            passQueryFilterParams(intent);
+            startActivity(intent);
+            return true;
+          }
+
+
         }
         return false;
+
       }
     });
     mEditText.setOnKeyListener(new View.OnKeyListener()

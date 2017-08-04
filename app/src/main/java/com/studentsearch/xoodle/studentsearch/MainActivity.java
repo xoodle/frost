@@ -2,6 +2,7 @@ package com.studentsearch.xoodle.studentsearch;
 
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.view.View.OnKeyListener;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
@@ -9,7 +10,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
-import android.media.Image;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
@@ -25,12 +25,13 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.view.animation.DecelerateInterpolator;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.studentsearch.xoodle.studentsearch.database.DbHelper;
@@ -48,8 +49,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
-
-import static com.studentsearch.xoodle.studentsearch.R.id.imageView;
+import java.util.Collections;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
   private EditText mEditText;
   private Button mButton;
   private ProgressDialog mProgressDialog;
-  public static Integer[] mThumbIds = {R.drawable.iitk_image_1, R.drawable.iitk_image_2, R.drawable.iitk2,R.drawable.iitk_image_4,R.drawable.iitk_imgiiii, R.drawable.iitk_image_5, R.drawable.iitk_image_6};
+  public static Integer[] mThumbIds = {R.drawable.iitk_image_2, R.drawable.iitk2,R.drawable.iitk_image_4,R.drawable.iitk_imgiiii, R.drawable.iitk_image_5, R.drawable.iitk_image_6};
   public ImageView iv;
   int i;
 
@@ -89,7 +89,9 @@ public class MainActivity extends AppCompatActivity {
 
         if(event.getAction() == MotionEvent.ACTION_UP) {
           if(event.getRawX() >= (mEditText.getRight() - mEditText.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width()-mEditText.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
-            mEditText.setText("");
+            Intent intent = SearchResultActivity.getNewIntent(MainActivity.this);
+            passQueryFilterParams(intent);
+            startActivity(intent);
             return true;
           }
           if(event.getRawX() <= (mEditText.getCompoundDrawables()[DRAWABLE_LEFT].getBounds().width()+(mEditText.getCompoundDrawables()[DRAWABLE_LEFT].getBounds().width())))
@@ -106,26 +108,56 @@ public class MainActivity extends AppCompatActivity {
 
       }
     });
-    mEditText.setOnKeyListener(new View.OnKeyListener()
-    {
-      public boolean onKey(View v, int keyCode, KeyEvent event)
-      {
-        if (event.getAction() == KeyEvent.ACTION_DOWN)
-        {
-          switch (keyCode)
-          {
-            case KeyEvent.KEYCODE_DPAD_CENTER:
-            case KeyEvent.KEYCODE_ENTER:
-              getSearchQuery();
+    mEditText.setFocusableInTouchMode(true);
+    mEditText.requestFocus();
+//    mEditText.setOnKeyListener(new View.OnKeyListener()
+//    {
+//      public boolean onKey(View v, int keyCode, KeyEvent event)
+////      {
+////        if (event.getAction() == KeyEvent.ACTION_DOWN)
+////        {
+////          switch (keyCode)
+////          {
+////            case KeyEvent.KEYCODE_DPAD_CENTER:
+////            case KeyEvent.KEYCODE_ENTER:
+////              getSearchQuery();
+////              Intent intent = SearchResultActivity.getNewIntent(MainActivity.this);
+////              passQueryFilterParams(intent);
+////              startActivity(intent);
+////              return true;
+////            default:
+////              break;
+////          }
+////        }
+////        return false;
+////      }
+//      { if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
+//      (keyCode == KeyEvent.KEYCODE_ENTER)) {
+//      // Perform action on key press
+//        getSearchQuery();
+//              Intent intent = SearchResultActivity.getNewIntent(MainActivity.this);
+//              passQueryFilterParams(intent);
+//              startActivity(intent);
+//      return true;
+//    }
+//        return false;
+//    }
+//    });
+    mEditText.setOnEditorActionListener(new TextView.OnEditorActionListener(){
+      public boolean onEditorAction(TextView exampleView, int actionId, KeyEvent event){
+        if(actionId == EditorInfo.IME_ACTION_DONE
+          || actionId == EditorInfo.IME_NULL
+          || event.getKeyCode() == KeyEvent.KEYCODE_ENTER){
+
+          getSearchQuery();
               Intent intent = SearchResultActivity.getNewIntent(MainActivity.this);
               passQueryFilterParams(intent);
               startActivity(intent);
-              return true;
-            default:
-              break;
-          }
+          //Do something in here
+          return true;
+        } else {
+          return false;
         }
-        return false;
       }
     });
 
@@ -196,6 +228,7 @@ public class MainActivity extends AppCompatActivity {
     for(String s : ConstantUtils.BLOOD_GROUP_LIST) {
       listOfEntries.add(s);
     }
+
     spinnerAdapter = new SpinnerAdapter(this,android.R.layout.simple_spinner_item, listOfEntries, ConstantUtils.BLOOD_GROUP);
     spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
     ((Spinner) findViewById(R.id.spinner_blood_group)).setAdapter(spinnerAdapter);
@@ -210,6 +243,7 @@ public class MainActivity extends AppCompatActivity {
         listOfEntries.add(tempEntry);
       cursor.moveToNext();
     }
+    Collections.sort(listOfEntries);
     spinnerAdapter = new SpinnerAdapter(this, android.R.layout.simple_spinner_item, listOfEntries, ConstantUtils.DEPT);
     spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
     ((Spinner) findViewById(R.id.spinner_dept)).setAdapter(spinnerAdapter);
@@ -225,6 +259,7 @@ public class MainActivity extends AppCompatActivity {
         listOfEntries.add(tempEntry);
       cursor.moveToNext();
     }
+    Collections.sort(listOfEntries);
     spinnerAdapter = new SpinnerAdapter(this, android.R.layout.simple_spinner_item, listOfEntries, ConstantUtils.PROGRAMME);
     spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
     ((Spinner) findViewById(R.id.spinner_programme)).setAdapter(spinnerAdapter);

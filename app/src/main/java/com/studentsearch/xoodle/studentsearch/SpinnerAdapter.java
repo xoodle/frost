@@ -121,7 +121,7 @@ public class SpinnerAdapter extends ArrayAdapter<String> {
             o1 = ( getMapping().get(o1) != null ) ? (getMapping().get(o1)) : (o1);
             o2 = ( getMapping().get(o2) != null ) ? (getMapping().get(o2)) : (o2);
 
-            return o1.length() - o2.length();
+              return o1.compareToIgnoreCase(o2);
           }
         };
       case ConstantUtils.YEAR:

@@ -9,25 +9,31 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:screenOrientation="portrait"
         android:theme="@style/AppTheme">
         <activity
           android:name="com.studentsearch.xoodle.studentsearch.SplashActivity"
-          android:theme="@style/SplashTheme">
+          android:theme="@style/SplashTheme"
+          android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.studentsearch.xoodle.studentsearch.MainActivity">
+        <activity android:name="com.studentsearch.xoodle.studentsearch.MainActivity"
+                  android:screenOrientation="portrait">
         </activity>
       <activity android:name=".AboutAppActivity"
                 android:parentActivityName=".MainActivity"
+                android:screenOrientation="portrait"
                 android:label="About App"/>
         <activity android:name=".DetailsActivity"
+                  android:screenOrientation="portrait"
                   android:parentActivityName=".SearchResultActivity" />
         <activity android:name="com.studentsearch.xoodle.studentsearch.SearchResultActivity"
                   android:label="@string/activity_search_result"
+                  android:screenOrientation="portrait"
                   android:parentActivityName="com.studentsearch.xoodle.studentsearch.MainActivity"/>
     </application>
 

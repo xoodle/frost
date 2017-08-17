@@ -42,6 +42,9 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
       } else {
         result = (yearMap.get(s2.getYear()))
                 .compareTo(yearMap.get(s1.getYear()));
+        if (result == 0) {
+          result = (s1.getRollNo()).compareTo(s2.getRollNo());
+        }
       }
       return result;
     }

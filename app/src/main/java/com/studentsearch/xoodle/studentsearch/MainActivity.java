@@ -2,7 +2,6 @@ package com.studentsearch.xoodle.studentsearch;
 
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
-import android.view.View.OnKeyListener;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
@@ -101,63 +100,18 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
             return true;
           }
-
-
         }
         return false;
-
       }
     });
     mEditText.setFocusableInTouchMode(true);
     mEditText.requestFocus();
-//    mEditText.setOnKeyListener(new View.OnKeyListener()
-//    {
-//      public boolean onKey(View v, int keyCode, KeyEvent event)
-////      {
-////        if (event.getAction() == KeyEvent.ACTION_DOWN)
-////        {
-////          switch (keyCode)
-////          {
-////            case KeyEvent.KEYCODE_DPAD_CENTER:
-////            case KeyEvent.KEYCODE_ENTER:
-////              getSearchQuery();
-////              Intent intent = SearchResultActivity.getNewIntent(MainActivity.this);
-////              passQueryFilterParams(intent);
-////              startActivity(intent);
-////              return true;
-////            default:
-////              break;
-////          }
-////        }
-////        return false;
-////      }
-//      { if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
-//      (keyCode == KeyEvent.KEYCODE_ENTER)) {
-//      // Perform action on key press
-//        getSearchQuery();
-//              Intent intent = SearchResultActivity.getNewIntent(MainActivity.this);
-//              passQueryFilterParams(intent);
-//              startActivity(intent);
-//      return true;
-//    }
-//        return false;
-//    }
-//    });
     mEditText.setOnEditorActionListener(new TextView.OnEditorActionListener(){
       public boolean onEditorAction(TextView exampleView, int actionId, KeyEvent event){
-        if(actionId == EditorInfo.IME_ACTION_DONE
-          || actionId == EditorInfo.IME_NULL
-          || event.getKeyCode() == KeyEvent.KEYCODE_ENTER){
-
-          getSearchQuery();
-              Intent intent = SearchResultActivity.getNewIntent(MainActivity.this);
-              passQueryFilterParams(intent);
-              startActivity(intent);
-          //Do something in here
-          return true;
-        } else {
-          return false;
-        }
+        if(event.getAction() == KeyEvent.ACTION_DOWN && (actionId == EditorInfo.IME_ACTION_DONE || actionId == EditorInfo.IME_NULL || event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) {
+            mButton.performClick();
+            return true;
+        } else return false;
       }
     });
 

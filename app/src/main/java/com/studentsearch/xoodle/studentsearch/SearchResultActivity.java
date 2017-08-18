@@ -129,17 +129,22 @@ public class SearchResultActivity extends AppCompatActivity {
                 + " OR " + DbHelper.COLUMN_ROLL_NO + " LIKE \"%"
                 + filter[0] + "%\""
                 + " OR " + DbHelper.COLUMN_USER_NAME + " LIKE \"%"
-                + filter[0] + "%\")"
-                + " AND " + DbHelper.COLUMN_HALL + " LIKE \"%"
-                + filter[2] + "%\""
-                + " AND " + DbHelper.COLUMN_BLOOD_GROUP + " LIKE \"%"
-                + filter[3] + "%\""
-                + " AND " + DbHelper.COLUMN_DEPT + " LIKE \"%"
-                + filter[4] + "%\""
-                + " AND " + DbHelper.COLUMN_PROGRAMME + " LIKE \"%"
-                + filter[5] + "%\""
-                + " AND " + DbHelper.COLUMN_GENDER + " LIKE \"%"
-                + filter[6] + "%\"";
+                + filter[0] + "%\")";
+        if(!filter[2].equals("")) {
+          query = query + " AND " + DbHelper.COLUMN_HALL + " = \"" + filter[2] + "\"";
+        }
+        if(!filter[3].equals("")) {
+          query = query + " AND " + DbHelper.COLUMN_BLOOD_GROUP + " = \"" + filter[3] + "\"";
+        }
+        if(!filter[4].equals("")) {
+          query = query + " AND " + DbHelper.COLUMN_DEPT + " = \"" + filter[4] + "\"";
+        }
+        if(!filter[5].equals("")) {
+          query = query + " AND " + DbHelper.COLUMN_PROGRAMME + " = \"" + filter[5] + "\"";
+        }
+        if(!filter[6].equals("")) {
+          query = query + " AND " + DbHelper.COLUMN_GENDER + " = \"" + filter[6] + "\"";
+        }
         if(!filter[7].equals("Others")) {
           query = query + " AND " + DbHelper.COLUMN_YEAR + " LIKE \"%"
                   + filter[7] + "%\"";

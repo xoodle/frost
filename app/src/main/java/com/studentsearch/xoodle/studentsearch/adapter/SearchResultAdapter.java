@@ -1,4 +1,4 @@
-package com.studentsearch.xoodle.studentsearch;
+package com.studentsearch.xoodle.studentsearch.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,6 +13,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
+import com.studentsearch.xoodle.studentsearch.DetailsActivity;
+import com.studentsearch.xoodle.studentsearch.R;
+import com.studentsearch.xoodle.studentsearch.StudentData;
 import com.studentsearch.xoodle.studentsearch.utils.ConstantUtils;
 import com.studentsearch.xoodle.studentsearch.utils.MappingUtils;
 
@@ -22,7 +25,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Map;
 
-public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
+public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapter.ViewHolder> {
 
   private ArrayList<StudentData> mStudentData;
   private Context context;
@@ -50,7 +53,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
     }
   };
 
-  public DataAdapter(Context context, ArrayList<StudentData> studentData) {
+  public SearchResultAdapter(Context context, ArrayList<StudentData> studentData) {
     this.context = context;
     this.packageName = context.getPackageName();
     Collections.sort(studentData, comparator);
@@ -58,7 +61,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
   }
 
   @Override
-  public DataAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+  public SearchResultAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
     View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_entries, parent, false);
     return new ViewHolder(view);
   }

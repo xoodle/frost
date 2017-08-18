@@ -1,4 +1,4 @@
-package com.studentsearch.xoodle.studentsearch;
+package com.studentsearch.xoodle.studentsearch.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;

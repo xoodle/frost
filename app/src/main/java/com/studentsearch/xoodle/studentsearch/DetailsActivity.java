@@ -14,9 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextSwitcher;
 import android.widget.TextView;
@@ -29,8 +27,6 @@ import com.studentsearch.xoodle.studentsearch.utils.ConstantUtils;
 import com.studentsearch.xoodle.studentsearch.utils.MappingUtils;
 
 import java.util.ArrayList;
-
-import static android.R.attr.name;
 
 /**
  * Created by kaushal on 7/7/17.
@@ -51,10 +47,6 @@ public class DetailsActivity extends AppCompatActivity {
   private int nameOffset2;
   private long nameAnimDuration;
 
-  private float motionX1, motionX2;
-  private final float MIN_DIST = 150;
-
-  private TextSwitcher yearSwitcher;
   private TextSwitcher deptSwitcher;
   private TextSwitcher hallSwitcher;
   private TextSwitcher rollSwitcher;
@@ -62,29 +54,20 @@ public class DetailsActivity extends AppCompatActivity {
   private TextSwitcher bloodGroupSwitcher;
   private TextSwitcher placeSwitcher;
 
-  private TextView hallText;
-  private TextView rollNo;
-  private TextView bloodGroup;
-  private TextView userName;
-  private TextView address;
   private String name_fb;
   private String email;
 
   private ImageView deptImage;
-
 
   public static Intent getNewIntent(Context context) {
     Intent i = new Intent(context, DetailsActivity.class);
     return i;
   }
 
-
-
   @Override
   protected void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_details);
-//    studentList =  getIntent().getParcelableArrayListExtra(ConstantUtils.STUDENT_LIST);
     studentList = SearchResultActivity.studentDataArrayList;
     currentPosition = getIntent().getIntExtra(ConstantUtils.CARD_SLIDER_POSITION, 0);
     sliderAdapter = new SliderAdapter(this, studentList, new OnCardClickListener());
@@ -92,7 +75,6 @@ public class DetailsActivity extends AppCompatActivity {
     initNameText();
     initSwitchers();
     initImages();
-    initTextViews();
     ImageView imageLogo1 = (ImageView)findViewById(R.id.facebook);
     imageLogo1.setOnClickListener(new View.OnClickListener() {
 
@@ -155,10 +137,6 @@ public class DetailsActivity extends AppCompatActivity {
   }
 
   private void initSwitchers() {
-//    yearSwitcher = (TextSwitcher) findViewById(R.id.ts_year);
-//    yearSwitcher.setFactory(new TextViewFactory(R.style.TemperatureTextView, true));
-//    yearSwitcher.setText(studentList.get(currentPosition).getYear());
-
     deptSwitcher = (TextSwitcher) findViewById(R.id.ts_dept);
     deptSwitcher.setFactory(new TextViewFactory(R.style.PlaceTextView, false));
     deptSwitcher.setCurrentText(studentList.get(currentPosition).getDept().toUpperCase());
@@ -188,21 +166,6 @@ public class DetailsActivity extends AppCompatActivity {
   private void initImages() {
     deptImage = (ImageView) findViewById(R.id.dept_image);
     deptImage.setImageDrawable(getDrawable(R.drawable.ic_dept));
-  }
-
-  private void initTextViews() {
-//    hallText = (TextView) findViewById(R.id.tv_hall);
-//    rollNo = (TextView) findViewById(R.id.tv_roll_no);
-//    bloodGroup = (TextView) findViewById(R.id.tv_blood_group);
-//    userName = (TextView) findViewById(R.id.tv_user_name);
-//    address = (TextView) findViewById(R.id.tv_address);
-
-    StudentData student = studentList.get(currentPosition);
-//    hallText.setText("\u25CF " + student.getHall());
-//    rollNo.setText("\u25CF " + student.getRollNo());
-//    bloodGroup.setText("\u25CF " + student.getBloodGroup());
-//    userName.setText("\u25CF " + student.getUserName());
-//    address.setText("\u25CF " + student.getAddress());
   }
 
   private void setNameText(String text, boolean left2right) {
@@ -261,10 +224,6 @@ public class DetailsActivity extends AppCompatActivity {
 
     setNameText(student.getName().toUpperCase(), left2right);
 
-//    yearSwitcher.setInAnimation(DetailsActivity.this, animH[0]);
-//    yearSwitcher.setOutAnimation(DetailsActivity.this, animH[1]);
-//    yearSwitcher.setText(student.getYear());
-
     deptImage.setImageDrawable(getDrawable(R.drawable.ic_dept));
 
     deptSwitcher.setInAnimation(DetailsActivity.this, animV[0]);
@@ -291,13 +250,6 @@ public class DetailsActivity extends AppCompatActivity {
     placeSwitcher.setOutAnimation(DetailsActivity.this, animV[1]);
     placeSwitcher.setText(student.getAddress().toUpperCase());
 
-//    hallText.setText("\u25CF " + student.getHall());
-//    hallText.setText(student.getHall());
-//    rollNo.setText(student.getRollNo());
-//    bloodGroup.setText(student.getBloodGroup());
-//    userName.setText(student.getUserName());
-//    address.setText(student.getAddress());
-
     currentPosition = pos;
   }
 
@@ -311,43 +263,10 @@ public class DetailsActivity extends AppCompatActivity {
     return true;
   }
 
-  @Override
-  public boolean onTouchEvent(MotionEvent event) {
-    switch (event.getAction()) {
-      case MotionEvent.ACTION_DOWN:
-        motionX1 = event.getX();
-        break;
-      case MotionEvent.ACTION_UP:
-        motionX2 = event.getX();
-        if(Math.abs(motionX1 - motionX2) > MIN_DIST) {
-          if(motionX1 - motionX2 < 0) {
-            moveLeft();
-          } else {
-            moveRight();
-          }
-        }
-    }
-    return super.onTouchEvent(event);
-  }
-
   private class OnCardClickListener implements View.OnClickListener {
     @Override
     public void onClick(View v) {
       // some action
-    }
-  }
-
-  private void moveLeft() {
-    if(currentPosition != 0) {
-      layoutManger.scrollToPosition(--currentPosition);
-      onActiveCardChange(currentPosition);
-    }
-  }
-
-  private void moveRight() {
-    if(currentPosition != studentList.size() - 1) {
-      layoutManger.scrollToPosition(++currentPosition);
-      onActiveCardChange(currentPosition);
     }
   }
 

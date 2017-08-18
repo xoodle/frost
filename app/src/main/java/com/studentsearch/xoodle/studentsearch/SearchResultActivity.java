@@ -11,15 +11,15 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
+
+import com.studentsearch.xoodle.studentsearch.adapter.SearchResultAdapter;
 import com.studentsearch.xoodle.studentsearch.database.DbHelper;
 import java.util.ArrayList;
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
@@ -29,7 +29,7 @@ public class SearchResultActivity extends AppCompatActivity {
   public DbHelper dbHelper;
   RecyclerView.LayoutManager mLinearLayoutManager;
   private RecyclerView mResultRecyclerView;
-  private DataAdapter mDataAdapter;
+  private SearchResultAdapter mSearchResultAdapter;
   public static ArrayList<StudentData> studentDataArrayList;
   private Cursor cursor;
 
@@ -193,8 +193,8 @@ public class SearchResultActivity extends AppCompatActivity {
       if(count > 0) {
         getSupportActionBar().setSubtitle("Displaying " + count + " Results");
 
-        mDataAdapter = new DataAdapter(getApplicationContext(), studentDataArrayList);
-        ScaleInAnimationAdapter scaleAdapter = new ScaleInAnimationAdapter(mDataAdapter);
+        mSearchResultAdapter = new SearchResultAdapter(getApplicationContext(), studentDataArrayList);
+        ScaleInAnimationAdapter scaleAdapter = new ScaleInAnimationAdapter(mSearchResultAdapter);
         scaleAdapter.setFirstOnly(false);
         scaleAdapter.setDuration(300);
         mResultRecyclerView.setAdapter(scaleAdapter);

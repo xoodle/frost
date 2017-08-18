@@ -26,13 +26,10 @@ import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.DecelerateInterpolator;
-import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.TextView;
-
 import com.google.gson.Gson;
 import com.studentsearch.xoodle.studentsearch.database.DbHelper;
 import com.studentsearch.xoodle.studentsearch.utils.ConstantUtils;
@@ -89,9 +86,7 @@ public class MainActivity extends AppCompatActivity {
 
         if(event.getAction() == MotionEvent.ACTION_UP) {
           if(event.getRawX() >= (mEditText.getRight() - mEditText.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width()-mEditText.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
-            Intent intent = SearchResultActivity.getNewIntent(MainActivity.this);
-            passQueryFilterParams(intent);
-            startActivity(intent);
+            mEditText.setText("");
             return true;
           }
           if(event.getRawX() <= (mEditText.getCompoundDrawables()[DRAWABLE_LEFT].getBounds().width()+(mEditText.getCompoundDrawables()[DRAWABLE_LEFT].getBounds().width())))
@@ -110,54 +105,26 @@ public class MainActivity extends AppCompatActivity {
     });
     mEditText.setFocusableInTouchMode(true);
     mEditText.requestFocus();
-//    mEditText.setOnKeyListener(new View.OnKeyListener()
-//    {
-//      public boolean onKey(View v, int keyCode, KeyEvent event)
-////      {
-////        if (event.getAction() == KeyEvent.ACTION_DOWN)
-////        {
-////          switch (keyCode)
-////          {
-////            case KeyEvent.KEYCODE_DPAD_CENTER:
-////            case KeyEvent.KEYCODE_ENTER:
-////              getSearchQuery();
-////              Intent intent = SearchResultActivity.getNewIntent(MainActivity.this);
-////              passQueryFilterParams(intent);
-////              startActivity(intent);
-////              return true;
-////            default:
-////              break;
-////          }
-////        }
-////        return false;
-////      }
-//      { if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
-//      (keyCode == KeyEvent.KEYCODE_ENTER)) {
-//      // Perform action on key press
-//        getSearchQuery();
-//              Intent intent = SearchResultActivity.getNewIntent(MainActivity.this);
-//              passQueryFilterParams(intent);
-//              startActivity(intent);
-//      return true;
-//    }
-//        return false;
-//    }
-//    });
-    mEditText.setOnEditorActionListener(new TextView.OnEditorActionListener(){
-      public boolean onEditorAction(TextView exampleView, int actionId, KeyEvent event){
-        if(actionId == EditorInfo.IME_ACTION_DONE
-          || actionId == EditorInfo.IME_NULL
-          || event.getKeyCode() == KeyEvent.KEYCODE_ENTER){
-
-          getSearchQuery();
+    mEditText.setOnKeyListener(new View.OnKeyListener()
+    {
+      public boolean onKey(View v, int keyCode, KeyEvent event)
+      {
+        if (event.getAction() == KeyEvent.ACTION_DOWN)
+        {
+          switch (keyCode)
+          {
+            case KeyEvent.KEYCODE_DPAD_CENTER:
+            case KeyEvent.KEYCODE_ENTER:
+              getSearchQuery();
               Intent intent = SearchResultActivity.getNewIntent(MainActivity.this);
               passQueryFilterParams(intent);
               startActivity(intent);
-          //Do something in here
-          return true;
-        } else {
-          return false;
+              return true;
+            default:
+              break;
+          }
         }
+        return false;
       }
     });
 
@@ -182,8 +149,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
               iv.setImageResource(mThumbIds[i]);
-//              Animation fadeIn = AnimationUtils.loadAnimation(MainActivity.this, R.anim.fade_in);
-//              iv.startAnimation(fadeIn);
               Animation fadeIn = new AlphaAnimation(0, 1);
               fadeIn.setInterpolator(new DecelerateInterpolator());
               fadeIn.setDuration(3000);

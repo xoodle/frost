@@ -129,19 +129,26 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
 
       File directory = new File(context.getExternalFilesDir(Environment.DIRECTORY_PICTURES), "studentPics");
       File image = new File(directory, studentData.getRollNo() + "_0");
-      if (image.exists()) {
+      Picasso.with(context)
+              .load("http://home.iitk.ac.in/~" + studentData.getUserName() + "/dp")
+              .resize(150,200)
+              .centerCrop()
+              .into(this.mImageView);
+      if(this.mImageView.getDrawable() == null) {
+        if (image.exists()) {
         Log.i("ad", studentData.getRollNo());
         Picasso.with(context)
                 .load(image)
                 .placeholder(errID)
                 .error(errID)
                 .into(this.mImageView);
-      } else {
-        Picasso.with(context)
-                .load("http://oa.cc.iitk.ac.in/Oa/Jsp/Photo/" + studentData.getRollNo() + "_0.jpg")
-                .placeholder(errID)
-                .error(errID)
-                .into(this.mImageView);
+        } else {
+          Picasso.with(context)
+                  .load("http://oa.cc.iitk.ac.in/Oa/Jsp/Photo/" + studentData.getRollNo() + "_0.jpg")
+                  .placeholder(errID)
+                  .error(errID)
+                  .into(this.mImageView);
+        }
       }
     }
 

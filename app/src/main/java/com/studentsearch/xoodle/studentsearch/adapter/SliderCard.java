@@ -59,19 +59,26 @@ public class SliderCard extends RecyclerView.ViewHolder {
 
     File directory = new File(context.getExternalFilesDir(Environment.DIRECTORY_PICTURES), "studentPics");
     File image = new File(directory, studentData.getRollNo() + "_0");
-    if (image.exists()) {
-      Log.i("ad", studentData.getRollNo());
-      Picasso.with(context)
-              .load(image)
-              .placeholder(errID)
-              .error(errID)
-              .into(imageView);
-    } else {
-      Picasso.with(context)
-              .load("http://oa.cc.iitk.ac.in/Oa/Jsp/Photo/" + studentData.getRollNo() + "_0.jpg")
-              .placeholder(errID)
-              .error(errID)
-              .into(imageView);
+    Picasso.with(context)
+            .load("http://home.iitk.ac.in/~" + studentData.getUserName() + "/dp")
+            .resize(150,200)
+            .centerCrop()
+            .into(this.imageView);
+    if(this.imageView.getDrawable() == null) {
+      if (image.exists()) {
+        Log.i("ad", studentData.getRollNo());
+        Picasso.with(context)
+                .load(image)
+                .placeholder(errID)
+                .error(errID)
+                .into(this.imageView);
+      } else {
+        Picasso.with(context)
+                .load("http://oa.cc.iitk.ac.in/Oa/Jsp/Photo/" + studentData.getRollNo() + "_0.jpg")
+                .placeholder(errID)
+                .error(errID)
+                .into(this.imageView);
+      }
     }
   }
 

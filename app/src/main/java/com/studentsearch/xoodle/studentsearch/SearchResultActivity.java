@@ -11,15 +11,15 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
+
+import com.studentsearch.xoodle.studentsearch.adapter.SearchResultAdapter;
 import com.studentsearch.xoodle.studentsearch.database.DbHelper;
 import java.util.ArrayList;
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
@@ -29,7 +29,7 @@ public class SearchResultActivity extends AppCompatActivity {
   public DbHelper dbHelper;
   RecyclerView.LayoutManager mLinearLayoutManager;
   private RecyclerView mResultRecyclerView;
-  private DataAdapter mDataAdapter;
+  private SearchResultAdapter mSearchResultAdapter;
   public static ArrayList<StudentData> studentDataArrayList;
   private Cursor cursor;
 
@@ -129,17 +129,22 @@ public class SearchResultActivity extends AppCompatActivity {
                 + " OR " + DbHelper.COLUMN_ROLL_NO + " LIKE \"%"
                 + filter[0] + "%\""
                 + " OR " + DbHelper.COLUMN_USER_NAME + " LIKE \"%"
-                + filter[0] + "%\")"
-                + " AND " + DbHelper.COLUMN_HALL + " LIKE \"%"
-                + filter[2] + "%\""
-                + " AND " + DbHelper.COLUMN_BLOOD_GROUP + " LIKE \"%"
-                + filter[3] + "%\""
-                + " AND " + DbHelper.COLUMN_DEPT + " LIKE \"%"
-                + filter[4] + "%\""
-                + " AND " + DbHelper.COLUMN_PROGRAMME + " LIKE \"%"
-                + filter[5] + "%\""
-                + " AND " + DbHelper.COLUMN_GENDER + " LIKE \"%"
-                + filter[6] + "%\"";
+                + filter[0] + "%\")";
+        if(!filter[2].equals("")) {
+          query = query + " AND " + DbHelper.COLUMN_HALL + " = \"" + filter[2] + "\"";
+        }
+        if(!filter[3].equals("")) {
+          query = query + " AND " + DbHelper.COLUMN_BLOOD_GROUP + " = \"" + filter[3] + "\"";
+        }
+        if(!filter[4].equals("")) {
+          query = query + " AND " + DbHelper.COLUMN_DEPT + " = \"" + filter[4] + "\"";
+        }
+        if(!filter[5].equals("")) {
+          query = query + " AND " + DbHelper.COLUMN_PROGRAMME + " = \"" + filter[5] + "\"";
+        }
+        if(!filter[6].equals("")) {
+          query = query + " AND " + DbHelper.COLUMN_GENDER + " = \"" + filter[6] + "\"";
+        }
         if(!filter[7].equals("Others")) {
           query = query + " AND " + DbHelper.COLUMN_YEAR + " LIKE \"%"
                   + filter[7] + "%\"";
@@ -193,8 +198,8 @@ public class SearchResultActivity extends AppCompatActivity {
       if(count > 0) {
         getSupportActionBar().setSubtitle("Displaying " + count + " Results");
 
-        mDataAdapter = new DataAdapter(getApplicationContext(), studentDataArrayList);
-        ScaleInAnimationAdapter scaleAdapter = new ScaleInAnimationAdapter(mDataAdapter);
+        mSearchResultAdapter = new SearchResultAdapter(getApplicationContext(), studentDataArrayList);
+        ScaleInAnimationAdapter scaleAdapter = new ScaleInAnimationAdapter(mSearchResultAdapter);
         scaleAdapter.setFirstOnly(false);
         scaleAdapter.setDuration(300);
         mResultRecyclerView.setAdapter(scaleAdapter);

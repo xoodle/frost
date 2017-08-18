@@ -2,7 +2,6 @@ package com.studentsearch.xoodle.studentsearch;
 
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
-import android.view.View.OnKeyListener;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
@@ -26,11 +25,15 @@ import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.DecelerateInterpolator;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
+
 import com.google.gson.Gson;
+import com.studentsearch.xoodle.studentsearch.adapter.SpinnerAdapter;
 import com.studentsearch.xoodle.studentsearch.database.DbHelper;
 import com.studentsearch.xoodle.studentsearch.utils.ConstantUtils;
 import com.studentsearch.xoodle.studentsearch.utils.MappingUtils;
@@ -96,23 +99,17 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
             return true;
           }
-
-
         }
         return false;
-
       }
     });
     mEditText.setFocusableInTouchMode(true);
     mEditText.requestFocus();
     mEditText.setOnKeyListener(new View.OnKeyListener()
     {
-      public boolean onKey(View v, int keyCode, KeyEvent event)
-      {
-        if (event.getAction() == KeyEvent.ACTION_DOWN)
-        {
-          switch (keyCode)
-          {
+      public boolean onKey(View v, int keyCode, KeyEvent event) {
+        if (event.getAction() == KeyEvent.ACTION_DOWN) {
+          switch (keyCode) {
             case KeyEvent.KEYCODE_DPAD_CENTER:
             case KeyEvent.KEYCODE_ENTER:
               getSearchQuery();
@@ -125,8 +122,7 @@ public class MainActivity extends AppCompatActivity {
           }
         }
         return false;
-      }
-    });
+      }});
 
     mButton = (Button) findViewById(R.id.button_go);
     mButton.setOnClickListener(new View.OnClickListener() {

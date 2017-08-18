@@ -37,7 +37,6 @@ public class MappingUtils {
     deptMap.put("Computer Science & Engg.", "Computer Science");
     deptMap.put("Civil Engg.", "Civil");
     deptMap.put("Electrical Engg.", "Electrical");
-    deptMap.put("Humanities & Soc. Sciences", "HSS");
     deptMap.put("Aerospace Engg.", "Aerospace");
     deptMap.put("Chemical Engg.", "Chemical");
     deptMap.put("Economics", "Economics");
@@ -45,6 +44,7 @@ public class MappingUtils {
     deptMap.put("Chemistry", "Chemistry");
     deptMap.put("Biol.Sci. And Bio.Engg.", "BSBE");
     deptMap.put("Earth Sciences","Earth Sciences");
+    deptMap.put("Mathematics", "Mathematics");
 
     bloodGroupMap = new HashMap<>();
     bloodGroupMap.put("", "Blood Group");

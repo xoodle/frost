@@ -135,6 +135,8 @@ public class MainActivity extends AppCompatActivity {
       }
     });
     setFilterSpinnerEntries();
+  if(getIntent().getBooleanExtra("first_launch",false))
+    imageDownloadAlertbox();
   }
   Thread t = new Thread() {
     @Override
@@ -256,6 +258,30 @@ public class MainActivity extends AppCompatActivity {
     cursor.close();
 
   }
+  private void imageDownloadAlertbox() {
+    DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+      @Override
+      public void onClick(DialogInterface dialog, int which) {
+        switch (which) {
+          case DialogInterface.BUTTON_POSITIVE:
+            new ImageDownloader().execute();
+            dialog.dismiss();
+            break;
+
+          case DialogInterface.BUTTON_NEGATIVE:
+            dialog.dismiss();
+            //No button clicked
+            break;
+        }
+      }
+    };
+    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+    builder.setMessage("Do you want to download images now ?")
+            .setNegativeButton("No", dialogClickListener)
+            .setPositiveButton("Yes", dialogClickListener)
+            .create()
+            .show();
+  }
 
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {
@@ -275,9 +301,11 @@ public class MainActivity extends AppCompatActivity {
             switch (which) {
               case DialogInterface.BUTTON_POSITIVE:
                 new ImageDownloader().execute();
+                dialog.dismiss();
                 break;
 
               case DialogInterface.BUTTON_NEGATIVE:
+                dialog.dismiss();
                 //No button clicked
                 break;
             }
@@ -457,28 +485,11 @@ public class MainActivity extends AppCompatActivity {
       super.onPostExecute(aVoid);
       if (mProgressDialog.isShowing())
         mProgressDialog.dismiss();
-      // calling this funtion to execute an dialox box on first launch only.
-      imageDownloadAlertbox();
-    }
 
-    private void imageDownloadAlertbox() {
-      DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
-        @Override
-        public void onClick(DialogInterface dialog, int which) {
-          switch (which) {
-            case DialogInterface.BUTTON_POSITIVE:
-              new ImageDownloader().execute();
-              break;
-
-            case DialogInterface.BUTTON_NEGATIVE:
-              //No button clicked
-              break;
-          }
-        }
-      };
-      AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-      builder.setMessage("Do you want to download images now ?").setNegativeButton("No", dialogClickListener)
-        .setPositiveButton("Yes", dialogClickListener).show();
+      Intent intent = getIntent();
+      intent.putExtra("first_launch",true);
+      finish();
+      startActivity(intent);
     }
   }
 

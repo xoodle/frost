@@ -18,7 +18,7 @@
             android:layout_height="match_parent"
             android:layout_centerVertical="true"
             android:layout_alignParentStart="true"
-            android:layout_toStartOf="@+id/frameLayout">
+            android:layout_alignParentLeft="true">
 
             <TextView
                 android:id="@+id/tv_name_1"
@@ -39,23 +39,6 @@
                 android:layout_gravity="center_vertical"/>
 
         </FrameLayout>
-
-        <!--<FrameLayout-->
-            <!--android:layout_width="85dp"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:layout_alignParentEnd="true"-->
-            <!--android:background="@drawable/ts_year_background"-->
-            <!--android:layout_centerVertical="true"-->
-            <!--android:id="@+id/frameLayout">-->
-
-            <!--<TextSwitcher-->
-                <!--android:id="@+id/ts_year"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_gravity="center"/>-->
-
-        <!--</FrameLayout>-->
-
     </RelativeLayout>
 
     <android.support.v7.widget.RecyclerView
@@ -64,6 +47,7 @@
         android:layout_height="210dp"
         android:layout_marginTop="12dp"
         android:layout_marginStart="@dimen/recycler_view_left_offset"
+        android:layout_marginLeft="@dimen/recycler_view_left_offset"
         android:clipChildren="false"
         android:overScrollMode="never"
         app:layoutManager="com.studentsearch.xoodle.studentsearch.cardslider.CardSliderLayoutManager"
@@ -80,6 +64,7 @@
             android:layout_height="@dimen/image_dimen"
             android:layout_gravity="center_vertical"
             android:layout_marginStart="@dimen/image_left_offset"
+            android:layout_marginLeft="@dimen/image_left_offset"
             android:scaleType="fitCenter"
             android:src="@drawable/ic_dept"
             android:visibility="visible"/>
@@ -91,7 +76,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginStart="@dimen/text_left_offset"/>
+            android:layout_marginStart="@dimen/text_left_offset"
+            android:layout_marginLeft="@dimen/text_left_offset"/>
 
     </FrameLayout>
 
@@ -109,6 +95,7 @@
             android:layout_height="@dimen/image_dimen"
             android:layout_gravity="center_vertical"
             android:layout_marginStart="@dimen/image_left_offset"
+            android:layout_marginLeft="@dimen/image_left_offset"
             android:scaleType="fitCenter"
             android:src="@drawable/ic_room"
             android:visibility="visible"/>
@@ -120,7 +107,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginStart="@dimen/text_left_offset"/>
+            android:layout_marginStart="@dimen/text_left_offset"
+            android:layout_marginLeft="@dimen/text_left_offset"/>
 
     </FrameLayout>
 
@@ -135,6 +123,7 @@
             android:layout_height="@dimen/image_dimen"
             android:layout_gravity="center_vertical"
             android:layout_marginStart="@dimen/image_left_offset"
+            android:layout_marginLeft="@dimen/image_left_offset"
             android:scaleType="fitCenter"
             android:src="@drawable/ic_roll_no"
             android:visibility="visible"/>
@@ -146,7 +135,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginStart="@dimen/text_left_offset"/>
+            android:layout_marginStart="@dimen/text_left_offset"
+            android:layout_marginLeft="@dimen/text_left_offset"/>
 
     </FrameLayout>
 
@@ -161,6 +151,7 @@
             android:layout_height="@dimen/image_dimen"
             android:layout_gravity="center_vertical"
             android:layout_marginStart="@dimen/image_left_offset"
+            android:layout_marginLeft="@dimen/image_left_offset"
             android:scaleType="fitCenter"
             android:src="@drawable/ic_mail"
             android:visibility="visible"/>
@@ -172,7 +163,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginStart="@dimen/text_left_offset"/>
+            android:layout_marginStart="@dimen/text_left_offset"
+            android:layout_marginLeft="@dimen/text_left_offset"/>
 
     </FrameLayout>
 
@@ -187,6 +179,7 @@
             android:layout_height="@dimen/image_dimen"
             android:layout_gravity="center_vertical"
             android:layout_marginStart="@dimen/image_left_offset"
+            android:layout_marginLeft="@dimen/image_left_offset"
             android:scaleType="fitCenter"
             android:src="@drawable/ic_blood_group"
             android:visibility="visible"/>
@@ -198,7 +191,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginStart="@dimen/text_left_offset"/>
+            android:layout_marginStart="@dimen/text_left_offset"
+            android:layout_marginLeft="@dimen/text_left_offset"/>
 
     </FrameLayout>
 
@@ -213,6 +207,7 @@
             android:layout_height="@dimen/image_dimen"
             android:layout_gravity="center_vertical"
             android:layout_marginStart="@dimen/image_left_offset"
+            android:layout_marginLeft="@dimen/image_left_offset"
             android:scaleType="fitCenter"
             android:src="@drawable/ic_home"
             android:visibility="visible"/>
@@ -224,7 +219,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginStart="@dimen/text_left_offset"/>
+            android:layout_marginStart="@dimen/text_left_offset"
+            android:layout_marginLeft="@dimen/text_left_offset"/>
 
     </FrameLayout>
 
@@ -254,140 +250,4 @@
             android:src="@drawable/mail3"/>
 
     </LinearLayout>
-
-
-
-        <!--<FrameLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content">-->
-
-            <!--<ImageView-->
-                <!--android:layout_width="13dp"-->
-                <!--android:layout_height="13dp"-->
-                <!--android:layout_marginStart="@dimen/image_left_offset"-->
-                <!--android:src="@drawable/ic_dept"/>-->
-
-            <!--&lt;!&ndash;<ImageView&ndash;&gt;-->
-                <!--&lt;!&ndash;android:layout_width="13dp"&ndash;&gt;-->
-                <!--&lt;!&ndash;android:layout_height="13dp"&ndash;&gt;-->
-                <!--&lt;!&ndash;android:layout_gravity="center_vertical"&ndash;&gt;-->
-                <!--&lt;!&ndash;android:layout_marginStart="30dp"&ndash;&gt;-->
-                <!--&lt;!&ndash;android:src="@drawable/ic_dept"&ndash;&gt;-->
-                <!--&lt;!&ndash;android:scaleType="fitCenter"/>&ndash;&gt;-->
-
-            <!--<TextView-->
-                <!--android:id="@+id/tv_hall"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:textSize="@dimen/text_size"-->
-                <!--android:layout_gravity="center_vertical"-->
-                <!--android:layout_marginStart="@dimen/text_left_offset"/>-->
-
-        <!--</FrameLayout>-->
-
-    <!--&lt;!&ndash;<LinearLayout&ndash;&gt;-->
-        <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
-        <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
-        <!--&lt;!&ndash;android:orientation="vertical"&ndash;&gt;-->
-        <!--&lt;!&ndash;android:layout_marginTop="8dp"&ndash;&gt;-->
-        <!--&lt;!&ndash;android:layout_marginLeft="@dimen/left_offset">&ndash;&gt;-->
-
-    <!--<FrameLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content">-->
-        <!--<ImageView-->
-            <!--android:layout_width="13dp"-->
-            <!--android:layout_height="13dp"-->
-            <!--android:layout_marginStart="@dimen/image_left_offset"-->
-            <!--android:src="@drawable/ic_dept"/>-->
-
-        <!--<TextView-->
-            <!--android:id="@+id/tv_roll_no"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:textSize="@dimen/text_size"-->
-            <!--android:layout_gravity="center_vertical"-->
-            <!--android:layout_marginStart="@dimen/text_left_offset"/>-->
-    <!--</FrameLayout>-->
-
-    <!--<FrameLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content">-->
-        <!--<ImageView-->
-            <!--android:layout_width="13dp"-->
-            <!--android:layout_height="13dp"-->
-            <!--android:layout_marginStart="@dimen/image_left_offset"-->
-            <!--android:src="@drawable/ic_dept"/>-->
-
-        <!--<TextView-->
-            <!--android:id="@+id/tv_blood_group"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:textSize="@dimen/text_size"-->
-            <!--android:layout_gravity="center_vertical"-->
-            <!--android:layout_marginStart="@dimen/text_left_offset"/>-->
-
-    <!--</FrameLayout>-->
-
-    <!--<FrameLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content">-->
-        <!--<ImageView-->
-            <!--android:layout_width="13dp"-->
-            <!--android:layout_height="13dp"-->
-            <!--android:layout_marginStart="@dimen/image_left_offset"-->
-            <!--android:src="@drawable/ic_dept"/>-->
-        <!--<TextView-->
-            <!--android:id="@+id/tv_user_name"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:textSize="@dimen/text_size"-->
-            <!--android:layout_gravity="center_vertical"-->
-            <!--android:layout_marginStart="@dimen/text_left_offset"/>-->
-    <!--</FrameLayout>-->
-
-    <!--<FrameLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content">-->
-        <!--<ImageView-->
-            <!--android:layout_width="13dp"-->
-            <!--android:layout_height="13dp"-->
-            <!--android:layout_marginStart="@dimen/image_left_offset"-->
-            <!--android:src="@drawable/ic_dept"/>-->
-
-        <!--<TextView-->
-            <!--android:id="@+id/tv_address"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:textSize="@dimen/text_size"-->
-            <!--android:layout_gravity="center_vertical"-->
-            <!--android:layout_marginStart="@dimen/text_left_offset"/>-->
-
-    <!--</FrameLayout>-->
-
-    <!--</LinearLayout>-->
-
-    <!--<FrameLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginTop="15dp">-->
-
-        <!--<ImageView-->
-            <!--android:layout_width="26dp"-->
-            <!--android:layout_height="26dp"-->
-            <!--android:layout_gravity="center_vertical"-->
-            <!--android:layout_marginStart="30dp"-->
-            <!--android:src="@drawable/ic_dept"-->
-            <!--android:scaleType="fitCenter"/>-->
-
-        <!--&lt;!&ndash; Dept &ndash;&gt;-->
-        <!--<TextSwitcher-->
-            <!--android:id="@+id/ts_hall"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_gravity="center_vertical"-->
-            <!--android:layout_marginStart="@dimen/left_offset"/>-->
-
-    <!--</FrameLayout>-->
-
 </LinearLayout>

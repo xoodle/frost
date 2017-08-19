@@ -22,12 +22,6 @@ public class SplashActivity extends AppCompatActivity {
     ImageView img =(ImageView)findViewById(R.id.imageView);
     img.setAnimation(anim1);
 
-//    mprogressBar = (ProgressBar) findViewById(R.id.progressBar);
-//    ObjectAnimator anim = ObjectAnimator.ofInt(mprogressBar, "progress", 0, 100);
-//    anim.setDuration(2000);
-//    anim.setInterpolator(new DecelerateInterpolator());
-//    anim.start();
-
     Handler handler = new Handler();
 
     handler.postDelayed(new Runnable() {
@@ -38,6 +32,6 @@ public class SplashActivity extends AppCompatActivity {
         finish();
 
       }
-    },2000);
+    },1000);
   }
 }

@@ -66,7 +66,6 @@ public class SliderCard extends RecyclerView.ViewHolder {
             .into(this.imageView);
     if(this.imageView.getDrawable() == null) {
       if (image.exists()) {
-        Log.i("ad", studentData.getRollNo());
         Picasso.with(context)
                 .load(image)
                 .placeholder(errID)

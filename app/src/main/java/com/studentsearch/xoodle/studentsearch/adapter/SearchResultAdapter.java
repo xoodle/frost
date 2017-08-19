@@ -3,6 +3,7 @@ package com.studentsearch.xoodle.studentsearch.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.os.AsyncTask;
 import android.os.Environment;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -20,6 +21,9 @@ import com.studentsearch.xoodle.studentsearch.utils.ConstantUtils;
 import com.studentsearch.xoodle.studentsearch.utils.MappingUtils;
 
 import java.io.File;
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -93,7 +97,7 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
   public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     private TextView mNameView, mRollView, mDeptView, mHallView, mUserBloodView;
     private View view;
-    private ImageView mImageView;
+    public ImageView mImageView;
 
     public ViewHolder(View v) {
       super(v);
@@ -112,46 +116,80 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
       // some action
     }
 
-    public void bind(Context context, String packageName, StudentData studentData) {
+    public void bind(Context context, String packageName, final StudentData studentData) {
       mNameView.setText(studentData.getName());
       mRollView.setText("Roll Number: "+studentData.getRollNo());
       mDeptView.setText("Dept: "+studentData.getDept()+" - "+studentData.getProgramme());
       mHallView.setText("IITK Address:"+studentData.getRoomNo()+ ", "+studentData.getHall());
       mUserBloodView.setText("Blood Group: "+studentData.getBloodGroup());
 
-      int errID;
-      Resources res = context.getResources();
-      if (studentData.getGender().equals("M")) {
-        errID = res.getIdentifier("boy", "drawable", packageName);
-      } else {
-        errID = res.getIdentifier("girl", "drawable", packageName);
+      new CheckUserImage(context, packageName, studentData).execute(studentData.getUserName());
+    }
+
+    class CheckUserImage extends AsyncTask<String, Void, Boolean> {
+      Context context;
+      String packageName;
+      StudentData studentData;
+
+      public CheckUserImage(Context context, String packageName, final StudentData studentData){
+        this.context = context;
+        this.packageName = packageName;
+        this.studentData = studentData;
       }
 
-      File directory = new File(context.getExternalFilesDir(Environment.DIRECTORY_PICTURES), "studentPics");
-      File image = new File(directory, studentData.getRollNo() + "_0");
-      Picasso.with(context)
-              .load("http://home.iitk.ac.in/~" + studentData.getUserName() + "/dp")
-              .resize(150,200)
-              .centerCrop()
-              .into(this.mImageView);
-      if(this.mImageView.getDrawable() == null) {
+      protected Boolean doInBackground(String... params) {
+        try {
+          HttpURLConnection connection = (HttpURLConnection) (new URL("http://home.iitk.ac.in/~"+params[0]+"/dp").openConnection());
+          connection.setRequestProperty("User-Agent", "Test");
+          connection.setRequestProperty("Connection", "close");
+          connection.setConnectTimeout(500);
+          connection.connect();
+          if (connection.getResponseCode() == 200) {
+            String contentType = connection.getHeaderField("Content-Type");
+            boolean image = contentType.startsWith("image/");
+            if(image) {
+              return true;
+            }
+          }
+        } catch (IOException e) {
+          Log.e("test","not able to connect");
+        }
+        return false;
+      }
+
+      protected void onPostExecute(Boolean imageURLAvailable){
+        int errID;
+        Resources res = context.getResources();
+        if (studentData.getGender().equals("M")) {
+          errID = res.getIdentifier("boy", "drawable", packageName);
+        } else {
+          errID = res.getIdentifier("girl", "drawable", packageName);
+        }
+
+        File directory = new File(context.getExternalFilesDir(Environment.DIRECTORY_PICTURES), "studentPics");
+        File image = new File(directory, studentData.getRollNo() + "_0");
+
         if (image.exists()) {
-        Log.i("ad", studentData.getRollNo());
-        Picasso.with(context)
-                .load(image)
-                .placeholder(errID)
-                .error(errID)
-                .into(this.mImageView);
+          Picasso.with(context)
+                  .load(image)
+                  .placeholder(errID)
+                  .error(errID)
+                  .into(mImageView);
+        } else if (imageURLAvailable) {
+          Picasso.with(context)
+                  .load("http://home.iitk.ac.in/~" + studentData.getUserName() + "/dp")
+                  .resize(150,200)
+                  .centerCrop()
+                  .into(mImageView);
         } else {
           Picasso.with(context)
                   .load("http://oa.cc.iitk.ac.in/Oa/Jsp/Photo/" + studentData.getRollNo() + "_0.jpg")
                   .placeholder(errID)
                   .error(errID)
-                  .into(this.mImageView);
+                  .into(mImageView);
         }
       }
     }
-
     private View getView() {
       return view;
     }

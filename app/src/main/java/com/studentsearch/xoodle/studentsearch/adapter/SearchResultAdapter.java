@@ -50,7 +50,13 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
         result = (yearMap.get(s2.getYear()))
                 .compareTo(yearMap.get(s1.getYear()));
         if (result == 0) {
-          result = (s1.getRollNo()).compareTo(s2.getRollNo());
+          String r1 = s1.getRollNo();
+          String r2 = s2.getRollNo();
+          try {
+            result = Integer.parseInt(r1) - Integer.parseInt(r2);
+          } catch (Exception e) {
+            result = r1.compareTo(r2);
+          }
         }
       }
       return result;

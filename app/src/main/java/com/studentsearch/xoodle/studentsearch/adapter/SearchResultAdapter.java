@@ -189,7 +189,7 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
                   .into(mImageView);
         } else {
           Picasso.with(context)
-                  .load("http://oa.cc.iitk.ac.in/Oa/Jsp/Photo/" + studentData.getRollNo() + "_0.jpg")
+                  .load("https://oa.cc.iitk.ac.in/Oa/Jsp/Photo/" + studentData.getRollNo() + "_0.jpg")
                   .placeholder(errID)
                   .error(errID)
                   .into(mImageView);

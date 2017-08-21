@@ -456,7 +456,6 @@ public class MainActivity extends AppCompatActivity {
       super.onPostExecute(aVoid);
       if (mProgressDialog.isShowing())
         mProgressDialog.dismiss();
-      recreate();
       // calling this funtion to execute an dialox box on first launch only.
       imageDownloadAlertbox();
     }

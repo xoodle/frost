@@ -73,7 +73,7 @@ public class SliderCard extends RecyclerView.ViewHolder {
                 .into(this.imageView);
       } else {
         Picasso.with(context)
-                .load("http://oa.cc.iitk.ac.in/Oa/Jsp/Photo/" + studentData.getRollNo() + "_0.jpg")
+                .load("https://oa.cc.iitk.ac.in/Oa/Jsp/Photo/" + studentData.getRollNo() + "_0.jpg")
                 .placeholder(errID)
                 .error(errID)
                 .into(this.imageView);

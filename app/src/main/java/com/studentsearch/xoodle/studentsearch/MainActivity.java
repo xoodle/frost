@@ -456,7 +456,6 @@ public class MainActivity extends AppCompatActivity {
       super.onPostExecute(aVoid);
       if (mProgressDialog.isShowing())
         mProgressDialog.dismiss();
-      recreate();
       // calling this funtion to execute an dialox box on first launch only.
       imageDownloadAlertbox();
     }
@@ -525,7 +524,7 @@ public class MainActivity extends AppCompatActivity {
       for (int x = 0; x < total; x++) {
         String rollno = cursor.getString(cursor.getColumnIndex(DbHelper.COLUMN_ROLL_NO));
         try {
-          InputStream in = new java.net.URL("http://oa.cc.iitk.ac.in/Oa/Jsp/Photo/" + rollno + "_0.jpg").openStream();
+          InputStream in = new java.net.URL("https://oa.cc.iitk.ac.in/Oa/Jsp/Photo/" + rollno + "_0.jpg").openStream();
           mIcon = BitmapFactory.decodeStream(in);
 
           try {

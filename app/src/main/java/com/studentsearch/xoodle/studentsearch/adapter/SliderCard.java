@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import com.squareup.picasso.Picasso;
 import com.studentsearch.xoodle.studentsearch.R;
 import com.studentsearch.xoodle.studentsearch.StudentData;
+import com.studentsearch.xoodle.studentsearch.utils.ConstantUtils;
 import com.studentsearch.xoodle.studentsearch.utils.DecodeBitmapTask;
 import java.io.File;
 
@@ -73,7 +74,7 @@ public class SliderCard extends RecyclerView.ViewHolder {
                 .into(this.imageView);
       } else {
         Picasso.with(context)
-                .load("https://oa.cc.iitk.ac.in/Oa/Jsp/Photo/" + studentData.getRollNo() + "_0.jpg")
+                .load(ConstantUtils.ImageUrl + studentData.getRollNo() + "_0.jpg")
                 .placeholder(errID)
                 .error(errID)
                 .into(this.imageView);

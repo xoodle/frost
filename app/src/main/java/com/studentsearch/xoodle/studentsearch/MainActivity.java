@@ -51,6 +51,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 
+
 public class MainActivity extends AppCompatActivity {
 
   public DbHelper dbHelper;
@@ -524,7 +525,7 @@ public class MainActivity extends AppCompatActivity {
       for (int x = 0; x < total; x++) {
         String rollno = cursor.getString(cursor.getColumnIndex(DbHelper.COLUMN_ROLL_NO));
         try {
-          InputStream in = new java.net.URL("https://oa.cc.iitk.ac.in/Oa/Jsp/Photo/" + rollno + "_0.jpg").openStream();
+          InputStream in = new java.net.URL(ConstantUtils.ImageUrl + rollno + "_0.jpg").openStream();
           mIcon = BitmapFactory.decodeStream(in);
 
           try {

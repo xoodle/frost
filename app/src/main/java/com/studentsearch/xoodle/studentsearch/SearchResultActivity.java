@@ -8,6 +8,7 @@ import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -110,7 +111,7 @@ public class SearchResultActivity extends AppCompatActivity {
   }
 
   private void performQuery(String filter[]) throws Resources.NotFoundException, NullPointerException {
-    new AsyncStudentSearch().execute(filter);
+      new AsyncStudentSearch().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,filter);
   }
 
   public class AsyncStudentSearch extends AsyncTask<String, Void, Void> {

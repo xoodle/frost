@@ -264,7 +264,7 @@ public class MainActivity extends AppCompatActivity {
       public void onClick(DialogInterface dialog, int which) {
         switch (which) {
           case DialogInterface.BUTTON_POSITIVE:
-            new ImageDownloader().execute();
+            new ImageDownloader().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
             dialog.dismiss();
             break;
 

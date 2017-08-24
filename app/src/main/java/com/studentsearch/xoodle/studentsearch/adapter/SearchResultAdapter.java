@@ -129,7 +129,7 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
       mHallView.setText("IITK Address:"+studentData.getRoomNo()+ ", "+studentData.getHall());
       mUserBloodView.setText("Blood Group: "+studentData.getBloodGroup());
 
-      new CheckUserImage(context, packageName, studentData).execute(studentData.getUserName());
+      new CheckUserImage(context, packageName, studentData).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,studentData.getUserName());
     }
 
     class CheckUserImage extends AsyncTask<String, Void, Boolean> {

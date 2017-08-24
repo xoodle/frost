@@ -110,7 +110,7 @@ public class SearchResultActivity extends AppCompatActivity {
   }
 
   private void performQuery(String filter[]) throws Resources.NotFoundException, NullPointerException {
-    new AsyncStudentSearch().execute(filter);
+    new AsyncStudentSearch().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, filter);
   }
 
   public class AsyncStudentSearch extends AsyncTask<String, Void, Void> {

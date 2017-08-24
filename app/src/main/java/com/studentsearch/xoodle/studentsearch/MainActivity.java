@@ -25,12 +25,10 @@ import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.DecelerateInterpolator;
-import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.studentsearch.xoodle.studentsearch.adapter.SpinnerAdapter;
@@ -50,7 +48,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
-
 
 public class MainActivity extends AppCompatActivity {
 
@@ -274,7 +271,7 @@ public class MainActivity extends AppCompatActivity {
           public void onClick(DialogInterface dialog, int which) {
             switch (which) {
               case DialogInterface.BUTTON_POSITIVE:
-                new ImageDownloader().execute();
+                new ImageDownloader().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                 break;
 
               case DialogInterface.BUTTON_NEGATIVE:
@@ -368,7 +365,7 @@ public class MainActivity extends AppCompatActivity {
   }
 
   private void refreshDatabase() {
-    new JsonTask().execute("https://search.pclub.in/api/students");
+      new JsonTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, "https://search.pclub.in/api/students");
   }
 
   public class JsonTask extends AsyncTask<String, String, String> {
@@ -437,7 +434,7 @@ public class MainActivity extends AppCompatActivity {
         dialog.show();
       } else {
         mProgressDialog.setMessage("Preparing database...\nIt may take some time");
-        new WriteDatabaseAsync().execute(result);
+        new WriteDatabaseAsync().executeOnExecutor(THREAD_POOL_EXECUTOR, result);
       }
     }
   }
@@ -445,6 +442,9 @@ public class MainActivity extends AppCompatActivity {
   public class WriteDatabaseAsync extends AsyncTask<String, Void, Void> {
     @Override
     protected Void doInBackground(String... json) {
+      if(isCancelled()) {
+        return null;
+      }
       Gson gson = new Gson();
       StudentData[] students = gson.fromJson(json[0], StudentData[].class);
       dbHelper = DbHelper.getDbHelperInstance(getApplicationContext(), "students", 1);
@@ -457,6 +457,7 @@ public class MainActivity extends AppCompatActivity {
       super.onPostExecute(aVoid);
       if (mProgressDialog.isShowing())
         mProgressDialog.dismiss();
+      setFilterSpinnerEntries();
       // calling this funtion to execute an dialox box on first launch only.
       imageDownloadAlertbox();
     }
@@ -467,7 +468,7 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(DialogInterface dialog, int which) {
           switch (which) {
             case DialogInterface.BUTTON_POSITIVE:
-              new ImageDownloader().execute();
+              new ImageDownloader().executeOnExecutor(THREAD_POOL_EXECUTOR);
               break;
 
             case DialogInterface.BUTTON_NEGATIVE:
@@ -493,12 +494,21 @@ public class MainActivity extends AppCompatActivity {
       imageDownloaderDialog.setIndeterminate(false);
       imageDownloaderDialog.setCancelable(false);
       imageDownloaderDialog.setMax(100);
-      imageDownloaderDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Do in Background", new DialogInterface.OnClickListener() {
+      DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
         @Override
         public void onClick(DialogInterface dialog, int which) {
-          dialog.dismiss();
+          switch (which) {
+            case DialogInterface.BUTTON_NEUTRAL:
+              dialog.dismiss();
+              break;
+            case DialogInterface.BUTTON_NEGATIVE:
+              cancel(true);
+              break;
+          }
         }
-      });
+      };
+      imageDownloaderDialog.setButton(DialogInterface.BUTTON_NEUTRAL, "Do in background", listener);
+      imageDownloaderDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Cancel", listener);
       imageDownloaderDialog.show();
       super.onPreExecute();
     }
@@ -523,6 +533,10 @@ public class MainActivity extends AppCompatActivity {
       final int total = cursor.getCount();
 
       for (int x = 0; x < total; x++) {
+        if (isCancelled()) {
+          Log.i("ImageDownloader", "getPics: cancelled");
+          break;
+        }
         String rollno = cursor.getString(cursor.getColumnIndex(DbHelper.COLUMN_ROLL_NO));
         try {
           InputStream in = new java.net.URL(ConstantUtils.ImageUrl + rollno + "_0.jpg").openStream();
@@ -554,12 +568,6 @@ public class MainActivity extends AppCompatActivity {
 
         publishProgress((int) ((x * 100) / total));
         cursor.moveToNext();
-
-        if (isCancelled()) {
-          Log.i("ImageDownloader", "getPics: cancelled");
-          break;
-        }
-
       }
       cursor.close();
       Log.i("ImageDownloader", "getPics: done");

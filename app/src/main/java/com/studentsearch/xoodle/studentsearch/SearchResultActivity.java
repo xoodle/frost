@@ -8,7 +8,6 @@ import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -19,7 +18,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
-
 import com.studentsearch.xoodle.studentsearch.adapter.SearchResultAdapter;
 import com.studentsearch.xoodle.studentsearch.database.DbHelper;
 import java.util.ArrayList;
@@ -111,14 +109,10 @@ public class SearchResultActivity extends AppCompatActivity {
   }
 
   private void performQuery(String filter[]) throws Resources.NotFoundException, NullPointerException {
-      new AsyncStudentSearch().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,filter);
+    new AsyncStudentSearch().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, filter);
   }
 
   public class AsyncStudentSearch extends AsyncTask<String, Void, Void> {
-    @Override
-    protected void onPreExecute() {
-      super.onPreExecute();
-    }
 
     @Override
     protected Void doInBackground(String... filter) {

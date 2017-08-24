@@ -19,7 +19,6 @@ import android.widget.ImageView;
 import android.widget.TextSwitcher;
 import android.widget.TextView;
 import android.widget.ViewSwitcher;
-
 import com.studentsearch.xoodle.studentsearch.adapter.SliderAdapter;
 import com.studentsearch.xoodle.studentsearch.cardslider.CardSliderLayoutManager;
 import com.studentsearch.xoodle.studentsearch.cardslider.CardSnapHelper;
@@ -33,7 +32,6 @@ import java.util.ArrayList;
  */
 
 public class DetailsActivity extends AppCompatActivity {
-  private MappingUtils mappingUtils = new MappingUtils();
 
   ArrayList<StudentData> studentList;
   private SliderAdapter sliderAdapter;

@@ -12,14 +12,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.squareup.picasso.Picasso;
 import com.studentsearch.xoodle.studentsearch.DetailsActivity;
 import com.studentsearch.xoodle.studentsearch.R;
 import com.studentsearch.xoodle.studentsearch.StudentData;
 import com.studentsearch.xoodle.studentsearch.utils.ConstantUtils;
 import com.studentsearch.xoodle.studentsearch.utils.MappingUtils;
-
 import java.io.File;
 import java.io.IOException;
 import java.net.HttpURLConnection;
@@ -83,7 +81,6 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
       @Override
       public void onClick(View v) {
         Intent intent = DetailsActivity.getNewIntent(context);
-//        intent.putParcelableArrayListExtra(ConstantUtils.STUDENT_LIST, mStudentData);
         intent.putExtra(ConstantUtils.CARD_SLIDER_POSITION, position);
         v.getContext().startActivity(intent);
       }
@@ -112,7 +109,6 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
       mRollView = (TextView) v.findViewById(R.id.tv_roll);
       mDeptView = (TextView) v.findViewById(R.id.tv_dept);
       mHallView = (TextView) v.findViewById(R.id.tv_hall);
-//      mAddressView = (TextView) v.findViewById(R.id.tv_address);
       mUserBloodView = (TextView) v.findViewById(R.id.tv_user_blood);
       mImageView = (ImageView) v.findViewById(R.id.user_image);
     }

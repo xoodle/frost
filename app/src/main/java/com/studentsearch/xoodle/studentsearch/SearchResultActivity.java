@@ -18,7 +18,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
-
 import com.studentsearch.xoodle.studentsearch.adapter.SearchResultAdapter;
 import com.studentsearch.xoodle.studentsearch.database.DbHelper;
 import java.util.ArrayList;
@@ -114,10 +113,6 @@ public class SearchResultActivity extends AppCompatActivity {
   }
 
   public class AsyncStudentSearch extends AsyncTask<String, Void, Void> {
-    @Override
-    protected void onPreExecute() {
-      super.onPreExecute();
-    }
 
     @Override
     protected Void doInBackground(String... filter) {

@@ -6,16 +6,12 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Environment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -29,29 +25,18 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
-
-import com.google.gson.Gson;
 import com.studentsearch.xoodle.studentsearch.adapter.SpinnerAdapter;
+import com.studentsearch.xoodle.studentsearch.asynctask.Container;
+import com.studentsearch.xoodle.studentsearch.asynctask.FetchData;
+import com.studentsearch.xoodle.studentsearch.asynctask.ImageDownloader;
 import com.studentsearch.xoodle.studentsearch.database.DbHelper;
 import com.studentsearch.xoodle.studentsearch.utils.ConstantUtils;
 import com.studentsearch.xoodle.studentsearch.utils.MappingUtils;
-
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements Container {
 
-  public DbHelper dbHelper;
   private EditText mEditText;
   private Button mButton;
   private ProgressDialog mProgressDialog;
@@ -160,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
     }
   };
 
-  private void setFilterSpinnerEntries() {
+  public void setFilterSpinnerEntries() {
     SQLiteDatabase db = DbHelper.getDbHelperInstance(this, DbHelper.TABLE_NAME, 1).getReadableDatabase();
     ArrayList<String> listOfEntries;
     SpinnerAdapter spinnerAdapter;
@@ -271,7 +256,7 @@ public class MainActivity extends AppCompatActivity {
           public void onClick(DialogInterface dialog, int which) {
             switch (which) {
               case DialogInterface.BUTTON_POSITIVE:
-                new ImageDownloader().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+                new ImageDownloader(MainActivity.this).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                 break;
 
               case DialogInterface.BUTTON_NEGATIVE:
@@ -365,236 +350,6 @@ public class MainActivity extends AppCompatActivity {
   }
 
   private void refreshDatabase() {
-      new JsonTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, "https://search.pclub.in/api/students");
-  }
-
-  public class JsonTask extends AsyncTask<String, String, String> {
-    protected void onPreExecute() {
-      super.onPreExecute();
-      mProgressDialog = new ProgressDialog(MainActivity.this);
-      mProgressDialog.setMessage("Getting data from the net...\nMake sure you are connected to IITK network");
-      mProgressDialog.setCancelable(false);
-      mProgressDialog.show();
-    }
-
-    protected String doInBackground(String... params) {
-      HttpURLConnection connection = null;
-      BufferedReader reader = null;
-
-      try {
-        URL url = new URL(params[0]);
-        connection = (HttpURLConnection) url.openConnection();
-        connection.connect();
-
-        InputStream stream = connection.getInputStream();
-        reader = new BufferedReader(new InputStreamReader(stream));
-
-        StringBuffer buffer = new StringBuffer();
-        String line = "";
-
-        while ((line = reader.readLine()) != null) {
-          buffer.append(line + "\n");
-          Log.d("Response: ", "> " + line);   //here you will get the whole response
-        }
-        return buffer.toString();
-      } catch (MalformedURLException e) {
-        e.printStackTrace();
-      } catch (IOException e) {
-        e.printStackTrace();
-      } finally {
-        if (connection != null) {
-          connection.disconnect();
-        }
-        try {
-          if (reader != null) {
-            reader.close();
-          }
-        } catch (IOException e) {
-          e.printStackTrace();
-        }
-      }
-      return null;
-    }
-
-    @Override
-    protected void onPostExecute(String result) {
-      super.onPostExecute(result);
-      if(result == null) {
-        mProgressDialog.dismiss();
-        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-        builder.setMessage("Please connect to the internet and try again");
-        AlertDialog dialog = builder.create();
-        dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
-          @Override
-          public void onCancel(DialogInterface dialog) {
-            // or anything else appropriate
-            finish();
-          }
-        });
-        dialog.show();
-      } else {
-        mProgressDialog.setMessage("Preparing database...\nIt may take some time");
-        new WriteDatabaseAsync().executeOnExecutor(THREAD_POOL_EXECUTOR, result);
-      }
-    }
-  }
-
-  public class WriteDatabaseAsync extends AsyncTask<String, Void, Void> {
-    @Override
-    protected Void doInBackground(String... json) {
-      if(isCancelled()) {
-        return null;
-      }
-      Gson gson = new Gson();
-      StudentData[] students = gson.fromJson(json[0], StudentData[].class);
-      dbHelper = DbHelper.getDbHelperInstance(getApplicationContext(), "students", 1);
-      dbHelper.insertStudents(students);
-      return null;
-    }
-
-    @Override
-    protected void onPostExecute(Void aVoid) {
-      super.onPostExecute(aVoid);
-      if (mProgressDialog.isShowing())
-        mProgressDialog.dismiss();
-      setFilterSpinnerEntries();
-      // calling this funtion to execute an dialox box on first launch only.
-      imageDownloadAlertbox();
-    }
-
-    private void imageDownloadAlertbox() {
-      DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
-        @Override
-        public void onClick(DialogInterface dialog, int which) {
-          switch (which) {
-            case DialogInterface.BUTTON_POSITIVE:
-              new ImageDownloader().executeOnExecutor(THREAD_POOL_EXECUTOR);
-              break;
-
-            case DialogInterface.BUTTON_NEGATIVE:
-              //No button clicked
-              break;
-          }
-        }
-      };
-      AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-      builder.setMessage("Do you want to download images now ?").setNegativeButton("No", dialogClickListener)
-        .setPositiveButton("Yes", dialogClickListener).show();
-    }
-  }
-
-  public class ImageDownloader extends AsyncTask<Void, Integer, Void> {
-
-    ProgressDialog imageDownloaderDialog = new ProgressDialog(MainActivity.this);
-
-    @Override
-    protected void onPreExecute() {
-      imageDownloaderDialog.setTitle("Fetching Images...");
-      imageDownloaderDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-      imageDownloaderDialog.setIndeterminate(false);
-      imageDownloaderDialog.setCancelable(false);
-      imageDownloaderDialog.setMax(100);
-      DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
-        @Override
-        public void onClick(DialogInterface dialog, int which) {
-          switch (which) {
-            case DialogInterface.BUTTON_NEUTRAL:
-              dialog.dismiss();
-              break;
-            case DialogInterface.BUTTON_NEGATIVE:
-              cancel(true);
-              break;
-          }
-        }
-      };
-      imageDownloaderDialog.setButton(DialogInterface.BUTTON_NEUTRAL, "Do in background", listener);
-      imageDownloaderDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Cancel", listener);
-      imageDownloaderDialog.show();
-      super.onPreExecute();
-    }
-
-    @Override
-    protected Void doInBackground(Void... arg0) {
-      Bitmap mIcon;
-      File directory = null;
-
-      if (isExternalStorageWritable()) {
-        directory = new File(getApplicationContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES), "studentPics");
-      } else {
-        return null;
-      }
-      if (!directory.mkdirs()) {
-        Log.e("imageDownloader", "Directory not created");
-      }
-
-      SQLiteDatabase db = DbHelper.getDbHelperInstance(getApplicationContext(), DbHelper.TABLE_NAME, 1).getReadableDatabase();
-      Cursor cursor = db.rawQuery("SELECT ALL " + DbHelper.COLUMN_ROLL_NO + " FROM " + DbHelper.TABLE_NAME, null);
-      cursor.moveToFirst();
-      final int total = cursor.getCount();
-
-      for (int x = 0; x < total; x++) {
-        if (isCancelled()) {
-          Log.i("ImageDownloader", "getPics: cancelled");
-          break;
-        }
-        String rollno = cursor.getString(cursor.getColumnIndex(DbHelper.COLUMN_ROLL_NO));
-        try {
-          InputStream in = new java.net.URL(ConstantUtils.ImageUrl + rollno + "_0.jpg").openStream();
-          mIcon = BitmapFactory.decodeStream(in);
-
-          try {
-            File imageFile = new File(directory, rollno + "_0"); // Create image file
-            FileOutputStream out = new FileOutputStream(imageFile);
-            mIcon.compress(
-                    Bitmap.CompressFormat.JPEG,
-                    100, out);
-            out.flush();
-            out.close();
-          } catch (FileNotFoundException e) {
-            Log.e("ImageDownloader", "doInBackground: File Not Found");
-            cursor.moveToNext();
-            continue;
-          } catch (IOException e) {
-            Log.e("ImageDownloader", "doInBackground: IO Exception");
-            cursor.moveToNext();
-            continue;
-          }
-
-        } catch (Exception e) {
-          Log.e("ImageDownloader", "doInBackground: " + rollno + " Error" + e);
-          cursor.moveToNext();
-          continue;
-        }
-
-        publishProgress((int) ((x * 100) / total));
-        cursor.moveToNext();
-      }
-      cursor.close();
-      Log.i("ImageDownloader", "getPics: done");
-      return null;
-    }
-
-    protected void onProgressUpdate(Integer... values) {
-      imageDownloaderDialog.setProgress(values[0]);
-    }
-
-    @Override
-    protected void onPostExecute(Void result) {
-      imageDownloaderDialog.dismiss();
-      super.onPostExecute(result);
-    }
-
-    /* Checks if external storage is available for read and write */
-    public boolean isExternalStorageWritable() {
-      String state = Environment.getExternalStorageState();
-      return Environment.MEDIA_MOUNTED.equals(state);
-    }
-
-    /* Checks if external storage is available to at least read */
-    public boolean isExternalStorageReadable() {
-      String state = Environment.getExternalStorageState();
-      return Environment.MEDIA_MOUNTED.equals(state) ||
-              Environment.MEDIA_MOUNTED_READ_ONLY.equals(state);
-    }
+      new FetchData(this, mProgressDialog).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, "https://search.pclub.in/api/students");
   }
 }

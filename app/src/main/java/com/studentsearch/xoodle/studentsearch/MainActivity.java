@@ -12,6 +12,9 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -64,6 +67,19 @@ public class MainActivity extends AppCompatActivity implements Container {
     }
 
     mEditText = (EditText) findViewById(R.id.edit_text);
+    mEditText.addTextChangedListener(new TextWatcher() {
+      @Override
+      public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+  
+      @Override
+      public void onTextChanged(CharSequence s, int start, int before, int count) {}
+  
+      @Override
+      public void afterTextChanged(Editable s) {
+        if(mEditText.getText()==null || mEditText.getText().equals("")) mEditText.getCompoundDrawables()[2].setAlpha(0);
+        else if(mEditText.getText() != null && !mEditText.getText().equals("")) mEditText.getCompoundDrawables()[2].setAlpha(255);
+      }
+    });
     mEditText.setOnTouchListener(new View.OnTouchListener() {
       @Override
       public boolean onTouch(View v, MotionEvent event) {
@@ -71,7 +87,7 @@ public class MainActivity extends AppCompatActivity implements Container {
         final int DRAWABLE_LEFT = 0;
 
         if(event.getAction() == MotionEvent.ACTION_UP) {
-          if(event.getRawX() >= (mEditText.getRight() - mEditText.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width()-mEditText.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+          if(event.getRawX() >= (mEditText.getRight() - mEditText.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width()-mEditText.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width()) && mEditText.getText() != null && !mEditText.getText().equals("")) {
             mEditText.setText("");
             return true;
           }
@@ -175,7 +191,7 @@ public class MainActivity extends AppCompatActivity implements Container {
       listOfEntries.add(s);
     }
 
-    spinnerAdapter = new SpinnerAdapter(this,android.R.layout.simple_spinner_item, listOfEntries, ConstantUtils.BLOOD_GROUP);
+    spinnerAdapter = new SpinnerAdapter(this, R.layout.support_simple_spinner_dropdown_item, listOfEntries, ConstantUtils.BLOOD_GROUP);
     spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
     ((Spinner) findViewById(R.id.spinner_blood_group)).setAdapter(spinnerAdapter);
 
@@ -190,7 +206,7 @@ public class MainActivity extends AppCompatActivity implements Container {
       cursor.moveToNext();
     }
     Collections.sort(listOfEntries);
-    spinnerAdapter = new SpinnerAdapter(this, android.R.layout.simple_spinner_item, listOfEntries, ConstantUtils.DEPT);
+    spinnerAdapter = new SpinnerAdapter(this, R.layout.support_simple_spinner_dropdown_item, listOfEntries, ConstantUtils.DEPT);
     spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
     ((Spinner) findViewById(R.id.spinner_dept)).setAdapter(spinnerAdapter);
     cursor.close();
@@ -206,7 +222,7 @@ public class MainActivity extends AppCompatActivity implements Container {
       cursor.moveToNext();
     }
     Collections.sort(listOfEntries);
-    spinnerAdapter = new SpinnerAdapter(this, android.R.layout.simple_spinner_item, listOfEntries, ConstantUtils.PROGRAMME);
+    spinnerAdapter = new SpinnerAdapter(this, R.layout.support_simple_spinner_dropdown_item, listOfEntries, ConstantUtils.PROGRAMME);
     spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
     ((Spinner) findViewById(R.id.spinner_programme)).setAdapter(spinnerAdapter);
     cursor.close();
@@ -216,7 +232,7 @@ public class MainActivity extends AppCompatActivity implements Container {
     for(String s : ConstantUtils.GENDER_LIST) {
       listOfEntries.add(s);
     }
-    spinnerAdapter = new SpinnerAdapter(this, android.R.layout.simple_spinner_item, listOfEntries, ConstantUtils.GENDER);
+    spinnerAdapter = new SpinnerAdapter(this, R.layout.support_simple_spinner_dropdown_item, listOfEntries, ConstantUtils.GENDER);
     spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
     ((Spinner) findViewById(R.id.spinner_gender)).setAdapter(spinnerAdapter);
 
@@ -234,11 +250,10 @@ public class MainActivity extends AppCompatActivity implements Container {
       cursor.moveToNext();
     }
     listOfEntries.add("Others");
-    spinnerAdapter = new SpinnerAdapter(this, android.R.layout.simple_spinner_item, listOfEntries, ConstantUtils.YEAR);
+    spinnerAdapter = new SpinnerAdapter(this, R.layout.support_simple_spinner_dropdown_item, listOfEntries, ConstantUtils.YEAR);
     spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
     ((Spinner) findViewById(R.id.spinner_year)).setAdapter(spinnerAdapter);
     cursor.close();
-
   }
   private void imageDownloadAlertbox() {
     DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {

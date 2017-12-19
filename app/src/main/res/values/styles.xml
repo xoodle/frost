@@ -3,15 +3,28 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorButtonNormal">@color/colorAccent</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
+
     </style>
 
     <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
         <item name="android:windowBackground">@drawable/splash</item>
+    </style>
+
+    <style name="AboutHeader" parent="@style/TextAppearance.AppCompat.Title">
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+    </style>
+
+    <style name="AboutHeader2" parent="@style/TextAppearance.AppCompat.Display1">
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
+    <style name="AboutBody" parent="@style/TextAppearance.AppCompat.Body1">
+        <item name="android:textColor">@color/colorAccentDark</item>
     </style>
 
     <style name="CustomTheme" parent="AppTheme">

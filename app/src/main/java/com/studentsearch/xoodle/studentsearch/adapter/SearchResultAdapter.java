@@ -168,6 +168,7 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
           errID = res.getIdentifier("girl", "drawable", packageName);
         }
 
+        errID = res.getIdentifier("ic_person_black_48dp", "drawable", packageName);
         File directory = new File(context.getExternalFilesDir(Environment.DIRECTORY_PICTURES), "studentPics");
         File image = new File(directory, studentData.getRollNo() + "_0");
 

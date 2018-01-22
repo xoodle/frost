@@ -168,7 +168,7 @@ public class MainActivity extends AppCompatActivity implements Container {
     ArrayList<String> listOfEntries;
     SpinnerAdapter spinnerAdapter;
     String tempEntry;
-    MappingUtils mpu = new MappingUtils();
+    MappingUtils mpu = MappingUtils.getInstance();
 
     Cursor cursor = db.rawQuery("SELECT DISTINCT " + DbHelper.COLUMN_HALL + " FROM " + DbHelper.TABLE_NAME, null);
     cursor.moveToFirst();

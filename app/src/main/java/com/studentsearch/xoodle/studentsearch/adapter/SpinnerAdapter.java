@@ -58,7 +58,7 @@ public class SpinnerAdapter extends ArrayAdapter<String> {
   }
 
   private Map<String, String> getMapping() {
-    MappingUtils mappingUtils = new MappingUtils();
+    MappingUtils mappingUtils = MappingUtils.getInstance();
     switch(tag) {
       case ConstantUtils.HALL:
         return mappingUtils.getHallMap();

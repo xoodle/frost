@@ -6,14 +6,18 @@ import java.util.Map;
 /** Mapping from displayed to actual value associated with the filter spinners */
 
 public class MappingUtils {
+
+  private static  MappingUtils  THE_INSTANCE = null;
+
   private Map<String, String> hallMap;
   private Map<String, String> deptMap;
+  private Map<String, String> deptAbbrevMap;
   private Map<String, String> bloodGroupMap;
   private Map<String, String> genderMap;
   private Map<String, String> programmeMap;
   private Map<String, String> yearMap;
 
-  public MappingUtils() {
+  private MappingUtils() {
     hallMap = new HashMap<>();
     hallMap.put("", "Halls");
     hallMap.put("HALL1", "Hall 1");
@@ -46,7 +50,23 @@ public class MappingUtils {
     deptMap.put("Earth Sciences","Earth Sciences");
     deptMap.put("Mathematics", "Mathematics");
 
-    bloodGroupMap = new HashMap<>();
+      deptAbbrevMap = new HashMap<>();
+      deptAbbrevMap.put("", "Departments");
+      deptAbbrevMap.put("Physics", "PHY");
+      deptAbbrevMap.put("Materials Science & Engg.", "MSE");
+      deptAbbrevMap.put("Computer Science & Engg.", "CSE");
+      deptAbbrevMap.put("Civil Engg.", "CE");
+      deptAbbrevMap.put("Electrical Engg.", "EE");
+      deptAbbrevMap.put("Aerospace Engg.", "AE");
+      deptAbbrevMap.put("Chemical Engg.", "CHE");
+      deptAbbrevMap.put("Economics", "ECO");
+      deptAbbrevMap.put("Mechanical Engineering", "ME");
+      deptAbbrevMap.put("Chemistry", "CHM");
+      deptAbbrevMap.put("Biol.Sci. And Bio.Engg.", "BSBE");
+      deptAbbrevMap.put("Earth Sciences","ES");
+      deptAbbrevMap.put("Mathematics", "MTH");
+
+      bloodGroupMap = new HashMap<>();
     bloodGroupMap.put("", "Blood Group");
 
     genderMap = new HashMap<>();
@@ -75,6 +95,9 @@ public class MappingUtils {
     return deptMap;
   }
 
+    public Map<String, String> getDeptAbbrevMap() {
+        return deptAbbrevMap;
+    }
   public Map<String, String> getBloodGroupMap() {
     return bloodGroupMap;
   }
@@ -89,5 +112,10 @@ public class MappingUtils {
 
   public Map<String, String> getYearMap() {
     return yearMap;
+  }
+
+  public static MappingUtils getInstance() {
+    if(THE_INSTANCE == null) THE_INSTANCE = new MappingUtils();
+    return THE_INSTANCE;
   }
 }

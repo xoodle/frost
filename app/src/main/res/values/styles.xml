@@ -15,52 +15,5 @@
         <item name="android:windowBackground">@drawable/splash</item>
     </style>
 
-    <style name="AboutHeader" parent="@style/TextAppearance.AppCompat.Title">
-        <item name="android:textColor">@color/colorPrimaryDark</item>
-    </style>
-
-    <style name="AboutHeader2" parent="@style/TextAppearance.AppCompat.Display1">
-        <item name="android:textColor">@color/colorPrimary</item>
-    </style>
-
-    <style name="AboutBody" parent="@style/TextAppearance.AppCompat.Body1">
-        <item name="android:textColor">@color/colorAccentDark</item>
-    </style>
-
-    <style name="CustomTheme" parent="AppTheme">
-        <item name="colorAccent">@color/colorPrimaryDark</item>
-        <item name="android:colorBackground">@color/colorGrey</item>
-    </style>
-
-  <style name="AppTheme.WhiteAccent">
-    <item name="colorAccent">#FAFAFA</item> <!-- Whatever color you want-->
-  </style>
-
-    <style name="TemperatureTextView">
-        <item name="android:textSize">18sp</item>
-        <item name="android:textColor">@color/ts_year_background</item>
-        <item name="android:gravity">center</item>
-    </style>
-
-    <style name="PlaceTextView">
-        <item name="android:textSize">20sp</item>
-        <item name="android:gravity">center</item>
-    </style>
-  <style name="HeadlineTextStyle">
-    <item name="android:textAppearance">@style/TextAppearance.AppCompat.Headline</item>
-    <item name="android:paddingTop">8dp</item>
-    <item name="android:paddingBottom">8dp</item>
-    <item name="android:layout_width">match_parent</item>
-    <item name="android:layout_height">wrap_content</item>
-  </style>
-
-  <style name="textContentStyle">
-    <item name="android:textAppearance">@style/TextAppearance.App.Small</item>
-  </style>
-
-  <style name="TextAppearance.App.Small" parent="TextAppearance.AppCompat.Small">
-    <item name="android:textSize">?attr/contentTextSize</item>
-  </style>
-
 </resources>
 

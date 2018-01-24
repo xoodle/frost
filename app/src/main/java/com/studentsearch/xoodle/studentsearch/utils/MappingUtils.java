@@ -65,8 +65,14 @@ public class MappingUtils {
       deptAbbrevMap.put("Biol.Sci. And Bio.Engg.", "BSBE");
       deptAbbrevMap.put("Earth Sciences","ES");
       deptAbbrevMap.put("Mathematics", "MTH");
+      deptAbbrevMap.put("Humanities & Soc. Sciences", "HSS");
+      deptAbbrevMap.put("Materials Science Programme", "MSP");
+      deptAbbrevMap.put("Nuc. Engg.& Tech Prog.", "Nuclear Engg.");
+      deptAbbrevMap.put("Ind. & Management Engg.", "IME");
+      deptAbbrevMap.put("Environmental Engg. & Mgmt", "EEM");
+      deptAbbrevMap.put("Statistics", "Stats");
 
-      bloodGroupMap = new HashMap<>();
+    bloodGroupMap = new HashMap<>();
     bloodGroupMap.put("", "Blood Group");
 
     genderMap = new HashMap<>();

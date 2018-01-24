@@ -21,7 +21,6 @@ import android.widget.Toast;
 import com.studentsearch.xoodle.studentsearch.adapter.SearchResultAdapter;
 import com.studentsearch.xoodle.studentsearch.database.DbHelper;
 import java.util.ArrayList;
-import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
 
 public class SearchResultActivity extends AppCompatActivity {
 
@@ -191,13 +190,10 @@ public class SearchResultActivity extends AppCompatActivity {
       super.onPostExecute(aVoid);
       int count = studentDataArrayList.size();
       if(count > 0) {
-        getSupportActionBar().setSubtitle("Displaying " + count + " Results");
+        getSupportActionBar().setSubtitle("Displaying " + count + (count == 1 ? " result" : " results"));
 
-        mSearchResultAdapter = new SearchResultAdapter(getApplicationContext(), studentDataArrayList);
-        ScaleInAnimationAdapter scaleAdapter = new ScaleInAnimationAdapter(mSearchResultAdapter);
-        scaleAdapter.setFirstOnly(false);
-        scaleAdapter.setDuration(300);
-        mResultRecyclerView.setAdapter(scaleAdapter);
+        mSearchResultAdapter = new SearchResultAdapter(SearchResultActivity.this, studentDataArrayList);
+        mResultRecyclerView.setAdapter(mSearchResultAdapter);
         mResultRecyclerView.setVisibility(View.VISIBLE);
       } else {
         findViewById(R.id.tv_not_found).setVisibility(View.VISIBLE);

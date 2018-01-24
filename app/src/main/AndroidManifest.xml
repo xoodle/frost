@@ -37,15 +37,15 @@
             android:label="About App"/>
 
         <activity
-            android:name=".DetailsActivity"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".SearchResultActivity" />
-
-        <activity
             android:name="com.studentsearch.xoodle.studentsearch.SearchResultActivity"
             android:label="@string/activity_search_result"
             android:screenOrientation="portrait"
             android:parentActivityName="com.studentsearch.xoodle.studentsearch.MainActivity"/>
+
+        <activity
+            android:name=".DetailsActivity"
+            android:screenOrientation="portrait"
+            android:label="Details"/>
 
     </application>
 

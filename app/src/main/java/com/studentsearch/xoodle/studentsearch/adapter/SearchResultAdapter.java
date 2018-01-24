@@ -1,10 +1,15 @@
 package com.studentsearch.xoodle.studentsearch.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.media.Image;
 import android.os.AsyncTask;
 import android.os.Environment;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,7 +23,11 @@ import com.studentsearch.xoodle.studentsearch.R;
 import com.studentsearch.xoodle.studentsearch.StudentData;
 import com.studentsearch.xoodle.studentsearch.utils.ConstantUtils;
 import com.studentsearch.xoodle.studentsearch.utils.MappingUtils;
+
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -29,8 +38,8 @@ import java.util.Map;
 
 public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapter.ViewHolder> {
 
-  private ArrayList<StudentData> mStudentData;
-  private Context context;
+  private static ArrayList<StudentData> mStudentData;
+  private Activity context;
   private String packageName;
   private Comparator<StudentData> comparator = new Comparator<StudentData>() {
     @Override
@@ -61,11 +70,11 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
     }
   };
 
-  public SearchResultAdapter(Context context, ArrayList<StudentData> studentData) {
+  public SearchResultAdapter(Activity context, ArrayList<StudentData> studentData) {
     this.context = context;
     this.packageName = context.getPackageName();
     Collections.sort(studentData, comparator);
-    this.mStudentData = studentData;
+    mStudentData = studentData;
   }
 
   @Override
@@ -76,15 +85,7 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
 
   @Override
   public void onBindViewHolder(ViewHolder holder, final int position) {
-    holder.bind(context, packageName, mStudentData.get(position));
-    holder.getView().setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        Intent intent = DetailsActivity.getNewIntent(context);
-        intent.putExtra(ConstantUtils.CARD_SLIDER_POSITION, position);
-        v.getContext().startActivity(intent);
-      }
-    });
+    holder.bind(context, packageName, position);
   }
 
   @Override
@@ -116,22 +117,35 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
       // some action
     }
 
-    public void bind(Context context, String packageName, final StudentData studentData) {
+    public void bind(Activity context, String packageName, final int position) {
+      final StudentData studentData = mStudentData.get(position);
       tvName.setText(studentData.getName());
       tvAddress.setText(studentData.getRoomNo().trim() + ", " + (MappingUtils.getInstance().getHallMap().get(studentData.getHall()) != null ? MappingUtils.getInstance().getHallMap().get(studentData.getHall()) : studentData.getHall()));
-      tvProgramme.setText(studentData.getProgramme() + ", " + MappingUtils.getInstance().getDeptAbbrevMap().get(studentData.getDept()));
-      new CheckUserImage(context, packageName, studentData).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,studentData.getUserName());
-    }
+      tvProgramme.setText(studentData.getProgramme() + ", " + (MappingUtils.getInstance().getDeptAbbrevMap().containsKey(studentData.getDept())?MappingUtils.getInstance().getDeptAbbrevMap().get(studentData.getDept()):studentData.getDept()));
+      new CheckUserImage(context, packageName, studentData, iv).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,studentData.getUserName());
+      final Activity c = context;
+      view.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+          ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(c, iv, "to_more_detail");
+          Intent intent = DetailsActivity.getNewIntent(c);
+          intent.putExtra(ConstantUtils.CARD_SLIDER_POSITION, position);
+          intent.putExtra("student", studentData);
+          c.startActivity(intent, options.toBundle());
+        }
+      }); }
 
-    class CheckUserImage extends AsyncTask<String, Void, Boolean> {
+    public static class CheckUserImage extends AsyncTask<String, Void, Boolean> {
       Context context;
       String packageName;
       StudentData studentData;
+      ImageView iv;
 
-      public CheckUserImage(Context context, String packageName, final StudentData studentData){
+      public CheckUserImage(Context context, String packageName, final StudentData studentData, ImageView iv){
         this.context = context;
         this.packageName = packageName;
         this.studentData = studentData;
+        this.iv = iv;
       }
 
       protected Boolean doInBackground(String... params) {
@@ -155,10 +169,16 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
       }
 
       protected void onPostExecute(Boolean imageURLAvailable){
-        int errID;
         Resources res = context.getResources();
-        errID = res.getIdentifier("ic_person_black_48dp", "drawable", packageName);
+        int errID = res.getIdentifier("ic_person_black_48dp", "drawable", packageName);
         File directory = new File(context.getExternalFilesDir(Environment.DIRECTORY_PICTURES), "studentPics");
+        File nomedia = new File(directory, ".nomedia");
+        if(!nomedia.exists()) {
+          try {
+            nomedia.createNewFile();
+          }
+          catch(Exception e) {}
+        }
         File image = new File(directory, studentData.getRollNo() + "_0");
 
         if (image.exists()) {
@@ -173,12 +193,40 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
                   .resize(150,200)
                   .centerCrop()
                   .into(iv);
+          if(iv.getDrawable() != null) {
+            Bitmap bitmap = ((BitmapDrawable)iv.getDrawable()).getBitmap();
+            ByteArrayOutputStream array = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, array);
+            try {
+              if(image.createNewFile()) {
+                FileOutputStream stream = new FileOutputStream(image);
+                stream.write(array.toByteArray());
+                stream.close();
+              }
+            }
+            catch(FileNotFoundException fnfe){}
+            catch(IOException ioe) {}
+          }
         } else {
           Picasso.with(context)
                   .load(ConstantUtils.ImageUrl + studentData.getRollNo() + "_0.jpg")
                   .placeholder(errID)
                   .error(errID)
                   .into(iv);
+          if(iv.getDrawable() != null) {
+            Bitmap bitmap = ((BitmapDrawable)iv.getDrawable()).getBitmap();
+            ByteArrayOutputStream array = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, array);
+            try {
+              if(image.createNewFile()) {
+                FileOutputStream stream = new FileOutputStream(image);
+                stream.write(array.toByteArray());
+                stream.close();
+              }
+            }
+            catch(FileNotFoundException fnfe){}
+            catch(IOException ioe) {}
+          }
         }
       }
     }

@@ -18,13 +18,8 @@ public class SplashActivity extends AppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.splashscreen);
-    Animation anim1 = AnimationUtils.loadAnimation(this,R.anim.anim_down);
-    ImageView img =(ImageView)findViewById(R.id.imageView);
-    img.setAnimation(anim1);
 
-    Handler handler = new Handler();
-
-    handler.postDelayed(new Runnable() {
+    new Handler().postDelayed(new Runnable() {
       @Override
       public void run() {
 
@@ -32,6 +27,6 @@ public class SplashActivity extends AppCompatActivity {
         finish();
 
       }
-    },1000);
+    },300);
   }
 }

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="activity_padding_vertical">16dp</dimen>
+    <dimen name="activity_padding_horizontal">16dp</dimen>
     <dimen name="recycler_view_left_offset">5dp</dimen>
     <dimen name="left_offset">20dp</dimen>
     <dimen name="card_width">148dp</dimen>

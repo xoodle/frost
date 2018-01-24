@@ -74,19 +74,7 @@ public class DbHelper extends SQLiteOpenHelper implements Serializable {
       db.beginTransaction();
       db.delete(TABLE_NAME, null, null);
       for (StudentData student : students) {
-        //reinitialize student to initalize "year"
-        student = new StudentData(
-                student.getAddress(),
-                student.getBloodGroup(),
-                student.getDept(),
-                student.getGender(),
-                student.getHall(),
-                student.getRollNo(),
-                student.getName(),
-                student.getProgramme(),
-                student.getRoomNo(),
-                student.getUserName()
-        );
+        student.setYear();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COLUMN_ADDRESS, student.getAddress());
         contentValues.put(COLUMN_BLOOD_GROUP, student.getBloodGroup());

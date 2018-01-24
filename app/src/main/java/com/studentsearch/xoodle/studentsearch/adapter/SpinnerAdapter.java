@@ -21,10 +21,12 @@ import java.util.Map;
 
 public class SpinnerAdapter extends ArrayAdapter<String> {
   private String tag;
-
+  private Map<String, String> map;
+  
   public SpinnerAdapter(Context context, int resource, List<String> items, String tag) {
     super(context, resource, items);
     this.tag = tag;
+    map = getMapping();
     Collections.sort(items, getComparator());
   }
 
@@ -32,7 +34,6 @@ public class SpinnerAdapter extends ArrayAdapter<String> {
   @Override
   public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
     TextView textView = (TextView) super.getView(position, convertView, parent);
-    Map<String, String> map = getMapping();
     if(map != null) {
       String value = map.get(getItem(position));
       if(value == null) {
@@ -46,7 +47,6 @@ public class SpinnerAdapter extends ArrayAdapter<String> {
   @Override
   public View getDropDownView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
     TextView textView = (TextView) super.getDropDownView(position, convertView, parent);
-    Map<String, String> map = getMapping();
     if(map != null) {
       String value = map.get(getItem(position));
       if(value == null) {
@@ -58,7 +58,7 @@ public class SpinnerAdapter extends ArrayAdapter<String> {
   }
 
   private Map<String, String> getMapping() {
-    MappingUtils mappingUtils = new MappingUtils();
+    MappingUtils mappingUtils = MappingUtils.getInstance();
     switch(tag) {
       case ConstantUtils.HALL:
         return mappingUtils.getHallMap();

@@ -14,4 +14,5 @@ public class ConstantUtils {
   public static final String STUDENT_LIST = "student_list";
   public static final String CARD_SLIDER_POSITION = "card_slider_position";
   public static final String ImageUrl = "https://oa.cc.iitk.ac.in/Oa/Jsp/Photo/";
+
 }

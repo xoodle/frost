@@ -2,14 +2,15 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.3"
+    buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "com.studentsearch.xoodle.studentsearch"
-        minSdkVersion 15
+        minSdkVersion 19
         targetSdkVersion 25
         versionCode 5
         versionName "1.3"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
         release {
@@ -20,16 +21,16 @@ android {
     aaptOptions {
         cruncherEnabled = false
     }
+    productFlavors {
+    }
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-
     final GOOGLE_VERSION = '25.3.1'
-
     compile "com.android.support:preference-v7:$GOOGLE_VERSION"
     compile "com.android.support:design:$GOOGLE_VERSION"
     compile "com.android.support:appcompat-v7:$GOOGLE_VERSION"
@@ -39,16 +40,9 @@ dependencies {
     compile "com.android.support:support-annotations:$GOOGLE_VERSION"
     compile "com.android.support:customtabs:$GOOGLE_VERSION"
     compile "com.android.support:support-v4:$GOOGLE_VERSION"
-    compile 'com.squareup.retrofit:retrofit:1.9.0'
     testCompile 'junit:junit:4.12'
     //Retrofit 2, OkHttp and Gson
-    compile 'com.squareup.retrofit2:retrofit:2.3.0'
-    compile 'com.squareup.retrofit2:converter-gson:2.3.0'
     compile 'com.google.code.gson:gson:2.8.0'
     compile 'com.squareup.picasso:picasso:2.5.2'
     //Rounded Image View
-    compile 'com.makeramen:roundedimageview:2.3.0'
-    compile 'jp.wasabeef:recyclerview-animators:2.2.7@aar'
-    // Card Slider Android
-    'com.ramotion.cardslider:card-slider:0.1.0'
 }

@@ -1,187 +1,366 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <ScrollView
+  xmlns:android="http://schemas.android.com/apk/res/android"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   android:clipToPadding="false"
-  android:scrollbars="none"
-  xmlns:android="http://schemas.android.com/apk/res/android">
-<LinearLayout
-  android:orientation="vertical"
-  android:layout_width="match_parent"
-  android:layout_height="wrap_content"
-  xmlns:android="http://schemas.android.com/apk/res/android">
+  android:padding="@dimen/activity_padding_horizontal"
+  android:scrollbars="none">
 
-      <TextView
-        android:text="Application Info :"
-        android:textColor="@color/colorPrimary"
-        android:layout_width="match_parent"
-        android:textSize="28dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginStart="10dp"/>
-  <TextView
-    android:text="Version : 1.0.0"
-    android:textColor="@color/colorAccentDark"
+  <LinearLayout
     android:layout_width="match_parent"
-    android:textSize="20dp"
     android:layout_height="wrap_content"
-    android:layout_marginTop="5dp"
-    android:layout_marginStart="10dp"/>
-  <TextView
-    android:text="Developed under PClub IITK"
-    android:textColor="@color/colorPrimary"
-    android:layout_width="match_parent"
-    android:textSize="18dp"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="5dp"
-    android:layout_marginStart="10dp"/>
-  <TextView
-    android:text="This app is open source at: github.com/xoodle/frost"
-    android:textColor="@color/colorPrimary"
-    android:layout_width="match_parent"
-    android:textSize="18dp"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="5dp"
-    android:layout_marginStart="10dp"/>
-      <!--<TextView-->
-        <!--android:id="@id/text_application_info"-->
-        <!--style="@style/textContentStyle"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content" />-->
+    android:orientation="vertical">
 
-      <TextView
-        android:text="Developed in IITK by :"
-        android:textColor="@color/colorPrimary"
+    <android.support.v7.widget.CardView
+      xmlns:card_view="http://schemas.android.com/apk/res-auto"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      card_view:cardUseCompatPadding="true"
+      card_view:cardElevation="@dimen/cardview_default_elevation"
+      card_view:cardCornerRadius="4dp">
+
+      <LinearLayout
         android:layout_width="match_parent"
-        android:textSize="28dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginStart="10dp"/>
-  <TextView
-    android:text="Aryan Sharma (Y16)"
-    android:textColor="@color/colorAccent"
-    android:layout_width="match_parent"
-    android:textSize="25dp"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="5dp"
-    android:layout_marginStart="10dp"/>
-  <TextView
-    android:text="saryan@iitk.ac.in|github.com/aryanshar"
-    android:textColor="@color/colorPrimaryDark"
-    android:layout_width="match_parent"
-    android:textSize="18dp"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="5dp"
-    android:layout_marginStart="10dp"/>
-  <TextView
-    android:text="Kaushal Kishore (Y16)"
-    android:textColor="@color/colorAccent"
-    android:layout_width="match_parent"
-    android:textSize="25dp"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="10dp"
-    android:layout_marginStart="10dp"/>
-  <TextView
-    android:text="kaushalk@iitk.ac.in|github.com/kaushal-k"
-    android:textColor="@color/colorPrimaryDark"
-    android:layout_width="match_parent"
-    android:textSize="18dp"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="5dp"
-    android:layout_marginStart="10dp"/>
-  <TextView
-    android:text="Utkarsh Barsaiyan (Y16)"
-    android:textColor="@color/colorAccent"
-    android:layout_width="match_parent"
-    android:textSize="25dp"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="10dp"
-    android:layout_marginStart="10dp"/>
-  <TextView
-    android:text="butkarsh@iitk.ac.in|github.com/ubarsaiyan"
-    android:textColor="@color/colorPrimaryDark"
-    android:layout_width="match_parent"
-    android:textSize="18dp"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="5dp"
-    android:layout_marginStart="10dp"/>
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/activity_padding_horizontal"
+            android:paddingRight="@dimen/activity_padding_horizontal"
+            android:paddingTop="@dimen/activity_padding_vertical"
+            android:orientation="vertical">
+
+            <TextView
+              style="@style/TextAppearance.AppCompat.Headline"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:text="Application Information"/>
+
+            <View
+              android:layout_width="match_parent"
+              android:layout_height="1dp"
+              android:background="@color/colorPrimaryDark"/>
+
+            <TextView
+                style="@style/TextAppearance.AppCompat.Subhead"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:text="Version: 1.0.0"
+              android:layout_marginTop="5dp"/>
+
+            <TextView
+                style="@style/TextAppearance.AppCompat.Subhead"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:text="Developed under Programming Club, IIT Kanpur"
+              android:layout_marginTop="5dp"/>
+
+        </LinearLayout>
+
+        <Button
+          style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
+          android:id="@+id/about_app_btn_app_repo"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="5dp"
+          android:layout_marginLeft="6dp"
+          android:text="GitHub repository"/>
+
+      </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        card_view:cardUseCompatPadding="true"
+        card_view:cardElevation="@dimen/cardview_default_elevation"
+        card_view:cardCornerRadius="4dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/TextAppearance.AppCompat.Headline"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_padding_horizontal"
+                android:layout_marginRight="@dimen/activity_padding_horizontal"
+                android:layout_marginTop="@dimen/activity_padding_vertical"
+                android:text="Developers"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="@dimen/activity_padding_horizontal"
+                android:layout_marginRight="@dimen/activity_padding_horizontal"
+                android:background="@color/colorPrimaryDark"/>
+
+            <TextView
+                style="@style/TextAppearance.AppCompat.Subhead"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Aryan Sharma (Y16)"
+                android:layout_marginLeft="@dimen/activity_padding_horizontal"
+                android:layout_marginRight="@dimen/activity_padding_horizontal"
+                android:layout_marginTop="5dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="6dp"
+                android:orientation="horizontal">
+
+                <Button
+                    style="?buttonBarButtonStyle"
+                    android:id="@+id/about_app_btn_aryan_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Email"/>
+
+                <Button
+                    style="?buttonBarButtonStyle"
+                    android:id="@+id/about_app_btn_aryan_github"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="GitHub"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="@dimen/activity_padding_horizontal"
+                android:layout_marginRight="@dimen/activity_padding_horizontal"
+                android:background="@color/colorPrimaryDark"/>
+
+          <TextView
+            style="@style/TextAppearance.AppCompat.Subhead"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Kaushal Kishore (Y16)"
+            android:layout_marginLeft="@dimen/activity_padding_horizontal"
+            android:layout_marginRight="@dimen/activity_padding_horizontal"
+            android:layout_marginTop="5dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="6dp"
+                android:orientation="horizontal">
+
+                <Button
+                    style="?buttonBarButtonStyle"
+                    android:id="@+id/about_app_btn_kaushal_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Email"/>
+
+                <Button
+                    style="?buttonBarButtonStyle"
+                    android:id="@+id/about_app_btn_kaushal_github"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="GitHub"/>
+
+            </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="@dimen/activity_padding_horizontal"
+            android:layout_marginRight="@dimen/activity_padding_horizontal"
+            android:background="@color/colorPrimaryDark"/>
+
+          <TextView
+              style="@style/TextAppearance.AppCompat.Subhead"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Utkarsh Barsaiyan (Y16)"
+            android:layout_marginLeft="@dimen/activity_padding_horizontal"
+            android:layout_marginRight="@dimen/activity_padding_horizontal"
+            android:layout_marginTop="5dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="6dp"
+                android:orientation="horizontal">
+
+                <Button
+                    style="?buttonBarButtonStyle"
+                    android:id="@+id/about_app_btn_utkarsh_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Email"/>
+
+                <Button
+                    style="?buttonBarButtonStyle"
+                    android:id="@+id/about_app_btn_utkarsh_github"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="GitHub"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
       <!--<TextView-->
         <!--android:id="@id/text_developer_info"-->
         <!--style="@style/textContentStyle"-->
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="wrap_content" />-->
       <!--<TextView-->
-        <!--android:text="@string/libraries_title"-->
+        <!--android:text="@string/libraries_Headline"-->
         <!--style="@style/HeadlineTextStyle" />-->
       <!--<TextView-->
         <!--android:id="@id/text_libraries"-->
         <!--style="@style/textContentStyle"-->
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="wrap_content" />-->
-
-  <TextView
-    android:text="Mentoring Credits :"
-    android:textColor="@color/colorPrimary"
-    android:layout_width="match_parent"
-    android:textSize="28dp"
-    android:layout_marginTop="20dp"
-    android:layout_marginStart="10dp"
-    android:layout_height="wrap_content"/>
-  <TextView
-    android:text="Siddharth Ganeriwala"
-    android:textColor="@color/colorAccentDark"
-    android:layout_width="match_parent"
-    android:textSize="18dp"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="5dp"
-    android:layout_marginStart="10dp"/>
-  <TextView
-    android:text="Yash Srivastava"
-    android:textColor="@color/colorAccentDark"
-    android:layout_width="match_parent"
-    android:textSize="18dp"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="5dp"
-    android:layout_marginStart="10dp"/>
-
-  <TextView
-        android:text="License :"
-        android:textColor="@color/colorPrimary"
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:textSize="28dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="10dp"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        card_view:cardUseCompatPadding="true"
+        card_view:cardElevation="@dimen/cardview_default_elevation"
+        card_view:cardCornerRadius="4dp">
 
-  <TextView
-    android:text="MIT License
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-Copyright (c) 2017 xoodle | PclubIITK
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the SOFTWARE), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+            <TextView
+                style="@style/TextAppearance.AppCompat.Headline"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_padding_horizontal"
+                android:layout_marginRight="@dimen/activity_padding_horizontal"
+                android:layout_marginTop="@dimen/activity_padding_vertical"
+                android:text="Mentoring Credits"/>
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="@dimen/activity_padding_horizontal"
+                android:layout_marginRight="@dimen/activity_padding_horizontal"
+                android:background="@color/colorPrimaryDark"/>
 
-THE SOFTWARE IS PROVIDED AS IS, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.  "
-    android:textColor="@color/colorPrimary"
-    android:layout_width="match_parent"
-    android:textSize="14dp"
-    android:paddingBottom="20dp"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="5dp"
-    android:layout_marginStart="10dp"/>
+            <TextView
+                style="@style/TextAppearance.AppCompat.Subhead"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Siddharth Ganeriwala (Y15)"
+                android:layout_marginLeft="@dimen/activity_padding_horizontal"
+                android:layout_marginRight="@dimen/activity_padding_horizontal"
+                android:layout_marginTop="5dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="6dp"
+                android:orientation="horizontal">
+
+                <Button
+                    style="?buttonBarButtonStyle"
+                    android:id="@+id/about_app_btn_siddharth_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Email"/>
+
+                <Button
+                    style="?buttonBarButtonStyle"
+                    android:id="@+id/about_app_btn_siddharth_github"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="GitHub"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="@dimen/activity_padding_horizontal"
+                android:layout_marginRight="@dimen/activity_padding_horizontal"
+                android:background="@color/colorPrimaryDark"/>
+
+            <TextView
+                style="@style/TextAppearance.AppCompat.Subhead"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Yash Srivastava (Y15)"
+                android:layout_marginLeft="@dimen/activity_padding_horizontal"
+                android:layout_marginRight="@dimen/activity_padding_horizontal"
+                android:layout_marginTop="5dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="6dp"
+                android:orientation="horizontal">
+
+                <Button
+                    style="?buttonBarButtonStyle"
+                    android:id="@+id/about_app_btn_yash_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Email"/>
+
+                <Button
+                    style="?buttonBarButtonStyle"
+                    android:id="@+id/about_app_btn_yash_github"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="GitHub"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        card_view:cardUseCompatPadding="true"
+        card_view:cardElevation="@dimen/cardview_default_elevation"
+        card_view:cardCornerRadius="4dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/activity_padding_horizontal"
+            android:orientation="vertical">
+
+              <TextView
+                style="@style/TextAppearance.AppCompat.Headline"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="License"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorPrimaryDark"/>
+
+              <TextView
+                style="@style/TextAppearance.AppCompat.Subhead"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="MIT License\nCopyright (c) 2017 xoodle | PclubIITK\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the SOFTWARE), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED AS IS, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."
+                android:layout_marginTop="5dp"/>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
       <!--<TextView-->
         <!--android:id="@id/text_license"-->
         <!--style="@style/textContentStyle"-->

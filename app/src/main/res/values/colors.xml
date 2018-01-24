@@ -3,16 +3,9 @@
     <color name="colorPrimary">#26203f</color>
     <color name="colorPrimaryDark">#00001a</color>
     <color name="colorAccent">#f50057</color>
-  <color name="colorAccentDark">#420324</color>
+    <color name="colorAccentDark">#bb002f</color>
     <color name="colorWhite">#FFFFFF</color>
+    <color name="colorBlack">#000000</color>
     <color name="colorGrey">#E0E0E0</color>
-    <color name="colorcards">#F9FBE7</color>
-    <color name="colortext">#1B5E20</color>
-    <color name="colortext1">#424242</color>
-    <color name="darkGray">#616161</color>
-    <color name="ts_year_background">@android:color/holo_blue_dark</color>
-
-
-
 
 </resources>

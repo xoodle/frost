@@ -4,100 +4,58 @@
   xmlns:card_view="http://schemas.android.com/apk/res-auto"
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
-  android:layout_margin="4dp"
+    card_view:cardUseCompatPadding="true"
   card_view:cardCornerRadius="4dp"
   card_view:cardElevation="4dp">
 
   <RelativeLayout
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      android:layout_margin="4dp"
-      android:orientation="vertical"
-    android:background="@color/colorWhite">
+      android:padding="@dimen/activity_padding_horizontal"
+      android:orientation="vertical">
 
-    <com.makeramen.roundedimageview.RoundedImageView
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/user_image"
+    <ImageView
+        android:id="@+id/card_entries_iv"
         android:layout_width="110dp"
-        android:layout_height="135dp"
-        android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true"
-        android:layout_marginRight="8dp"
-        android:scaleType="centerCrop"
-        app:riv_border_color="#E0E0E0"
-        app:riv_border_width="1dip"
-        app:riv_corner_radius="4dip"
-        app:riv_mutate_background="true"
-        app:riv_oval="false"
-        app:riv_tile_mode="clamp"/>
-
-    <TextView
-        android:id="@+id/tv_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="143dp"
         android:layout_alignParentTop="true"
-        android:layout_marginBottom="1dp"
-        android:layout_marginTop="5dp"
-        android:layout_toRightOf="@id/user_image"
-        android:fontFamily="sans-serif-smallcaps"
-        android:textColor="@color/colorPrimaryDark"
-        android:textIsSelectable="true"
-        android:textSize="20sp"
-        android:textStyle="bold"/>
+        android:layout_alignParentRight="true"
+        android:transitionName="to_more_detail"/>
 
-    <TextView
-        android:id="@+id/tv_roll"
+      <TextView
+          style="@style/TextAppearance.AppCompat.Headline"
+          android:id="@+id/card_entries_tv_name"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignParentLeft="true"
+          android:layout_alignParentTop="true"
+          android:layout_toLeftOf="@id/card_entries_iv"
+          android:layout_marginRight="4dp"
+          android:ellipsize="end"/>
+
+      <TextView
+        style="@style/TextAppearance.AppCompat.Subhead"
+        android:id="@+id/card_entries_tv_address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tv_name"
-        android:layout_marginBottom="4dp"
-        android:fontFamily="sans-serif"
-        android:layout_toRightOf="@id/user_image"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:textColor="@color/colortext1"
-        android:textIsSelectable="true"
-        android:textSize="16sp"/>
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/card_entries_tv_name"
+        android:layout_marginTop="4dp"
+        android:layout_marginRight="4dp"
+        android:layout_toLeftOf="@id/card_entries_iv"
+        android:ellipsize="end" />
 
     <TextView
-        android:id="@+id/tv_dept"
+        style="@style/TextAppearance.AppCompat.Subhead"
+        android:id="@+id/card_entries_tv_programme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tv_roll"
-        android:layout_marginBottom="4dp"
-        android:textColor="@color/colortext1"
-        android:fontFamily="sans-serif"
-        android:layout_toRightOf="@id/user_image"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:textSize="16sp"/>
-
-    <TextView
-        android:id="@+id/tv_hall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tv_dept"
-        android:layout_marginBottom="4dp"
-        android:fontFamily="sans-serif"
-        android:layout_toRightOf="@id/user_image"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:textColor="@color/colortext1"
-        android:textIsSelectable="true"
-        android:textSize="16sp"/>
-    <TextView
-      android:id="@+id/tv_user_blood"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_below="@id/tv_hall"
-      android:layout_marginBottom="6dp"
-      android:fontFamily="sans-serif"
-      android:layout_toRightOf="@id/user_image"
-      android:ellipsize="end"
-      android:maxLines="1"
-      android:textColor="@color/colortext1"
-      android:textIsSelectable="true"
-      android:textSize="16sp"/>
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/card_entries_tv_address"
+        android:layout_marginTop="4dp"
+        android:layout_marginRight="4dp"
+        android:layout_toLeftOf="@id/card_entries_iv"
+        android:ellipsize="end" />
 
   </RelativeLayout>
 
